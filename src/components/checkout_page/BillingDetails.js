@@ -62,7 +62,7 @@ export default function BillingDetails() {
     order_overview: {
       order_status: "pendding",
       total_amount: net_total,
-      total_qty: products_data.length,
+      total_qty: products_data?.length,
       order_date: {
         date: new Date().getDate(),
         month: new Date().getMonth() + 1,

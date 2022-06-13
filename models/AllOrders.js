@@ -40,7 +40,7 @@ const orderSchema = new mongoose.Schema(
 
     order_overview: {
       order_status: { type: String, required: true },
-      total_amount: { type: String, required: true },
+      total_amount: { type: Number, required: true },
       total_qty: { type: Number, required: true },
       order_date: {
         date: { type: Number, required: true },
@@ -55,7 +55,7 @@ const orderSchema = new mongoose.Schema(
       customer_name: { type: String, required: true },
       customer_email: { type: String, required: true },
       customer_mobile: { type: String, required: true },
-      payment_amount: { type: String, required: true },
+      payment_amount: { type: Number, required: true },
       card_name: { type: String, required: true },
       created: { type: String, required: true },
       last4: { type: String, required: true },
