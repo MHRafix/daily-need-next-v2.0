@@ -1,0 +1,49 @@
+{
+  "name": "daily_need",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.8.0",
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "chart.js": "^3.8.0",
+    "dotenv": "^16.0.1",
+    "formik": "^2.2.9",
+    "js-cookie": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.1",
+    "multer": "^1.4.5-lts.1",
+    "next": "12.1.5",
+    "next-connect": "^0.12.2",
+    "next-redux-wrapper": "^7.0.5",
+    "next-wrapper": "^0.0.3",
+    "prop-types": "^15.8.1",
+    "react": "18.1.0",
+    "react-chartjs-2": "^4.1.0",
+    "react-dom": "18.1.0",
+    "react-icons": "^4.3.1",
+    "react-redux": "^8.0.1",
+    "react-slick": "^0.29.0",
+    "react-table": "^7.8.0",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "slick-carousel": "^1.8.1",
+    "stripe": "^8.76.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.5",
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.5",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.24"
+  }
+}
