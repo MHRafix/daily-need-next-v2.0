@@ -2,7 +2,6 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { reduceCookie } from "../../redux/cart_products/action";
 import { ErrorAlert, SuccessMessage } from "../AlertMessage";
 import { FormTextField } from "../Form/FormField";
 
@@ -22,8 +21,8 @@ export default function PaymentForm({ payable_amount, order_id }) {
 
   useEffect(() => {
     fetch(
-      // "http://localhost:3000/api/stripe_payment/payment_intent",
-      "https://daily-need.vercel.app/api/stripe_payment/payment_intent",
+      "http://localhost:3000/api/stripe_payment/payment_intent",
+      // "https://daily-need.vercel.app/api/stripe_payment/payment_intent",
       {
         method: "POST",
         headers: {
@@ -35,7 +34,8 @@ export default function PaymentForm({ payable_amount, order_id }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        setClientSecret(data.clientSecret);
+        console.log(data?.clientSecret);
+        setClientSecret(data?.clientSecret);
       });
   }, [payable_amount]);
 
@@ -115,7 +115,7 @@ export default function PaymentForm({ payable_amount, order_id }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          dispatch(reduceCookie(empty_data));
+          // dispatch(reduceCookie(empty_data));
         });
 
       const redirect = () => {
