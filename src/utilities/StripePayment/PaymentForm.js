@@ -21,8 +21,8 @@ export default function PaymentForm({ payable_amount, order_id }) {
 
   useEffect(() => {
     fetch(
-      "http://localhost:3000/api/stripe_payment/payment_intent",
-      // "https://daily-need.vercel.app/api/stripe_payment/payment_intent",
+      // "http://localhost:3000/api/stripe_payment/payment_intent",
+      "https://daily-need.vercel.app/api/stripe_payment/payment_intent",
       {
         method: "POST",
         headers: {
@@ -34,7 +34,7 @@ export default function PaymentForm({ payable_amount, order_id }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data?.clientSecret);
+        console.log(data.clientSecret);
         setClientSecret(data?.clientSecret);
       });
   }, [payable_amount]);
