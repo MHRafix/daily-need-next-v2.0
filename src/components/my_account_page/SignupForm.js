@@ -18,7 +18,7 @@ export default function SignupForm() {
     user_admin: false,
   };
 
-  const { success, error, handleFormSubmit } = handleForm(
+  const { processing, success, error, handleFormSubmit } = handleForm(
     user_info,
     cnfPassword,
     "my_account/signup_api"
@@ -62,7 +62,12 @@ export default function SignupForm() {
         described in our privacy policy.
       </p>
 
-      <FormButton type="submit" btn_name="Signup Now" />
+      <FormButton
+        type="submit"
+        processing={proccesing}
+        btn_name="Signup Now"
+        disable={processing}
+      />
     </form>
   );
 }

@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Loader from "../../images/loader/loader.gif";
+
 export const FormTextField = ({
   form_label,
   type,
@@ -38,12 +41,28 @@ export const FormTextArea = ({ form_label, cols, rows, required }) => {
   );
 };
 
-export const FormButton = ({ type, btn_name, disable }) => {
+export const FormButton = ({ type, btn_name, processing, disable }) => {
   return (
-    <div id="field_wrapper" className="lg:!w-1/4">
-      <button type={type} id="form_btn" className="!w-full" disabled={disable}>
-        {btn_name}
-      </button>
+    <div id="field_wrapper" className="!w-full">
+      {processing ? (
+        <button
+          type={type}
+          id="form_btn"
+          className="lg:!w-full !w-full"
+          disabled={disable}
+        >
+          Loading... <Image src={Loader} width={20} height={20} />
+        </button>
+      ) : (
+        <button
+          type={type}
+          id="form_btn"
+          className="lg:!w-full !w-full"
+          disabled={disable}
+        >
+          {btn_name}
+        </button>
+      )}
     </div>
   );
 };

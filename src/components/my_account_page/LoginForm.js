@@ -18,7 +18,7 @@ export default function LoginForm() {
   const api_url = "my_account/signin_api";
 
   // handle form submit import here
-  const { success, error, handleFormSubmit } = handleForm(
+  const { processing, success, error, handleFormSubmit } = handleForm(
     user_info,
     password,
     api_url
@@ -44,7 +44,12 @@ export default function LoginForm() {
         required={true}
       />
 
-      <FormButton type="submit" btn_name="Signin Now" />
+      <FormButton
+        type="submit"
+        processing={proccesing}
+        btn_name="Signin Now"
+        disable={processing}
+      />
       <p className="text-light text-black4 tracking-wide cursor-pointer mt-10 hover:text-red-400 hover:duration-300">
         Lost your password?
       </p>

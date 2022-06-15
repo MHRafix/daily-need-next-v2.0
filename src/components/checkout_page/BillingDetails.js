@@ -10,6 +10,7 @@ import StripePaymentForm from "../../utilities/StripePayment/StripePaymentForm";
 import OrderOverview from "./OrderOverview/OrderOverview";
 
 export default function BillingDetails() {
+  const [processing, setProccesing] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const empty_data = [];
@@ -89,6 +90,7 @@ export default function BillingDetails() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setPaypalModal(false);
+    setProccesing(true);
 
     const { data } = await axios.post(
       // "http://localhost:3000/api/checkout/place_order",
@@ -100,6 +102,7 @@ export default function BillingDetails() {
       setError("");
       setSuccess(data?.success);
       Cookie.remove("cart_product_ids");
+      setProccesing(false);
 
       setTimeout(() => {
         if (payment === "cash-on") {
@@ -113,6 +116,7 @@ export default function BillingDetails() {
     } else {
       setSuccess("");
       setError(data.error);
+      setProccesing(false);
     }
   };
 
@@ -211,8 +215,9 @@ export default function BillingDetails() {
 
               <FormButton
                 type="submit"
-                disable={!products_data.length ? true : false}
                 btn_name="Place Order"
+                processing={proccesing}
+                disable={processing || !products_data.length ? true : false}
               />
             </form>
           </div>

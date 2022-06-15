@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaTruckMoving } from "react-icons/fa";
 import { GiBeachBag } from "react-icons/gi";
 import { MdOutlineShoppingCart } from "react-icons/md";
@@ -17,10 +17,7 @@ export default function ProductView({ product }) {
       </div>
       <div className="product_details_wrapper">
         {product?.prices?.sale_price !== 0 && (
-          <div
-            id="sale_badge"
-            className="!text-light !w-per_16 !py-extra_padding2"
-          >
+          <div id="sale_badge" className="!text-light !w-24 !py-extra_padding2">
             {Math.ceil(
               (product?.prices?.regular_price - product?.prices?.sale_price) /
                 (product?.prices?.regular_price / 100)
@@ -54,7 +51,13 @@ export default function ProductView({ product }) {
               <button
                 id="qty_controller"
                 className="!shadow-md !bg-indigo-50"
-                onClick={() => setQty(qty - 1)}
+                onClick={() => {
+                  if (qty > 1) {
+                    setQty(qty - 1);
+                  } else {
+                    alert("Minimum quantity limit exceed!");
+                  }
+                }}
               >
                 -
               </button>
@@ -62,7 +65,13 @@ export default function ProductView({ product }) {
               <button
                 id="qty_controller"
                 className="!shadow-md !bg-indigo-50"
-                onClick={() => setQty(qty + 1)}
+                onClick={() => {
+                  if (qty < 10) {
+                    setQty(qty + 1);
+                  } else {
+                    alert("Maximum quantity limit exceed!");
+                  }
+                }}
               >
                 +
               </button>

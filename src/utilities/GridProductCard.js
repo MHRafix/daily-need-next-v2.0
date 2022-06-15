@@ -8,8 +8,15 @@ import { useDispatch } from "react-redux";
 import { handleAddToCart } from "./handleCart";
 
 export default function GridProductCard({ product_data }) {
-  const { slug, title, thumbnail, prices, stock_available, product_status } =
-    product_data;
+  const {
+    _id,
+    slug,
+    title,
+    thumbnail,
+    prices,
+    stock_available,
+    product_status,
+  } = product_data;
   const dispatch = useDispatch();
   const { regular_price, sale_price } = prices;
 
@@ -100,7 +107,9 @@ export default function GridProductCard({ product_data }) {
             {stock_available > 0 ? (
               <button
                 id="cart_btn"
-                onClick={() => handleAddToCart(product_data, dispatch, qty)}
+                onClick={() =>
+                  handleAddToCart(product_data, dispatch, _id, qty)
+                }
               >
                 <MdOutlineShoppingCart /> &nbsp; Add to cart
               </button>

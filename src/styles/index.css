@@ -286,15 +286,15 @@
   }
 
   .grid_shop_area {
-    @apply flex justify-between;
+    @apply lg:flex lg:justify-between relative;
   }
 
   .sidebar_area {
-    @apply bg-white w-1/4 mr-4;
+    @apply bg-white lg:w-1/4 lg:h-auto lg:mr-4 lg:relative absolute top-0 -left-7 z-10 p-2 border-1  border-slate-200 h-screen overflow-y-auto;
   }
 
   .shop_area {
-    @apply w-3/4 text-center ml-4;
+    @apply lg:w-3/4 text-center ml-4;
   }
 
   .shop_controller {

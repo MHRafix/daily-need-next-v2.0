@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function handleForm(user_info, cnfPassword, api_url) {
+  const [processing, setProccesing] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
@@ -15,10 +16,12 @@ export default function handleForm(user_info, cnfPassword, api_url) {
     router,
     setSuccess,
     setError,
+    setProcessing,
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setProccesing(true);
 
     try {
       if (user_info?.user_password === cnfPassword) {
@@ -43,7 +46,7 @@ export default function handleForm(user_info, cnfPassword, api_url) {
       setError(error);
     }
   };
-  return { success, error, handleFormSubmit };
+  return { processing, success, error, handleFormSubmit };
 }
 
 // const send req to server with data
@@ -61,6 +64,8 @@ const sendReq = async (reqDep, redirect_url) => {
   if (data?.success) {
     setError("");
     setSuccess(data?.success);
+    setProcessing(false);
+
     Cookie.set("user_information", JSON.stringify(data), {
       expires: 30, // 30 days
       secure: true,
@@ -70,6 +75,7 @@ const sendReq = async (reqDep, redirect_url) => {
     router.push(redirect || redirect_url);
   } else {
     setSuccess("");
+    setProcessing(false);
     setError(data.error);
   }
 };

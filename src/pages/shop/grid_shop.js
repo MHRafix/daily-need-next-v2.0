@@ -1,4 +1,3 @@
-import React from "react";
 import Product from "../../../models/Products";
 import LayoutContainer from "../../components/commons/layout/LayoutContainer";
 import ShopPageMain from "../../components/shop_page/ShopPageMain";
@@ -9,7 +8,7 @@ export default function GridShopPage({ products }) {
     <>
       <LayoutContainer
         title="Shop"
-        description="This is shop page of 'Daily Needs Grocery'"
+        description="This is shop page of 'Daily Needs Grocery' web application."
       >
         <ShopPageMain products_data={products} />
       </LayoutContainer>

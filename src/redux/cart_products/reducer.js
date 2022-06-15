@@ -3,7 +3,7 @@ import {
   addToCartProducts,
   decreaseQty,
   increaseQty,
-  reduceCartProduct,
+  reduceCartProduct
 } from "./action";
 
 // carted_products ? carted_products : [],
@@ -16,8 +16,24 @@ export default function reducer(state = initialState, { type, payload }) {
   switch (type) {
     // add product to cart list here
     case addToCartProducts.ADD_TO_CART: {
-      const new_cart = [...state.cart_list, payload];
-      return { ...state, cart_list: new_cart };
+      // if the product is exist in cart list then just update the qty otherwise add
+      const find_one = state.cart_list.find(
+        (product) => product._id === payload._id
+      );
+
+      if (find_one) {
+        find_one.quantity = find_one.quantity + payload.quantity;
+
+        const rest_cart = state.cart_list.filter(
+          (product) => product._id !== payload._id
+        );
+
+        const updated_cartlist = [...rest_cart, find_one];
+        return { ...state, cart_list: updated_cartlist };
+      } else {
+        const new_cart = [...state.cart_list, payload];
+        return { ...state, cart_list: new_cart };
+      }
     }
 
     // remove or reduce product from cart list here

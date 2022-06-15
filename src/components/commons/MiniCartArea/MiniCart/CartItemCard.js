@@ -1,6 +1,5 @@
 import Image from "next/image";
 import NextLink from "next/link";
-import React from "react";
 import { useDispatch } from "react-redux";
 import { handleReduceCart } from "../../../../utilities/handleReduceCart";
 
@@ -13,7 +12,16 @@ export default function CartItemCard({ product }) {
       </div>
       <div className="ml-10 !text-left">
         <div id="stock_slae_badge">
-          <div id="sale_badge">15%</div>
+          {/* <div id="sale_badge">15%</div> */}
+          {product?.prices?.sale_price !== 0 && (
+            <div id="sale_badge">
+              {Math.ceil(
+                (product?.prices?.regular_price - product?.prices?.sale_price) /
+                  (product?.prices?.regular_price / 100)
+              )}
+              % OFF
+            </div>
+          )}
           <div
             onClick={() => handleReduceCart(product?._id, dispatch)}
             className="text-red-500 cursor-pointer text-semi_medium"
