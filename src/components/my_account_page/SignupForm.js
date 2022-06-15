@@ -64,7 +64,7 @@ export default function SignupForm() {
 
       <FormButton
         type="submit"
-        processing={proccesing}
+        processing={processing}
         btn_name="Signup Now"
         disable={processing}
       />

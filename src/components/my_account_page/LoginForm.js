@@ -46,7 +46,7 @@ export default function LoginForm() {
 
       <FormButton
         type="submit"
-        processing={proccesing}
+        processing={processing}
         btn_name="Signin Now"
         disable={processing}
       />
