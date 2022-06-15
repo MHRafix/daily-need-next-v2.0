@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function handleForm(user_info, cnfPassword, api_url) {
-  const [processing, setProccesing] = useState(false);
+  const [processing, setProcessing] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
