@@ -1,12 +1,16 @@
 import Cookie from "js-cookie";
-import React, { useState } from "react";
+import { useState } from "react";
 import { BsFillGridFill } from "react-icons/bs";
-import { FaList } from "react-icons/fa";
+import { FaBars, FaList } from "react-icons/fa";
 import { ErrorMessage } from "../../utilities/AlertMessage";
 import GridProductCard from "../../utilities/GridProductCard";
 import ListProductCard from "../../utilities/ListProductCard";
 
-export default function ShopProductArea({ products_data }) {
+export default function ShopProductArea({
+  products_data,
+  sidebaron,
+  setsidebaron,
+}) {
   const layout_status = Cookie.get("layout_changer")
     ? JSON.parse(Cookie.get("layout_changer"))
     : true;
@@ -31,6 +35,17 @@ export default function ShopProductArea({ products_data }) {
     <div className="shop_product_area">
       <div className="shop_controller">
         <div className="view_type">
+          <button
+            className={
+              sidebaron
+                ? "layout_changer_btn_active lg:!hidden"
+                : "layout_changer_btn lg:!hidden"
+            }
+            onClick={() => setsidebaron(true)}
+          >
+            <FaBars />
+          </button>
+          &nbsp;&nbsp;&nbsp;
           <button
             className={
               grid ? "layout_changer_btn_active" : "layout_changer_btn"

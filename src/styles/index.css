@@ -290,7 +290,7 @@
   }
 
   .sidebar_area {
-    @apply bg-white lg:w-1/4 lg:h-auto lg:mr-4 lg:relative absolute top-0 -left-7 z-10 p-2 border-1  border-slate-200 h-screen overflow-y-auto;
+    @apply bg-white lg:w-1/4 lg:h-auto lg:mr-4 lg:relative lg:border-0 lg:p-0 lg:block hidden;
   }
 
   .shop_area {
@@ -534,6 +534,19 @@
     border-radius: 5rem;
   }
 
+  .sidebar_area::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+
+  .sidebar_area::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sidebar_area::-webkit-scrollbar-thumb {
+    background: #ff934b;
+    border-radius: 5rem;
+  }
+
   html::-webkit-scrollbar {
     width: 0.5rem;
   }
@@ -542,10 +555,10 @@
     background: transparent;
   }
 
-  html::-webkit-scrollbar-thumb {
+  /* html::-webkit-scrollbar-thumb {
     background: var(--btn-bg);
     border-radius: 5rem;
-  }
+  } */
 
   button.view_btn {
     color: #0cc5b7;
@@ -605,6 +618,20 @@
     z-index: 500;
     width: 0px;
     transition: width 0.8s;
+  }
+
+  .toggle_sidebar_area {
+    background: white;
+    position: fixed;
+    top: 0px;
+    left: -5px;
+    z-index: 10;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 70px;
+    border: 1px solid #999;
+    height: 100vh;
+    overflow: auto;
   }
 
   .mini_cart_wrapper_active {

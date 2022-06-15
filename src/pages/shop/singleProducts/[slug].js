@@ -1,4 +1,3 @@
-import React from "react";
 import Product from "../../../../models/Products";
 import LayoutContainer from "../../../components/commons/layout/LayoutContainer";
 import SignleProductMain from "../../../components/single_product/SignleProductMain";
