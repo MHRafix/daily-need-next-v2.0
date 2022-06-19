@@ -1,6 +1,5 @@
 import Cookie from "js-cookie";
 import { useState } from "react";
-import Animation from "../../utilities/animation";
 import ShopProductArea from "./ShopProductArea";
 import ShopSidebar from "./ShopSidebar";
 
@@ -33,14 +32,14 @@ export default function ShopArea({ products_data }) {
       product?.prices?.regular_price <= maxRange
   );
 
-  Animation();
+  // Animation();
 
   return (
     <div className="shop_area_wrapper">
       <div className="grid_shop_area">
         <div
           className={sidebaron ? "toggle_sidebar_area" : "sidebar_area"}
-          data-aos={sidebaron && "slide-right"}
+          // data-aos={sidebaron && "slide-right"}
         >
           <div className="cart_header_area !bg-white !text-black2 absolute right-0 top-0 lg:hidden !p-0">
             <div
