@@ -1,10 +1,15 @@
-import React from "react";
 import CardData from "../../../utilities/CardData";
 import DataChart from "../../../utilities/GraphChart/DataChart";
 import ProfileContentLayout from "../../../utilities/ProfileContentLayout";
 import { card_fake_data } from "../../../utilities/React_Table/DataTables.js/table_data";
 
-export default function ProfileDashboardContent() {
+export default function ProfileDashboardContent({ my_orders }) {
+  const purchased_bdt = [];
+
+  my_orders.map((order) =>
+    purchased_bdt.push(order?.order_overview?.total_amount)
+  );
+
   //data for bar chart
   const data = {
     labels: ["Jun-1", "Jun-2", "Jun-3", "Jun-4", "Jun-5", "Jun-6", "Jun-7"],
@@ -12,7 +17,7 @@ export default function ProfileDashboardContent() {
     datasets: [
       {
         label: "# My First Dataset",
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: purchased_bdt,
         fill: true,
         backroundColor: "red!",
         borderColor: "rgb(75, 192, 192)",

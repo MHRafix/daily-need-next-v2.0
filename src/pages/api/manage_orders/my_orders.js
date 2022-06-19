@@ -8,7 +8,7 @@ handler.get(async (req, res) => {
 
   // find my order here
   const my_orders = await Order.find({
-    user_email: "rafiz@gmail.com",
+    user_email: "mehedi@gmail.com",
   });
 
   // conditionaly send data

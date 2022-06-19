@@ -1,9 +1,8 @@
 import Cookie from "js-cookie";
-import React from "react";
 import Breadcrumb from "../../commons/Breadcrumb/Breadcrumb";
 import ProfileContentContainer from "./ProfileContentContainer";
 import ProfileDashboardContent from "./ProfileDashboardContent";
-export default function MyProfileMain() {
+export default function MyProfileMain({ my_orders }) {
   // breadcrunb navigation
   const userInfo =
     Cookie.get("user_information") &&
@@ -17,7 +16,7 @@ export default function MyProfileMain() {
     <>
       <Breadcrumb bread_nav={bread_string} />
       <ProfileContentContainer>
-        <ProfileDashboardContent />
+        <ProfileDashboardContent my_orders={my_orders} />
       </ProfileContentContainer>
     </>
   );
