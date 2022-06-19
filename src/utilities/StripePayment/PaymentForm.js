@@ -12,7 +12,7 @@ export default function PaymentForm({ payable_amount, order_id }) {
   const empty_data = [];
 
   const [error, setError] = useState();
-  const [proccesing, setProccesing] = useState(false);
+  const [processing, setprocessing] = useState(false);
   const [success, setSuccess] = useState();
   const [clientSecret, setClientSecret] = useState("");
 
@@ -60,7 +60,7 @@ export default function PaymentForm({ payable_amount, order_id }) {
       return;
     }
 
-    setProccesing(true);
+    setprocessing(true);
     // Use your card Element with other Stripe.js APIs
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -68,7 +68,7 @@ export default function PaymentForm({ payable_amount, order_id }) {
     });
 
     if (error) {
-      setProccesing(false);
+      setprocessing(false);
       setError(error.message);
       setSuccess("");
     } else {
@@ -89,7 +89,7 @@ export default function PaymentForm({ payable_amount, order_id }) {
     } else {
       setError("");
       setSuccess("Your payment successfully proccesed!");
-      setProccesing(false);
+      setprocessing(false);
 
       // Save to database
       const payment_info = {
