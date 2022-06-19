@@ -4,15 +4,77 @@ import ProfileContentLayout from "../../../utilities/ProfileContentLayout";
 import { card_fake_data } from "../../../utilities/React_Table/DataTables.js/table_data";
 
 export default function ProfileDashboardContent({ my_orders }) {
+  // purchased amount summury
   const purchased_bdt = [];
 
   my_orders.map((order) =>
     purchased_bdt.push(order?.order_overview?.total_amount)
   );
 
+  const month_name = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  // purchased date summury
+  const purchased_date = [];
+
+  my_orders.map((order) => {
+    const chart_label = `${
+      month_name[order?.order_overview?.order_date?.month]
+    } - ${order?.order_overview?.order_date?.date}`;
+    purchased_date.push(chart_label);
+  });
+
+  // total purchased amount calculate here
+  let total_purchased = 0;
+
+  for (const bdt of purchased_bdt) {
+    total_purchased = total_purchased + bdt;
+  }
+
+  // in-progress purchased amount calculate here
+  let inprogress_amount = 0;
+
+  // filter out inprogress orders
+  const inprogress_orders = my_orders.filter(
+    (order) => order?.order_overview?.order_status === "inprogress"
+  );
+
+  // calculate here
+  inprogress_orders.map(
+    (order) =>
+      (inprogress_amount =
+        inprogress_amount + order?.order_overview?.total_amount)
+  );
+
+  // canceled orders purchased amount calculate here
+  let canceled_amount = 0;
+
+  // filter out inprogress orders
+  const canceled_orders = my_orders.filter(
+    (order) => order?.order_overview?.order_status === "canceled"
+  );
+
+  // calculate here
+  canceled_orders.map(
+    (order) =>
+      (canceled_amount = canceled_amount + order?.order_overview?.total_amount)
+  );
+
   //data for bar chart
   const data = {
-    labels: ["Jun-1", "Jun-2", "Jun-3", "Jun-4", "Jun-5", "Jun-6", "Jun-7"],
+    labels: purchased_date,
     label: "Purchased Chart",
     datasets: [
       {
@@ -37,15 +99,15 @@ export default function ProfileDashboardContent({ my_orders }) {
               id="purchase_history_amount"
               // style={{ border: "1px solid #0cc5b7" }}
             >
-              <h1 id="amount_label">৳ 456456</h1>
+              <h1 id="amount_label">৳ {total_purchased}</h1>
               <span id="hstory_name">current purchased</span>
             </div>
             <div id="purchase_history_amount">
-              <h1 id="amount_label">৳ 2345</h1>
+              <h1 id="amount_label">৳ {inprogress_amount}</h1>
               <span id="hstory_name">inprogress purchased</span>
             </div>
             <div id="purchase_history_amount" style={{ borderRight: "none" }}>
-              <h1 id="amount_label">৳ 3045</h1>
+              <h1 id="amount_label">৳ {canceled_amount}</h1>
               <span id="hstory_name">canceled purchased</span>
             </div>
           </div>

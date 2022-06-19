@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ErrorAlert, SuccessMessage } from "../AlertMessage";
 import { FormTextField } from "../Form/FormField";
+import { FormButton } from "../Form/FormField";
+import { reduceCookie } from "../../redux/cart_products/action";
 
 export default function PaymentForm({ payable_amount, order_id }) {
   const dispatch = useDispatch();
@@ -115,7 +117,7 @@ export default function PaymentForm({ payable_amount, order_id }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          // dispatch(reduceCookie(empty_data));
+          dispatch(reduceCookie(empty_data));
         });
 
       const redirect = () => {
@@ -183,21 +185,14 @@ export default function PaymentForm({ payable_amount, order_id }) {
       </label>
       <CardElement id="field_input" options={cardElementOpts} />
 
-      {proccesing ? (
-        <div style={{ marginTop: "15px" }}>
-          <button className="location_pushBtn">Lodaing...</button>
-        </div>
-      ) : (
-        <div style={{ marginTop: "15px" }}>
-          <button
-            className="location_pushBtn"
-            type="submit"
-            disabled={!stripe || success}
-          >
-            Pay Now ৳ {payable_amount}
-          </button>
-        </div>
-      )}
+      <div style={{ marginTop: "15px" }}>
+        <FormButton
+          type="submit"
+          processing={processing}
+          btn_name={`Pay Now ৳ ${payable_amount}`}
+          disabled={processing || !stripe || success}
+        />
+      </div>
     </form>
   );
 }

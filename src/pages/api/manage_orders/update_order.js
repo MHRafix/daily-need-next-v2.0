@@ -10,6 +10,8 @@ handler.post(async (req, res) => {
   const single_order = await Order.findOne({ _id: req_data.order_id });
 
   if (single_order) {
+    single_order.order_overview.order_status = "inprogress";
+
     single_order.payment_info.payment_method = req_data.payment_method;
     single_order.payment_info.payment_status = req_data.payment_status;
     single_order.payment_info.customer_name = req_data.customer_name;

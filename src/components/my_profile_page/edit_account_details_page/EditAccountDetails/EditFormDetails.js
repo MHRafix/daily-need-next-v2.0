@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ErrorAlert, SuccessMessage } from "../../../../utilities/AlertMessage";
 import {
   FormButton,
@@ -34,6 +34,7 @@ export default function EditFormDetails() {
 
   const handleVerifyUser = async (e) => {
     e.preventDefault();
+
     const { data } = await axios.post(
       // "http://localhost:3000/api/my_account/verify_user",
       "https://daily-need.vercel.app/api/my_account/verify_user",
@@ -66,7 +67,7 @@ export default function EditFormDetails() {
     user_admin: false,
   };
 
-  const { success, error, handleFormSubmit } = handleForm(
+  const { success, processing, error, handleFormSubmit } = handleForm(
     user_info,
     cnfPassword,
     "my_account/update_acc_details"
@@ -128,7 +129,12 @@ export default function EditFormDetails() {
             setState={setUserpic}
           />
 
-          <FormButton type="submit" btn_name="Update Details" />
+          <FormButton
+            type="submit"
+            processing={processing}
+            btn_name="Update Details"
+            disable={processing}
+          />
         </form>
       )}
     </>
