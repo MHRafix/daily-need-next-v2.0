@@ -21,7 +21,7 @@ handler.post(async (req, res) => {
       success: "Login successfully!",
     });
   } else {
-    res.send({ error: "Invalid email or password" });
+    res.send({ error: "Invalid email or password!" });
   }
 });
 

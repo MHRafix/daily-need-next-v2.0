@@ -47,11 +47,11 @@ export const FormButton = ({ type, btn_name, processing, disable }) => {
       {processing ? (
         <button
           type={type}
-          id="form_btn"
+          id="form_btn_disabled"
           className="lg:!w-full !w-full"
           disabled={disable}
         >
-          Loading... <Image src={Loader} width={20} height={20} />
+          Loading... <Image src={Loader} width={100} height={90} />
         </button>
       ) : (
         <button

@@ -28,10 +28,10 @@ const orderSchema = new mongoose.Schema(
       },
     ],
 
+    user_email: { type: String, required: true },
     customer_info: {
       customer_name: { type: String, required: true },
       customer_email: { type: String, required: true },
-      user_email: { type: String, required: true },
       customer_mobile: { type: String, required: true },
       customer_country: { type: String, required: true },
       customer_district: { type: String, required: true },

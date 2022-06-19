@@ -97,7 +97,9 @@ export default function ListProductCard({ product_data }) {
             {stock_available > 0 ? (
               <button
                 id="cart_btn_list"
-                onClick={() => handleAddToCart(product_data, dispatch, qty)}
+                onClick={() =>
+                  handleAddToCart(product_data, dispatch, _id, qty)
+                }
               >
                 <MdOutlineShoppingCart /> &nbsp; Add to cart
               </button>

@@ -9,8 +9,6 @@ handler.post(async (req, res) => {
   const req_data = req.body;
   const single_order = await Order.findOne({ _id: req_data.order_id });
 
-  console.log(single_order);
-
   if (single_order) {
     single_order.payment_info.payment_method = req_data.payment_method;
     single_order.payment_info.payment_status = req_data.payment_status;

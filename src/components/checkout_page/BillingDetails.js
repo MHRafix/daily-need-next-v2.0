@@ -49,11 +49,10 @@ export default function BillingDetails() {
   // make a user data object for ordering the products
   const order_data = {
     products_data,
-
+    user_email: userInfo?.user_email,
     customer_info: {
       customer_name: name,
       customer_email: email,
-      user_email: userInfo?.user_email,
       customer_mobile: mobile,
       customer_country: country,
       customer_district: district,

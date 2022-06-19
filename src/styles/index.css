@@ -138,7 +138,7 @@
   }
 
   #card_body_list {
-    @apply lg:w-2/3 text-left ml-12;
+    @apply lg:w-2/3 text-left lg:ml-12;
   }
 
   #product_title_list {
@@ -294,11 +294,15 @@
   }
 
   .shop_area {
-    @apply lg:w-3/4 text-center ml-4;
+    @apply lg:w-3/4 text-center lg:ml-4;
   }
 
   .shop_controller {
-    @apply flex justify-between items-center;
+    @apply sm:flex justify-between items-center;
+  }
+
+  .view_type {
+    @apply text-left mb-5;
   }
 
   .layout_changer_btn {
@@ -306,11 +310,11 @@
   }
 
   .layout_changer_btn_active {
-    @apply text-orange-500 text-medium border border-slate-200 p-extra_padding3 font-bold;
+    @apply text-orange-500 text-medium border border-orange-500 p-extra_padding3 font-bold;
   }
 
   #product_sorting {
-    @apply p-1 border border-slate-200 outline-none text-black4;
+    @apply p-1 border border-slate-200 outline-none text-black4 w-full;
   }
 
   .checkout_table_wrapper {
@@ -381,7 +385,7 @@
   }
 
   #field_input {
-    @apply px-extra_padding2 py-extra_padding4 border border-slate-200 rounded-sm outline-none w-full my-2 text-light tracking-wide text-black2 !capitalize;
+    @apply px-extra_padding2 py-extra_padding4 border border-slate-200 rounded-sm outline-none w-full my-2 text-light tracking-wide text-black2;
   }
 
   /* my profile page css here */
@@ -500,11 +504,17 @@
   }
 
   #form_btn {
-    @apply bg-gradient-to-r from-orangee to-orangee_red flex justify-center items-center text-white px-1.5 py-1 rounded-sm text-sm tracking-wider font-light;
+    @apply h-16 bg-gradient-to-r from-orangee to-orangee_red flex justify-center items-center text-white rounded-sm text-sm tracking-wider font-light;
   }
+
+  #form_btn_disabled {
+    @apply h-16 bg-gradient-to-r from-orangee to-orangee_red opacity-70 flex justify-center items-center text-white rounded-sm text-sm tracking-wider font-light;
+  }
+
   #qty_controller {
     @apply w-12 h-12 rounded-full bg-white text-black3 flex justify-center items-center hover:bg-gradient-to-r from-orangee to-orangee_red hover:text-white;
   }
+
   #view_btn {
     @apply text-deep_cyan !capitalize hover:text-black2 hover:duration-300;
   }
@@ -641,7 +651,7 @@
     background: white;
     height: 100vh;
     z-index: 500;
-    width: 330px;
+    width: 321px;
     transition: width 0.8s;
   }
 

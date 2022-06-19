@@ -21,7 +21,7 @@ export default function handleForm(user_info, cnfPassword, api_url) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setProccesing(true);
+    setProcessing(true);
 
     try {
       if (user_info?.user_password === cnfPassword) {
@@ -52,7 +52,8 @@ export default function handleForm(user_info, cnfPassword, api_url) {
 // const send req to server with data
 
 const sendReq = async (reqDep, redirect_url) => {
-  const { api_url, user_info, router, setSuccess, setError } = reqDep;
+  const { api_url, user_info, router, setSuccess, setError, setProcessing } =
+    reqDep;
 
   const { redirect } = router.query;
   const { data } = await axios.post(
