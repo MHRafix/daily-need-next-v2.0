@@ -9,7 +9,7 @@ export default function Dashboard({ my_orders }) {
     Cookie.get("user_information") &&
     JSON.parse(Cookie.get("user_information"));
 
-  const my_all_orders = my_orders.filtere(
+  const my_all_orders = my_orders.filter(
     (order) => order.user_email === userInfo?.user_email
   );
 
@@ -31,7 +31,7 @@ export async function getServerSideProps() {
   await db.disconnect();
   return {
     props: {
-      my_orders: my_orders.map(db.convertDocToObj),
+      my_orders,
     },
   };
 }
