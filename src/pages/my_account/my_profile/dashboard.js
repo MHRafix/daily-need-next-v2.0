@@ -27,7 +27,7 @@ export default function Dashboard({ my_orders }) {
 
 export async function getServerSideProps() {
   await db.connect();
-  const my_orders = await Order.find();
+  const my_orders = await Order.find({});
   await db.disconnect();
   return {
     props: {
