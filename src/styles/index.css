@@ -390,11 +390,11 @@
 
   /* my profile page css here */
   .my_profile_navigation {
-    @apply md:w-1/4 py-2 md:border  md:border-white md:border-r-slate-300;
+    @apply md:w-1/5 py-2 md:border  md:border-white md:border-r-slate-300;
   }
 
   .my_profile_content_body {
-    @apply md:w-3/4;
+    @apply md:w-4/5;
   }
 
   .profile_details {
@@ -430,11 +430,11 @@
   }
 
   #topbar_purchase_summary {
-    @apply sm:bg-gradient-to-r sm:from-deep_cyan sm:to-green bg-gradient-to-b from-deep_cyan to-green text-white grid grid-rows-1 sm:grid-cols-3 p-2 rounded-md shadow-lg;
+    @apply sm:bg-gradient-to-r sm:from-deep_cyan sm:to-green bg-gradient-to-b from-deep_cyan to-green text-white grid grid-rows-1 sm:grid-cols-4 p-2 rounded-md shadow-lg;
   }
 
   #purchase_history_amount {
-    @apply text-center sm:!border-r-1 border-off_white sm:my-0 my-2;
+    @apply text-center sm:!border-r-1 border-off_white sm:my-0 my-5;
   }
 
   #amount_label {
@@ -446,15 +446,15 @@
   }
 
   .purchased_chart_and_payment_table_wrapper {
-    @apply grid grid-rows-1 md:grid-cols-2 mt-15 gap-y-16 gap-x-10;
+    @apply grid grid-rows-1 md:grid-cols-2 mt-15 gap-y-16 md:gap-x-10;
   }
 
   .purchased_chart_wrapper {
-    @apply shadow-md rounded-md md:h-per_4;
+    @apply shadow-md rounded-md md:h-80 h-80;
   }
 
   .purchased_data_table_wrapper {
-    @apply shadow-md rounded-md md:h-per_4 h-per_5;
+    @apply shadow-md rounded-md md:h-80 h-80;
   }
 
   .dashboard_content_title {

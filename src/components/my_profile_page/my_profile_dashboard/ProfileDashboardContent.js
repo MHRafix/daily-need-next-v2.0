@@ -1,7 +1,6 @@
 import CardData from "../../../utilities/CardData";
 import DataChart from "../../../utilities/GraphChart/DataChart";
 import ProfileContentLayout from "../../../utilities/ProfileContentLayout";
-import { card_fake_data } from "../../../utilities/React_Table/DataTables.js/table_data";
 
 export default function ProfileDashboardContent({ my_orders }) {
   // purchased amount summury
@@ -43,6 +42,21 @@ export default function ProfileDashboardContent({ my_orders }) {
     total_purchased = total_purchased + bdt;
   }
 
+  // completed purchased amount calculate here
+  let completed_amount = 0;
+
+  // filter out completed orders
+  const completed_orders = my_orders.filter(
+    (order) => order?.order_overview?.order_status === "completed"
+  );
+
+  // calculate here
+  completed_orders.map(
+    (order) =>
+      (completed_amount =
+        completed_amount + order?.order_overview?.total_amount)
+  );
+
   // in-progress purchased amount calculate here
   let inprogress_amount = 0;
 
@@ -72,6 +86,19 @@ export default function ProfileDashboardContent({ my_orders }) {
       (canceled_amount = canceled_amount + order?.order_overview?.total_amount)
   );
 
+  // make payment card data
+  const card_data = [];
+
+  my_orders.map((card_info) => {
+    const order_date = `${card_info?.order_overview?.order_date?.date} / ${card_info?.order_overview?.order_date?.month} / ${card_info?.order_overview?.order_date?.year}`;
+
+    card_data.push({
+      card_name: card_info?.payment_info?.card_name,
+      payment_amount: card_info?.order_overview?.total_amount,
+      payment_date: order_date,
+    });
+  });
+
   //data for bar chart
   const data = {
     labels: purchased_date,
@@ -100,7 +127,14 @@ export default function ProfileDashboardContent({ my_orders }) {
               // style={{ border: "1px solid #0cc5b7" }}
             >
               <h1 id="amount_label">৳ {total_purchased}</h1>
-              <span id="hstory_name">current purchased</span>
+              <span id="hstory_name">total purchased</span>
+            </div>
+            <div
+              id="purchase_history_amount"
+              // style={{ border: "1px solid #0cc5b7" }}
+            >
+              <h1 id="amount_label">৳ {completed_amount}</h1>
+              <span id="hstory_name">completed purchased</span>
             </div>
             <div id="purchase_history_amount">
               <h1 id="amount_label">৳ {inprogress_amount}</h1>
@@ -121,7 +155,7 @@ export default function ProfileDashboardContent({ my_orders }) {
             <div className="purchased_data_table_wrapper">
               <h1 className="dashboard_content_title">Payment Card</h1>
               <div id="card_data_table" className="overflow-y-scroll h-per_86">
-                {card_fake_data.map((card) => (
+                {card_data.map((card) => (
                   <CardData key={card._id} card_data={card} />
                 ))}
               </div>
