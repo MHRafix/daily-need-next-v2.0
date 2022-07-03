@@ -2,14 +2,14 @@ import Cookie from "js-cookie";
 import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
+import { useState } from "react";
+import { FaBars, FaUserCircle } from "react-icons/fa";
 import { MdShoppingCart } from "react-icons/md";
 import { useSelector } from "react-redux";
 import Logo from "../../../images/logo/logo.webp";
 import MiniCart from "../MiniCartArea/MiniCart/MiniCart";
 
-export default function BrandArea() {
+export default function BrandArea({ setNavbarToggle, navbarToggle }) {
   const cart_list = useSelector((state) => state.cart_product.cart_list);
 
   // search dynamic query setup here using handleSearch function
@@ -57,15 +57,15 @@ export default function BrandArea() {
           <div className="cart_area">
             <div
               onClick={() => setCartActive(true)}
-              className="flex justify-end items-center text-white text-thin cursor-pointer"
+              className="header_action_icon"
             >
               <span className="cart_badge">
                 <MdShoppingCart />
                 <span className="cart_counter">{cart_list.length}</span>
               </span>
-              My Cart
+              <span className="xs:hidden sm:!block">My Cart</span>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {/* &nbsp;&nbsp;&nbsp; */}
             <NextLink
               href={
                 user_loggedin
@@ -74,13 +74,31 @@ export default function BrandArea() {
               }
               passHref
             >
-              <div className="flex justify-end items-center text-white text-thin cursor-pointer">
+              <div className="header_action_icon">
                 <span className="cart_badge !mr-0">
                   <FaUserCircle />
                 </span>
-                &nbsp; My Account
+                &nbsp; <span className="xs:hidden sm:!block">My Account</span>
               </div>
             </NextLink>
+
+            <div className="header_action_icon2">
+              {navbarToggle ? (
+                <button
+                  className="cart_badge"
+                  onClick={() => setNavbarToggle(false)}
+                >
+                  ✖
+                </button>
+              ) : (
+                <button
+                  className="cart_badge"
+                  onClick={() => setNavbarToggle(true)}
+                >
+                  <FaBars />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

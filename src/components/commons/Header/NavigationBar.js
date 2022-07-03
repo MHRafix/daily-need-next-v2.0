@@ -1,11 +1,14 @@
 import Cookie from "js-cookie";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { header_navigation } from "../../../fake_data/all_fakedata";
 import { reduceCookie } from "../../../redux/cart_products/action";
+import animation from "../../../utilities/animation";
 
-export default function NavigationBar() {
+// big device navigation here
+export function NavigationBarBigDev() {
   // fetching all data from the server
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
@@ -39,17 +42,56 @@ export default function NavigationBar() {
   }
 
   return (
-    <div
-      className="navigation_wrapper"
-      style={{ borderBottom: "1px solid #eee" }}
-    >
+    <div className="navigation_wrapper">
       <div className="container_wrapper">
         <div className="navbars">
           {header_navigation.map((link) => (
             <NextLink key={link._id} href={link.href} passHref>
-              <span className="!capitalize !mx-3 cursor-pointer tracking-wider">
-                {link.menu_name}
-              </span>
+              <span className="nav_link_href">{link.menu_name}</span>
+            </NextLink>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// mini device navigation here
+export function NavigationBarMinDev() {
+  // handle search input here
+  const [keyword, setKeyword] = useState("");
+  const router = useRouter();
+  const handleSearch = (e) => {
+    if (keyword === "") {
+      alert("Empty input is not accepted!");
+    } else {
+      router.push(`/search_shop/${keyword}`);
+    }
+  };
+
+  // init animation here
+  animation();
+
+  return (
+    <div className="mini_navigation_wrapper" data-aos="fade-right">
+      <div className="container_wrapper">
+        {/* search area in mini navbars */}
+        <div className="serach_area2">
+          <input
+            onChange={(e) => setKeyword(e.target.value)}
+            className="search_field !w-full mb-3"
+            type="search"
+            placeholder="Enter keyword here..."
+            required
+          />
+          <button className="btn btn-search !w-full" onClick={handleSearch}>
+            Search By Name
+          </button>
+        </div>
+        <div className="mini_navbars">
+          {header_navigation.map((link) => (
+            <NextLink key={link._id} href={link.href} passHref>
+              <div className="nav_link_href_big">{link.menu_name}</div>
             </NextLink>
           ))}
         </div>

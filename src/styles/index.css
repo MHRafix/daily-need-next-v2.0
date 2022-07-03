@@ -39,18 +39,27 @@
   }
 
   .brand_area_wrapper {
-    @apply bg-gradient-to-r from-deep_cyan to-green py-2 flex items-center;
+    @apply bg-gradient-to-r from-deep_cyan to-green py-2;
   }
+
   .brand_area {
-    @apply flex justify-between items-center;
+    @apply flex !justify-between items-center;
   }
 
   .brand_wrapper {
-    @apply w-1/4;
+    @apply sm:!w-1/5 xs:w-2/4;
   }
 
   .serach_area {
-    @apply w-2/4 flex items-center;
+    @apply w-2/4 flex items-center sm:!block xs:hidden;
+  }
+
+  .header_action_icon {
+    @apply flex justify-end items-center text-white text-thin cursor-pointer mx-2;
+  }
+
+  .header_action_icon2 {
+    @apply flex justify-end items-center text-white text-thin cursor-pointer mx-2 sm:!hidden xs:block;
   }
 
   .search_field {
@@ -58,19 +67,35 @@
   }
 
   .cart_area {
-    @apply w-1/4 flex justify-end items-center;
+    @apply sm:!w-1/4 xs:w-2/4 flex justify-end items-center;
   }
 
   .cart_badge {
-    @apply w-13 h-13 rounded-full bg-white relative flex items-center justify-center text-normal mr-6 text-black;
+    @apply w-13 h-13 rounded-full bg-white relative flex items-center justify-center text-normal mr-6 text-black hover:bg-gradient-to-r hover:from-orangee hover:to-orangee_red hover:text-white hover:duration-300;
   }
 
   .cart_counter {
-    @apply absolute top-3 left-12 text-thin bg-red-600 px-extra_padding rounded-full flex items-center text-white;
+    @apply absolute top-3 left-12 text-thin bg-gradient-to-r from-orangee to-orangee_red px-extra_padding rounded-full flex items-center text-white;
   }
 
   .navigation_wrapper {
-    @apply border-b-zinc-600 py-1.5 sm:!block xs:hidden;
+    @apply border-b-1 border-zinc-200 py-1.5 sm:!block xs:hidden;
+  }
+
+  .mini_navigation_wrapper {
+    @apply py-1.5 sm:!hidden xs:block shadow-xl;
+  }
+
+  .mini_navbars {
+    @apply my-3;
+  }
+
+  .nav_link_href {
+    @apply !capitalize cursor-pointer tracking-wider mx-3;
+  }
+
+  .nav_link_href_big {
+    @apply !capitalize cursor-pointer tracking-wider pl-1.5 p-1 mb-1 hover:bg-gradient-to-r hover:from-orangee hover:to-orangee_red hover:text-white hover:duration-300;
   }
 
   .navbars {
@@ -492,7 +517,7 @@
   }
 
   .btn-search {
-    @apply h-init w-5 text-white rounded-tr-sm rounded-br-sm tracking-widest;
+    @apply h-init w-3 text-white rounded-tr-sm rounded-br-sm tracking-widest;
   }
 
   #cart_btn {
@@ -525,6 +550,26 @@
 }
 
 @layer utilities {
+  html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
+  }
+
+  html::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to bottom right, #ff934b, #ff5e62);
+    border-radius: 5rem;
+  }
+
   html {
     overflow-x: hidden;
     scroll-padding-top: 7rem;

@@ -1,14 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import BrandArea from "./BrandArea";
-import NavigationBar from "./NavigationBar";
+import { NavigationBarBigDev, NavigationBarMinDev } from "./NavigationBar";
 import Topbar from "./Topbar";
 
 export default function HeaderMain() {
+  const [navbarToggle, setNavbarToggle] = useState(false);
+
   return (
     <>
       <Topbar />
-      <BrandArea />
-      <NavigationBar />
+      <BrandArea
+        setNavbarToggle={setNavbarToggle}
+        navbarToggle={navbarToggle}
+      />
+      <NavigationBarBigDev />
+      {navbarToggle && <NavigationBarMinDev />}
     </>
   );
 }
