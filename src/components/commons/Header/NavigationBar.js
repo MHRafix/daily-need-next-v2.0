@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { header_navigation } from "../../../fake_data/all_fakedata";
 import { reduceCookie } from "../../../redux/cart_products/action";
-import animation from "../../../utilities/animation";
 
 // big device navigation here
 export function NavigationBarBigDev() {
@@ -69,11 +68,8 @@ export function NavigationBarMinDev() {
     }
   };
 
-  // init animation here
-  animation();
-
   return (
-    <div className="mini_navigation_wrapper" data-aos="fade-right">
+    <div className="mini_navigation_wrapper">
       <div className="container_wrapper">
         {/* search area in mini navbars */}
         <div className="serach_area2">
