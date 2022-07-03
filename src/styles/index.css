@@ -83,7 +83,7 @@
   }
 
   .mini_navigation_wrapper {
-    @apply py-1.5 sm:!hidden xs:block shadow-xl;
+    @apply py-1.5 sm:!hidden xs:block shadow-xl absolute top-60 w-full z-30 bg-white;
   }
 
   .mini_navbars {
