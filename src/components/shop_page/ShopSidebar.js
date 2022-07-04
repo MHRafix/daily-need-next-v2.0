@@ -1,4 +1,3 @@
-import React from "react";
 import {
   categories_data,
   stock_data,
@@ -8,7 +7,7 @@ import FilterCard from "../../utilities/FilterCard";
 import MultiRangeSlider from "../../utilities/MultiRangeSlider";
 import SidebarPartContainer from "../commons/layout/SidebarPartContainer";
 
-export default function ShopSidebar({ priceRangeData, handleSetCookie }) {
+export default function ShopSidebar({ priceRangeData }) {
   const { setMinRange, setMaxRange } = priceRangeData;
 
   return (
@@ -22,13 +21,13 @@ export default function ShopSidebar({ priceRangeData, handleSetCookie }) {
             setMaxRange(max);
           }}
         />
-        <button
+        {/* <button
           onClick={handleSetCookie}
           id="cart_btn"
           className="!mx-0 !p-extra_padding4 !rounded-sm !text-light"
         >
           Filter Now
-        </button>
+        </button> */}
       </SidebarPartContainer>
 
       <SidebarPartContainer filterer_name="product categories">

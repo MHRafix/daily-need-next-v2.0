@@ -2,7 +2,11 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { ErrorAlert, SuccessMessage } from "../../../../utilities/AlertMessage";
+import { ToastContainer } from "react-toastify";
+import {
+  errorToast,
+  successToast,
+} from "../../../../utilities/alertToast/toasts";
 import {
   FormButton,
   FormTextField,
@@ -21,10 +25,7 @@ export default function EditFormDetails() {
     JSON.parse(Cookie.get("user_information"));
 
   // take some state for storing data
-  const [succ, setSucc] = useState("");
-  const [err, setErr] = useState("");
-
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(userInfo?.user_name);
   const [useremail, setUseremail] = useState(userInfo?.user_email);
   const [password, setPassword] = useState("");
   const [cnfPassword, setCnfPassword] = useState("");
@@ -42,8 +43,7 @@ export default function EditFormDetails() {
     );
 
     if (data?.success) {
-      setErr("");
-      setSucc(data?.success);
+      successToast(data?.success);
       Cookie.set("user_verify", JSON.stringify(data), {
         expires: 1, // 1 days
         secure: true,
@@ -53,8 +53,7 @@ export default function EditFormDetails() {
       setVerifyon(true);
       router.push("/my_account/my_profile/edit_account_details");
     } else {
-      setSucc("");
-      setErr(data.error);
+      errorToast(data.error);
     }
   };
 
@@ -67,7 +66,7 @@ export default function EditFormDetails() {
     user_admin: false,
   };
 
-  const { success, processing, error, handleFormSubmit } = handleForm(
+  const { processing, handleFormSubmit } = handleForm(
     user_info,
     cnfPassword,
     "my_account/update_acc_details"
@@ -75,12 +74,11 @@ export default function EditFormDetails() {
 
   return (
     <>
+      {/* message toast alert */}
+      <ToastContainer />
+
       {!verifyon ? (
         <form onSubmit={handleVerifyUser}>
-          {/* message alert */}
-          {succ && <SuccessMessage message={succ} />}
-          {err && <ErrorAlert message={err} />}
-
           <FormTextField
             form_label="Current password"
             type="password"
@@ -93,9 +91,6 @@ export default function EditFormDetails() {
         </form>
       ) : (
         <form onSubmit={handleFormSubmit}>
-          {/* message alert */}
-          {success && <SuccessMessage message={success} />}
-          {error && <ErrorAlert message={error} />}
           <FormTextField
             form_label="user name"
             type="text"

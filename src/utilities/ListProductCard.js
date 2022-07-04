@@ -4,6 +4,8 @@ import { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import { warningToast } from "./alertToast/toasts";
 import { handleAddToCart } from "./handleCart";
 
 export default function ListProductCard({ product_data }) {
@@ -24,6 +26,8 @@ export default function ListProductCard({ product_data }) {
 
   return (
     <>
+      {/* alert toastify here */}
+      <ToastContainer />
       <div id="product_card_list_style">
         <div id="card_header_list">
           <div id="stock_slae_badge">
@@ -73,7 +77,7 @@ export default function ListProductCard({ product_data }) {
                 if (qty > 1) {
                   setQty(qty - 1);
                 } else {
-                  alert("Minimum quantity limit exceed!");
+                  warningToast("Minimum quantity limit exceed!");
                 }
               }}
             >
@@ -86,7 +90,7 @@ export default function ListProductCard({ product_data }) {
                 if (qty < 10) {
                   setQty(qty + 1);
                 } else {
-                  alert("Maximum quantity limit exceed!");
+                  warningToast("Maximum quantity limit exceed!");
                 }
               }}
             >

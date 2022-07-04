@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ErrorAlert, SuccessMessage } from "../../utilities/AlertMessage";
+import { ToastContainer } from "react-toastify";
 import { FormButton, FormTextField } from "../../utilities/Form/FormField";
 import handleForm from "../../utilities/Form/handleForm";
 
@@ -18,41 +18,43 @@ export default function LoginForm() {
   const api_url = "my_account/signin_api";
 
   // handle form submit import here
-  const { processing, success, error, handleFormSubmit } = handleForm(
+  const { processing, handleFormSubmit } = handleForm(
     user_info,
     password,
     api_url
   );
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      {/* message alert */}
-      {success && <SuccessMessage message={success} />}
-      {error && <ErrorAlert message={error} />}
+    <>
+      {/* message toast alert */}
+      <ToastContainer />
 
-      <FormTextField
-        form_label="your email"
-        type="email"
-        setState={setUseremail}
-        required={true}
-      />
+      {/* login form here */}
+      <form onSubmit={handleFormSubmit}>
+        <FormTextField
+          form_label="your email"
+          type="email"
+          setState={setUseremail}
+          required={true}
+        />
 
-      <FormTextField
-        form_label="your password"
-        type="password"
-        setState={setPassword}
-        required={true}
-      />
+        <FormTextField
+          form_label="your password"
+          type="password"
+          setState={setPassword}
+          required={true}
+        />
 
-      <FormButton
-        type="submit"
-        processing={processing}
-        btn_name="Signin Now"
-        disable={processing}
-      />
-      <p className="text-light text-black4 tracking-wide cursor-pointer mt-10 hover:text-red-400 hover:duration-300">
-        Lost your password?
-      </p>
-    </form>
+        <FormButton
+          type="submit"
+          processing={processing}
+          btn_name="Signin Now"
+          disable={processing}
+        />
+        <p className="text-light text-black4 tracking-wide cursor-pointer mt-10 hover:text-red-400 hover:duration-300">
+          Lost your password?
+        </p>
+      </form>
+    </>
   );
 }

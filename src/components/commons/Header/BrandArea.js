@@ -85,14 +85,14 @@ export default function BrandArea({ setNavbarToggle, navbarToggle }) {
             <div className="header_action_icon2">
               {navbarToggle ? (
                 <button
-                  className="cart_badge"
+                  className="cart_badge !mr-0"
                   onClick={() => setNavbarToggle(false)}
                 >
                   ✖
                 </button>
               ) : (
                 <button
-                  className="cart_badge"
+                  className="cart_badge !mr-0"
                   onClick={() => setNavbarToggle(true)}
                 >
                   <FaBars />

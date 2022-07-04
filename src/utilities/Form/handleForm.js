@@ -2,11 +2,10 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { errorToast, successToast } from "../alertToast/toasts";
 
 export default function handleForm(user_info, cnfPassword, api_url) {
   const [processing, setProcessing] = useState(false);
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
   const router = useRouter();
 
   // server req data
@@ -14,8 +13,6 @@ export default function handleForm(user_info, cnfPassword, api_url) {
     api_url,
     user_info,
     router,
-    setSuccess,
-    setError,
     setProcessing,
   };
 
@@ -30,30 +27,27 @@ export default function handleForm(user_info, cnfPassword, api_url) {
             // send req to server
             sendReq(reqDep, "/my_account/my_profile/edit_account_details");
           } else {
-            setSuccess("");
-            setError("Password must be atleast 6 charecters!");
+            setProcessing(false);
+            errorToast("Password is too short!");
           }
         } else {
           // send req to server
           sendReq(reqDep, "/my_account/my_profile/dashboard");
         }
       } else {
-        setSuccess("");
-        setError("Password and confirm password didn't matched!");
+        setProcessing(false);
+        errorToast("Password didn't matched!");
       }
     } catch (err) {
-      setSuccess("");
-      setError(error);
+      errorToast(error);
     }
   };
-  return { processing, success, error, handleFormSubmit };
+  return { processing, handleFormSubmit };
 }
 
 // const send req to server with data
-
 const sendReq = async (reqDep, redirect_url) => {
-  const { api_url, user_info, router, setSuccess, setError, setProcessing } =
-    reqDep;
+  const { api_url, user_info, router, setProcessing } = reqDep;
 
   const { redirect } = router.query;
   const { data } = await axios.post(
@@ -63,9 +57,8 @@ const sendReq = async (reqDep, redirect_url) => {
   );
 
   if (data?.success) {
-    setError("");
-    setSuccess(data?.success);
     setProcessing(false);
+    successToast(data?.success);
 
     Cookie.set("user_information", JSON.stringify(data), {
       expires: 30, // 30 days
@@ -73,10 +66,13 @@ const sendReq = async (reqDep, redirect_url) => {
       sameSite: "strict",
       path: "/",
     });
-    router.push(redirect || redirect_url);
+
+    // redirect after delay
+    setTimeout(() => {
+      router.push(redirect || redirect_url);
+    }, 2000);
   } else {
-    setSuccess("");
     setProcessing(false);
-    setError(data.error);
+    errorToast(data.error);
   }
 };

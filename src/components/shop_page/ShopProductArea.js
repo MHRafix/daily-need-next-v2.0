@@ -17,11 +17,13 @@ export default function ShopProductArea({
 
   const [grid, setGrid] = useState(layout_status);
 
+  // handle grid layout
   const handleGridLayout = () => {
     Cookie.set("layout_changer", JSON.stringify(true));
     setGrid(true);
   };
 
+  // handle list layout
   const handleListLayout = () => {
     Cookie.set("layout_changer", JSON.stringify(false));
     setGrid(false);
@@ -31,6 +33,7 @@ export default function ShopProductArea({
   if (!products_data?.length) {
     return <ErrorMessage message="No product found!" />;
   }
+
   return (
     <div className="shop_product_area">
       <div className="shop_controller">

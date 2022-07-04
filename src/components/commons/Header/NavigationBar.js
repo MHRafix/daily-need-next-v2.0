@@ -3,8 +3,10 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import Animate from "react-smooth/lib/Animate";
 import { header_navigation } from "../../../fake_data/all_fakedata";
 import { reduceCookie } from "../../../redux/cart_products/action";
+import animation from "../../../utilities/animation";
 
 // big device navigation here
 export function NavigationBarBigDev() {
@@ -68,30 +70,35 @@ export function NavigationBarMinDev() {
     }
   };
 
+  // call the animation and init here
+  const { steps_navigation } = animation();
+
   return (
-    <div className="mini_navigation_wrapper">
-      <div className="container_wrapper">
-        {/* search area in mini navbars */}
-        <div className="serach_area2">
-          <input
-            onChange={(e) => setKeyword(e.target.value)}
-            className="search_field !w-full mb-3"
-            type="search"
-            placeholder="Enter keyword here..."
-            required
-          />
-          <button className="btn btn-search !w-full" onClick={handleSearch}>
-            Search By Name
-          </button>
-        </div>
-        <div className="mini_navbars">
-          {header_navigation.map((link) => (
-            <NextLink key={link._id} href={link.href} passHref>
-              <div className="nav_link_href_big">{link.menu_name}</div>
-            </NextLink>
-          ))}
+    <Animate steps={steps_navigation}>
+      <div className="mini_navigation_wrapper">
+        <div className="container_wrapper">
+          {/* search area in mini navbars */}
+          <div className="serach_area2">
+            <input
+              onChange={(e) => setKeyword(e.target.value)}
+              className="search_field !w-full mb-3"
+              type="search"
+              placeholder="Enter keyword here..."
+              required
+            />
+            <button className="btn btn-search !w-full" onClick={handleSearch}>
+              Search By Name
+            </button>
+          </div>
+          <div className="mini_navbars">
+            {header_navigation.map((link) => (
+              <NextLink key={link._id} href={link.href} passHref>
+                <div className="nav_link_href_big">{link.menu_name}</div>
+              </NextLink>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </Animate>
   );
 }

@@ -10,7 +10,9 @@ handler.post(async (req, res) => {
   await db.connect();
   const user = await User.findOne({ user_email: req.body.user_email });
   await db.disconnect();
+
   if (user && bcrypt.compareSync(req.body.user_password, user.user_password)) {
+    // generate jwt token here
     const token = signToken(user);
     res.send({
       token,
@@ -18,7 +20,7 @@ handler.post(async (req, res) => {
       user_name: user.user_name,
       user_email: user.user_email,
       user_admin: user.user_admin,
-      success: "Login successfully!",
+      success: "Login successfull!",
     });
   } else {
     res.send({ error: "Invalid email or password!" });

@@ -55,11 +55,11 @@
   }
 
   .header_action_icon {
-    @apply flex justify-end items-center text-white text-thin cursor-pointer mx-2;
+    @apply flex justify-end items-center text-white  cursor-pointer mx-2;
   }
 
   .header_action_icon2 {
-    @apply flex justify-end items-center text-white text-thin cursor-pointer mx-2 sm:!hidden xs:block;
+    @apply flex justify-end items-center text-white  cursor-pointer mx-2 sm:!hidden xs:block;
   }
 
   .search_field {
@@ -83,7 +83,7 @@
   }
 
   .mini_navigation_wrapper {
-    @apply py-1.5 sm:!hidden xs:block shadow-xl absolute top-60 w-full z-30 bg-white;
+    @apply py-1.5 sm:!hidden xs:block shadow-xl absolute top-0 w-full z-30 bg-white;
   }
 
   .mini_navbars {
@@ -551,7 +551,6 @@
 
 @layer utilities {
   html {
-    font-size: 62.5%;
     overflow-x: hidden;
     scroll-padding-top: 7rem;
     scroll-behavior: smooth;
@@ -679,7 +678,7 @@
     background: white;
     position: fixed;
     top: 0px;
-    left: -5px;
+    left: -105px;
     z-index: 10;
     padding-left: 20px;
     padding-right: 20px;
