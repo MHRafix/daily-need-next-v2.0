@@ -11,6 +11,7 @@ import { handleReduceCart } from "../../utilities/handleReduceCart";
 export default function TableBody({ carted_products }) {
   const Swal = dynamic(() => import("sweetalert2"), {
     ssr: false,
+    suspense: true,
   });
 
   const { _id, slug, thumbnail, title, prices, quantity } = carted_products;
