@@ -1,19 +1,24 @@
 import Cookie from "js-cookie";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import NextLink from "next/link";
 import { useDispatch } from "react-redux";
-import Swal from "sweetalert2";
 import { qtyDecrease, qtyIncrease } from "../../redux/cart_products/action";
 import { handleReduceCart } from "../../utilities/handleReduceCart";
 // import Swal from 'sweetalert2/dist/sweetalert2.js'
 // import "sweetalert2/src/sweetalert2.scss";
 
 export default function TableBody({ carted_products }) {
+  const Dynamic = dynamic(() =>
+    import("../../utilities/alertToast/SweetAlert")
+  );
+
   const { _id, slug, thumbnail, title, prices, quantity } = carted_products;
   const dispatch = useDispatch();
 
   return (
     <>
+      <Dynamic />;
       <div className="table_body">
         <div className="table_body_item">
           {thumbnail && (
@@ -91,12 +96,6 @@ const handleUpdateCart = (dispatch, updateDep, _id, dependency) => {
         dispatch(updateDep(_id));
       } else {
         // warningToast("Minimum quantity limit exceed!");
-        Swal.fire({
-          title: "Error!",
-          text: "Do you want to continue",
-          icon: "error",
-          confirmButtonText: "Cool",
-        });
       }
     }
 
