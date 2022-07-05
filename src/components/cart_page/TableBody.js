@@ -9,16 +9,20 @@ import { handleReduceCart } from "../../utilities/handleReduceCart";
 // import "sweetalert2/src/sweetalert2.scss";
 
 export default function TableBody({ carted_products }) {
-  const Swal = dynamic(() => import("sweetalert2"), {
-    ssr: false,
-    suspense: true,
-  });
+  const Dynamic = dynamic(
+    () => import("../../utilities/alertToast/SweetAlert"),
+    {
+      ssr: false,
+      // suspense: true,
+    }
+  );
 
   const { _id, slug, thumbnail, title, prices, quantity } = carted_products;
   const dispatch = useDispatch();
 
   return (
     <>
+      <Dynamic />
       <div className="table_body">
         <div className="table_body_item">
           {thumbnail && (
@@ -43,12 +47,6 @@ export default function TableBody({ carted_products }) {
             <button
               id="qty_controller"
               onClick={() => {
-                Swal.fire({
-                  title: "Error!",
-                  text: "Do you want to continue",
-                  icon: "error",
-                  confirmButtonText: "Cool",
-                });
                 handleUpdateCart(dispatch, qtyDecrease, _id, false);
               }}
             >
