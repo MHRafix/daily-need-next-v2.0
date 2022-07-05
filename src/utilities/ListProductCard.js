@@ -4,8 +4,6 @@ import { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
-import { warningToast } from "./alertToast/toasts";
 import { handleAddToCart } from "./handleCart";
 
 export default function ListProductCard({ product_data }) {
