@@ -4,7 +4,8 @@
 // }
 
 module.exports = {
-  future: { webpack5: true },
+  reactStrictMode: true,
+
   webpack: (config) => {
     config.resolve.fallback = {
       "react-smooth": false,
