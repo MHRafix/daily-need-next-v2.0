@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
 import { FormButton, FormTextField } from "../../utilities/Form/FormField";
 import handleForm from "../../utilities/Form/handleForm";
 
@@ -26,7 +25,7 @@ export default function SignupForm() {
   return (
     <>
       {/* message toast alert */}
-      <ToastContainer />
+      {/* <ToastContainer /> */}
 
       {/* signup form here */}
       <form onSubmit={handleFormSubmit}>

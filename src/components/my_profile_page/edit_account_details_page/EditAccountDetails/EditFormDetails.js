@@ -2,11 +2,6 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
-import {
-  errorToast,
-  successToast,
-} from "../../../../utilities/alertToast/toasts";
 import {
   FormButton,
   FormTextField,
@@ -43,7 +38,7 @@ export default function EditFormDetails() {
     );
 
     if (data?.success) {
-      successToast(data?.success);
+      // successToast(data?.success);
       Cookie.set("user_verify", JSON.stringify(data), {
         expires: 1, // 1 days
         secure: true,
@@ -53,7 +48,7 @@ export default function EditFormDetails() {
       setVerifyon(true);
       router.push("/my_account/my_profile/edit_account_details");
     } else {
-      errorToast(data.error);
+      // errorToast(data.error);
     }
   };
 
@@ -75,7 +70,7 @@ export default function EditFormDetails() {
   return (
     <>
       {/* message toast alert */}
-      <ToastContainer />
+      {/* <ToastContainer /> */}
 
       {!verifyon ? (
         <form onSubmit={handleVerifyUser}>
