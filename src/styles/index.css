@@ -499,10 +499,6 @@
     @apply bg-white shadow-lg rounded-md p-2;
   }
 
-  #alertIdError {
-    @apply text-white bg-gradient-to-r from-orangee to-orangee_red text-left tracking-wide rounded-sm text-light;
-  }
-
   #alertIdSuccess {
     @apply text-white !bg-gradient-to-r from-deep_cyan to-green text-light text-left tracking-wide !p-1 rounded-sm;
   }
@@ -609,11 +605,75 @@
     background: transparent;
   }
 
-  /* html::-webkit-scrollbar-thumb {
-    background: var(--btn-bg);
-    border-radius: 5rem;
-  } */
+  .error_toast {
+    color: red;
+    background: #fff;
+    text-align: left;
+    border-radius: 3px;
+    border-left: 4px solid red;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 30px;
+    z-index: 50;
+    -webkit-animation-name: example;
+    animation-name: example;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    box-shadow: 0px 0px 6px 1px #1812124d;
+  }
 
+  .signup_error_toast {
+    color: red;
+    background: #fff;
+    text-align: left;
+    border-radius: 3px;
+    border-left: 4px solid red;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 30px;
+    right: 6%;
+    z-index: 50;
+    -webkit-animation-name: example;
+    animation-name: example;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    box-shadow: 0px 0px 6px 1px #1812124d;
+  }
+
+  .warning_toast {
+    color: #ffa501;
+    background: #fff;
+    border-left: 4px solid #ffa501;
+    text-align: left;
+    border-radius: 3px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 30px;
+    z-index: 50;
+    -webkit-animation-name: example;
+    animation-name: example;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    box-shadow: 0px 0px 6px 1px #1812124d;
+  }
+
+  @keyframes example {
+    from {
+      bottom: -50px;
+    }
+    to {
+      bottom: 30px;
+    }
+  }
   button.view_btn {
     color: #0cc5b7;
     text-transform: capitalize;

@@ -12,8 +12,8 @@ export function NavigationBarBigDev() {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3000/api/allproducts`)
-      // fetch(`https://daily-need.vercel.app/api/allproducts`)
+    // fetch(`http://localhost:3000/api/allproducts`)
+    fetch(`https://daily-need.vercel.app/api/allproducts`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

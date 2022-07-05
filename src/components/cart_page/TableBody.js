@@ -1,28 +1,54 @@
 import Cookie from "js-cookie";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import NextLink from "next/link";
+import { useState } from "react";
+import { AiFillWarning } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { qtyDecrease, qtyIncrease } from "../../redux/cart_products/action";
+import AlertToast from "../../utilities/alertToast/AlertToast";
 import { handleReduceCart } from "../../utilities/handleReduceCart";
-// import Swal from 'sweetalert2/dist/sweetalert2.js'
-// import "sweetalert2/src/sweetalert2.scss";
 
 export default function TableBody({ carted_products }) {
-  const Dynamic = dynamic(
-    () => import("../../utilities/alertToast/SweetAlert"),
-    {
-      ssr: false,
-      // suspense: true,
-    }
-  );
+  // const SweetAlert = dynamic(
+  //   () => import("../../utilities/alertToast/SweetAlert"),
+  //   {
+  //     ssr: false,
+  //     // suspense: true,
+  //   }
+  // );
 
+  // destructure product information
   const { _id, slug, thumbnail, title, prices, quantity } = carted_products;
   const dispatch = useDispatch();
 
+  // toast state here
+  const [toastOn, setToastOn] = useState(false);
+  const [toastText, setToastText] = useState("");
+
+  // handle close toast here
+  const handleRemoveToast = () => {
+    // setToastText("");
+    setToastOn(false);
+  };
+
+  // auto close toast after ther 3000ms delay
+  if (toastOn) {
+    setTimeout(() => {
+      setToastOn(false);
+    }, 3000);
+  }
+
+  // toast setting configuration here
+  const toast_config = {
+    toastStyle: "warning_toast",
+    alertText: toastText,
+    toastIcon: <AiFillWarning />,
+    handleRemoveToast: handleRemoveToast,
+  };
+
   return (
     <>
-      <Dynamic />
+      {toastOn && <AlertToast toast_config={toast_config} />}
       <div className="table_body">
         <div className="table_body_item">
           {thumbnail && (
@@ -47,7 +73,14 @@ export default function TableBody({ carted_products }) {
             <button
               id="qty_controller"
               onClick={() => {
-                handleUpdateCart(dispatch, qtyDecrease, _id, false);
+                handleUpdateCart(
+                  setToastOn,
+                  setToastText,
+                  dispatch,
+                  qtyDecrease,
+                  _id,
+                  false
+                );
               }}
             >
               -
@@ -55,7 +88,16 @@ export default function TableBody({ carted_products }) {
             <span id="cart_qty">{quantity}</span>
             <button
               id="qty_controller"
-              onClick={() => handleUpdateCart(dispatch, qtyIncrease, _id, true)}
+              onClick={() =>
+                handleUpdateCart(
+                  setToastOn,
+                  setToastText,
+                  dispatch,
+                  qtyIncrease,
+                  _id,
+                  true
+                )
+              }
             >
               +
             </button>
@@ -78,7 +120,14 @@ export default function TableBody({ carted_products }) {
   );
 }
 
-const handleUpdateCart = (dispatch, updateDep, _id, dependency) => {
+const handleUpdateCart = (
+  setToastOn,
+  setToastText,
+  dispatch,
+  updateDep,
+  _id,
+  dependency
+) => {
   const carted_products =
     Cookie.get("cart_product_ids") &&
     JSON.parse(Cookie.get("cart_product_ids"));
@@ -92,14 +141,16 @@ const handleUpdateCart = (dispatch, updateDep, _id, dependency) => {
         selected_product.quantity = selected_product.quantity + 1;
         dispatch(updateDep(_id));
       } else {
-        // warningToast("Maximum quantity limit exceed!");
+        setToastOn(true);
+        setToastText("Maximum quantity limit exceed!");
       }
     } else {
       if (selected_product.quantity > 1) {
         selected_product.quantity = selected_product.quantity - 1;
         dispatch(updateDep(_id));
       } else {
-        // warningToast("Minimum quantity limit exceed!");
+        setToastOn(true);
+        setToastText("Minimum quantity limit exceed!");
       }
     }
 

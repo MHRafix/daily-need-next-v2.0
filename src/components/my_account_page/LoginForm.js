@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { BiErrorCircle } from "react-icons/bi";
+import AlertToast from "../../utilities/alertToast/AlertToast";
 import { FormButton, FormTextField } from "../../utilities/Form/FormField";
 import handleForm from "../../utilities/Form/handleForm";
 
@@ -17,16 +19,33 @@ export default function LoginForm() {
   const api_url = "my_account/signin_api";
 
   // handle form submit import here
-  const { processing, handleFormSubmit } = handleForm(
-    user_info,
-    password,
-    api_url
-  );
+  const { toastOn, setToastOn, toastText, processing, handleFormSubmit } =
+    handleForm(user_info, password, api_url);
+
+  // handle close toast here
+  const handleRemoveToast = () => {
+    setToastOn(false);
+  };
+
+  // auto close toast after ther 5000ms delay
+  if (toastOn) {
+    setTimeout(() => {
+      setToastOn(false);
+    }, 5000);
+  }
+
+  // toast setting configuration here
+  const toast_config = {
+    toastStyle: "error_toast",
+    alertText: toastText,
+    toastIcon: <BiErrorCircle />,
+    handleRemoveToast: handleRemoveToast,
+  };
 
   return (
     <>
       {/* message toast alert */}
-      {/* <ToastContainer /> */}
+      {toastOn && <AlertToast toast_config={toast_config} />}
 
       {/* login form here */}
       <form onSubmit={handleFormSubmit}>

@@ -1,10 +1,12 @@
 import Image from "next/image";
 import NextLink from "next/link";
 import { useState } from "react";
+import { AiFillWarning } from "react-icons/ai";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { useDispatch } from "react-redux";
+import AlertToast from "./alertToast/AlertToast";
 import { handleAddToCart } from "./handleCart";
 
 export default function GridProductCard({ product_data }) {
@@ -21,10 +23,36 @@ export default function GridProductCard({ product_data }) {
   const { regular_price, sale_price } = prices;
 
   const [qty, setQty] = useState(1);
-  // const [toastify, setToastify] = useState(false);
+
+  // toast state here
+  const [toastOn, setToastOn] = useState(false);
+  const [toastText, setToastText] = useState("");
+
+  // handle close toast here
+  const handleRemoveToast = () => {
+    // setToastText("");
+    setToastOn(false);
+  };
+
+  // auto close toast after ther 3000ms delay
+  if (toastOn) {
+    setTimeout(() => {
+      setToastOn(false);
+    }, 3000);
+  }
+
+  // toast setting configuration here
+  const toast_config = {
+    toastStyle: "warning_toast",
+    alertText: toastText,
+    toastIcon: <AiFillWarning />,
+    handleRemoveToast: handleRemoveToast,
+  };
 
   return (
     <>
+      {toastOn && <AlertToast toast_config={toast_config} />}
+
       <div id="product_card_grid_style">
         <div id="card_header">
           <div id="stock_slae_badge">
@@ -85,8 +113,8 @@ export default function GridProductCard({ product_data }) {
                 if (qty > 1) {
                   setQty(qty - 1);
                 } else {
-                  // warningToast("Minimum quantity limit exceed!");
-                  // setToastify(true);
+                  setToastOn(true);
+                  setToastText("Minimum quantity limit exceed!");
                 }
               }}
             >
@@ -99,7 +127,8 @@ export default function GridProductCard({ product_data }) {
                 if (qty < 10) {
                   setQty(qty + 1);
                 } else {
-                  // warningToast("Maximum quantity limit exceed!");
+                  setToastOn(true);
+                  setToastText("Maximum quantity limit exceed!");
                 }
               }}
             >

@@ -382,6 +382,13 @@
     "json-schema-traverse" "^0.4.1"
     "uri-js" "^4.2.2"
 
+"alert@^5.1.0":
+  "integrity" "sha512-cAgYmEHivFaQRT/pYc7mdw86At8hkS61VUrNBD8udE6gRRTkz1oPQZtRKLGWBegVlwGm5MPObDRe8E7I8exzcw=="
+  "resolved" "https://registry.npmjs.org/alert/-/alert-5.1.0.tgz"
+  "version" "5.1.0"
+  dependencies:
+    "is-program-installed" "2.3.1"
+
 "ansi-regex@^5.0.1":
   "integrity" "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="
   "resolved" "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz"
@@ -1507,6 +1514,11 @@
   "integrity" "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng=="
   "resolved" "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz"
   "version" "7.0.0"
+
+"is-program-installed@2.3.1":
+  "integrity" "sha512-qah38oPe/GtQ4sAHFVGhI8wQ4ovBTqUy9ESao8O1WM6QGnlRZLq7OUgqGPahkNEcTETNW4SYQ/Fkbo9eGfJc9w=="
+  "resolved" "https://registry.npmjs.org/is-program-installed/-/is-program-installed-2.3.1.tgz"
+  "version" "2.3.1"
 
 "is-regex@^1.1.4":
   "integrity" "sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg=="

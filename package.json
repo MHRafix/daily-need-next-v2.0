@@ -13,6 +13,7 @@
     "@emotion/styled": "^10.0.27",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.8.0",
+    "alert": "^5.1.0",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "^3.8.0",
