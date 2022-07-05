@@ -3,4 +3,12 @@
 //   reactStrictMode: true,
 // }
 
-module.exports = {};
+module.exports = {
+  future: { webpack5: true },
+  webpack: (config) => {
+    config.resolve.fallback = {
+      "react-smooth": false,
+      "react-toastify": false,
+    };
+  },
+};
