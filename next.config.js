@@ -10,5 +10,6 @@ module.exports = {
       "react-smooth": false,
       "react-toastify": false,
     };
+    return config;
   },
 };
