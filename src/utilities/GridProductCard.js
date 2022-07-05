@@ -5,9 +5,6 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { warningToast } from "./alertToast/toasts";
 import { handleAddToCart } from "./handleCart";
 
 export default function GridProductCard({ product_data }) {
@@ -24,7 +21,7 @@ export default function GridProductCard({ product_data }) {
   const { regular_price, sale_price } = prices;
 
   const [qty, setQty] = useState(1);
-  const [toastify, setToastify] = useState(false);
+  // const [toastify, setToastify] = useState(false);
 
   return (
     <>
@@ -88,8 +85,8 @@ export default function GridProductCard({ product_data }) {
                 if (qty > 1) {
                   setQty(qty - 1);
                 } else {
-                  warningToast("Minimum quantity limit exceed!");
-                  setToastify(true);
+                  // warningToast("Minimum quantity limit exceed!");
+                  // setToastify(true);
                 }
               }}
             >
@@ -102,7 +99,7 @@ export default function GridProductCard({ product_data }) {
                 if (qty < 10) {
                   setQty(qty + 1);
                 } else {
-                  warningToast("Maximum quantity limit exceed!");
+                  // warningToast("Maximum quantity limit exceed!");
                 }
               }}
             >
@@ -110,7 +107,7 @@ export default function GridProductCard({ product_data }) {
             </button>
           </div>
           {/* toastify alert here */}
-          {toastify && <ToastContainer />}
+          {/* {toastify && <ToastContainer />} */}
 
           <div id="add_to_cart_btn">
             {stock_available > 0 ? (

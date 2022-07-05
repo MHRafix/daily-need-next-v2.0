@@ -2,10 +2,11 @@ import Cookie from "js-cookie";
 import Image from "next/image";
 import NextLink from "next/link";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import Swal from "sweetalert2";
 import { qtyDecrease, qtyIncrease } from "../../redux/cart_products/action";
-import { warningToast } from "../../utilities/alertToast/toasts";
 import { handleReduceCart } from "../../utilities/handleReduceCart";
+// import Swal from 'sweetalert2/dist/sweetalert2.js'
+// import "sweetalert2/src/sweetalert2.scss";
 
 export default function TableBody({ carted_products }) {
   const { _id, slug, thumbnail, title, prices, quantity } = carted_products;
@@ -13,7 +14,6 @@ export default function TableBody({ carted_products }) {
 
   return (
     <>
-      <ToastContainer />
       <div className="table_body">
         <div className="table_body_item">
           {thumbnail && (
@@ -61,7 +61,7 @@ export default function TableBody({ carted_products }) {
             className="bg-red-500 text-white cursor-pointer text-semi_medium px-extra_padding3 !rounded-sm"
             id="cart_btn"
           >
-            &times;
+            ✖
           </span>
         </div>
       </div>
@@ -83,14 +83,20 @@ const handleUpdateCart = (dispatch, updateDep, _id, dependency) => {
         selected_product.quantity = selected_product.quantity + 1;
         dispatch(updateDep(_id));
       } else {
-        warningToast("Maximum quantity limit exceed!");
+        // warningToast("Maximum quantity limit exceed!");
       }
     } else {
       if (selected_product.quantity > 1) {
         selected_product.quantity = selected_product.quantity - 1;
         dispatch(updateDep(_id));
       } else {
-        warningToast("Minimum quantity limit exceed!");
+        // warningToast("Minimum quantity limit exceed!");
+        Swal.fire({
+          title: "Error!",
+          text: "Do you want to continue",
+          icon: "error",
+          confirmButtonText: "Cool",
+        });
       }
     }
 

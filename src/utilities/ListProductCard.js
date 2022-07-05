@@ -27,7 +27,7 @@ export default function ListProductCard({ product_data }) {
   return (
     <>
       {/* alert toastify here */}
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <div id="product_card_list_style">
         <div id="card_header_list">
           <div id="stock_slae_badge">
@@ -77,7 +77,7 @@ export default function ListProductCard({ product_data }) {
                 if (qty > 1) {
                   setQty(qty - 1);
                 } else {
-                  warningToast("Minimum quantity limit exceed!");
+                  // warningToast("Minimum quantity limit exceed!");
                 }
               }}
             >
@@ -90,7 +90,7 @@ export default function ListProductCard({ product_data }) {
                 if (qty < 10) {
                   setQty(qty + 1);
                 } else {
-                  warningToast("Maximum quantity limit exceed!");
+                  // warningToast("Maximum quantity limit exceed!");
                 }
               }}
             >
