@@ -15,7 +15,17 @@ export default function TableBody({ carted_products }) {
   const notify = () => toast("Wow so easy!");
   return (
     <>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <button onClick={notify}>Toast</button>
       <div className="table_body">
         <div className="table_body_item">

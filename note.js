@@ -4,6 +4,7 @@ export default function note() {
       <h1>Develop your dream...!</h1>
       <h1>Develop your confidence...!</h1>
       <h1>Develop yourself...!</h1>
+      its not a bug, its a feature
     </div>
   );
 }
