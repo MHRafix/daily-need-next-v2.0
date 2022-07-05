@@ -3,6 +3,7 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { qtyDecrease, qtyIncrease } from "../../redux/cart_products/action";
 import { warningToast } from "../../utilities/alertToast/toasts";
 import { handleReduceCart } from "../../utilities/handleReduceCart";
