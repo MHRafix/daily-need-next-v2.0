@@ -9,9 +9,9 @@ import { handleReduceCart } from "../../utilities/handleReduceCart";
 // import "sweetalert2/src/sweetalert2.scss";
 
 export default function TableBody({ carted_products }) {
-  const Swal = dynamic(() =>
-    import("sweetalert2").then((res) => console.log(res))
-  );
+  const Swal = dynamic(() => import("sweetalert2"), {
+    ssr: false,
+  });
 
   const { _id, slug, thumbnail, title, prices, quantity } = carted_products;
   const dispatch = useDispatch();
