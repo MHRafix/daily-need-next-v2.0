@@ -2,19 +2,21 @@ import Cookie from "js-cookie";
 import Image from "next/image";
 import NextLink from "next/link";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { qtyDecrease, qtyIncrease } from "../../redux/cart_products/action";
-import { warningToast } from "../../utilities/alertToast/toasts";
 import { handleReduceCart } from "../../utilities/handleReduceCart";
+
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function TableBody({ carted_products }) {
   const { _id, slug, thumbnail, title, prices, quantity } = carted_products;
   const dispatch = useDispatch();
 
+  const notify = () => toast("Wow so easy!");
   return (
     <>
       <ToastContainer />
+      <button onClick={notify}>Toast</button>
       <div className="table_body">
         <div className="table_body_item">
           {thumbnail && (
@@ -84,14 +86,14 @@ const handleUpdateCart = (dispatch, updateDep, _id, dependency) => {
         selected_product.quantity = selected_product.quantity + 1;
         dispatch(updateDep(_id));
       } else {
-        warningToast("Maximum quantity limit exceed!");
+        // warningToast("Maximum quantity limit exceed!");
       }
     } else {
       if (selected_product.quantity > 1) {
         selected_product.quantity = selected_product.quantity - 1;
         dispatch(updateDep(_id));
       } else {
-        warningToast("Minimum quantity limit exceed!");
+        // warningToast("Minimum quantity limit exceed!");
       }
     }
 
