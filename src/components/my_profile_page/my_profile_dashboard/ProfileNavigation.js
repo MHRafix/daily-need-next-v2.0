@@ -12,7 +12,10 @@ export default function ProfileNavigation() {
     JSON.parse(Cookie.get("user_information"));
 
   // prevent fake user
-  const router = useRouter();
+  const history = useRouter();
+  if (!userInfo?.user_email) {
+    console.log(history.push("/"));
+  }
 
   // handle logout and remove user information cookie from the browser
   const handleLogout = () => {

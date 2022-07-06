@@ -32,10 +32,10 @@
   }
 
   .annoucement_area {
-    @apply flex md:justify-start items-center;
+    @apply md:!text-left xs:text-center;
   }
   .account_area {
-    @apply flex md:justify-end sm:!justify-center items-center;
+    @apply md:!text-right xs:text-center;
   }
 
   .brand_area_wrapper {
