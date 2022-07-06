@@ -131,7 +131,15 @@ export default function ListProductCard({ product_data }) {
               <button
                 id="cart_btn_list"
                 onClick={() =>
-                  handleAddToCart(product_data, dispatch, _id, qty)
+                  handleAddToCart(
+                    setToastOn,
+                    setToastType,
+                    setToastText,
+                    product_data,
+                    dispatch,
+                    _id,
+                    qty
+                  )
                 }
               >
                 <MdOutlineShoppingCart /> &nbsp; Add to cart

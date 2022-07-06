@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import Middlebanner from "../../../images/banners/middle_banner.webp";
 import Middlebanner2 from "../../../images/banners/middle_banner2.webp";
 

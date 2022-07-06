@@ -139,15 +139,21 @@ export default function GridProductCard({ product_data }) {
               +
             </button>
           </div>
-          {/* toastify alert here */}
-          {/* {toastify && <ToastContainer />} */}
 
           <div id="add_to_cart_btn">
             {stock_available > 0 ? (
               <button
                 id="cart_btn"
                 onClick={() =>
-                  handleAddToCart(product_data, dispatch, _id, qty)
+                  handleAddToCart(
+                    setToastOn,
+                    setToastType,
+                    setToastText,
+                    product_data,
+                    dispatch,
+                    _id,
+                    qty
+                  )
                 }
               >
                 <MdOutlineShoppingCart /> &nbsp; Add to cart

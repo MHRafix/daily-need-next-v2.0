@@ -51,7 +51,7 @@
   }
 
   .serach_area {
-    @apply w-2/4 flex items-center sm:!block xs:hidden;
+    @apply w-2/4 flex items-center lg:!block xs:hidden;
   }
 
   .header_action_icon {
@@ -59,7 +59,7 @@
   }
 
   .header_action_icon2 {
-    @apply flex justify-end items-center text-white  cursor-pointer mx-2 sm:!hidden xs:block;
+    @apply flex justify-end items-center text-white  cursor-pointer mx-2 lg:!hidden xs:block;
   }
 
   .search_field {
@@ -79,11 +79,11 @@
   }
 
   .navigation_wrapper {
-    @apply border-b-1 border-zinc-200 py-1.5 sm:!block xs:hidden;
+    @apply border-b-1 border-zinc-200 py-1.5 lg:!block xs:hidden;
   }
 
   .mini_navigation_wrapper {
-    @apply py-1.5 sm:!hidden xs:block shadow-xl absolute top-0 w-full z-30 bg-white;
+    @apply py-1.5 lg:!hidden xs:block shadow-xl absolute top-44 w-full z-30 bg-white;
   }
 
   .mini_navbars {
@@ -111,7 +111,7 @@
   }
 
   .catImg {
-    @apply bg-white shadow-sm p-1.5 rounded-full m-5 hover:scale-105 hover:duration-300;
+    @apply !mb-1.5 bg-white shadow-md p-1 rounded-full m-5 hover:scale-110 hover:duration-300;
   }
 
   .cat_name {
@@ -223,7 +223,7 @@
   }
 
   .middle_banner_wrapper {
-    @apply mt-15 mb-5 flex justify-between items-center bg-page_white;
+    @apply mt-15 mb-5 md:flex justify-between items-center sm:bg-page_white;
   }
 
   .dynamic_filter {
@@ -618,8 +618,8 @@
     position: fixed;
     bottom: 30px;
     z-index: 50;
-    -webkit-animation-name: example;
-    animation-name: example;
+    -webkit-animation-name: slideup;
+    animation-name: slideup;
     -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
     box-shadow: 0px 0px 6px 1px #1812124d;
@@ -638,8 +638,8 @@
     position: fixed;
     bottom: 30px;
     z-index: 50;
-    -webkit-animation-name: example;
-    animation-name: example;
+    -webkit-animation-name: slideup;
+    animation-name: slideup;
     -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
     box-shadow: 0px 0px 6px 1px #1812124d;
@@ -658,14 +658,21 @@
     position: fixed;
     bottom: 30px;
     z-index: 50;
-    -webkit-animation-name: example;
-    animation-name: example;
+    -webkit-animation-name: slideup;
+    animation-name: slideup;
     -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
     box-shadow: 0px 0px 6px 1px #1812124d;
   }
 
-  @keyframes example {
+  .mini_navigation_wrapper {
+    -webkit-animation-name: slide_right;
+    animation-name: slide_right;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+  }
+
+  @keyframes slideup {
     from {
       bottom: -50px;
     }
@@ -673,6 +680,29 @@
       bottom: 30px;
     }
   }
+
+  @keyframes slide_right {
+    from {
+      opacity: -1;
+      left: -150px;
+    }
+    to {
+      opacity: 1;
+      left: 0px;
+    }
+  }
+
+  @keyframes slide_to_right {
+    from {
+      opacity: -1;
+      left: -150px;
+    }
+    to {
+      opacity: 1;
+      left: -10px;
+    }
+  }
+
   button.view_btn {
     color: #0cc5b7;
     text-transform: capitalize;
@@ -737,7 +767,7 @@
     background: white;
     position: fixed;
     top: 0px;
-    left: -105px;
+    left: -10px;
     z-index: 10;
     padding-left: 20px;
     padding-right: 20px;
@@ -745,6 +775,10 @@
     border: 1px solid #999;
     height: 100vh;
     overflow: auto;
+    -webkit-animation-name: slide_to_right;
+    animation-name: slide_to_right;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
   }
 
   .mini_cart_wrapper_active {

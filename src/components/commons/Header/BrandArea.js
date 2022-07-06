@@ -63,7 +63,7 @@ export default function BrandArea({ setNavbarToggle, navbarToggle }) {
                 <MdShoppingCart />
                 <span className="cart_counter">{cart_list.length}</span>
               </span>
-              <span className="xs:hidden sm:!block">My Cart</span>
+              <span className="xs:hidden lg:!block">My Cart</span>
             </div>
             {/* &nbsp;&nbsp;&nbsp; */}
             <NextLink
@@ -78,7 +78,7 @@ export default function BrandArea({ setNavbarToggle, navbarToggle }) {
                 <span className="cart_badge !mr-0">
                   <FaUserCircle />
                 </span>
-                &nbsp; <span className="xs:hidden sm:!block">My Account</span>
+                &nbsp; <span className="xs:hidden lg:!block">My Account</span>
               </div>
             </NextLink>
 
