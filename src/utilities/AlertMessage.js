@@ -1,11 +1,47 @@
+import { useRouter } from "next/router";
 import { BiError } from "react-icons/bi";
+import { CgLogIn } from "react-icons/cg";
+import { IoMdArrowRoundBack } from "react-icons/io";
 import { MdCloudDone } from "react-icons/md";
+import Breadcrumb from "../components/commons/Breadcrumb/Breadcrumb";
 
 export const ErrorMessage = ({ message }) => {
   return (
     <div className="text-red-500 text-big_ultra !font-bold text-center tracking-wider">
       <h1 style={{ fontWeight: "bold!important" }}>{message}</h1>
     </div>
+  );
+};
+
+export const MyProfileErrMssg = ({ message, bread_string }) => {
+  const history = useRouter();
+
+  return (
+    <>
+      <Breadcrumb bread_nav={bread_string} />
+      <ErrorMessage message={message} />
+      <div className="flex items-center mt-5">
+        <span>
+          <button
+            onClick={() => history.push("/")}
+            id="cart_btn"
+            className="!rounded-sm !text-light !capitalize"
+          >
+            <IoMdArrowRoundBack className="!text-normal" /> &nbsp; go home
+          </button>
+        </span>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <span>
+          <button
+            onClick={() => history.push("/my_account/my_acc")}
+            id="cart_btn"
+            className="!rounded-sm !text-light !capitalize"
+          >
+            login now &nbsp; <CgLogIn className="!text-normal" />
+          </button>
+        </span>
+      </div>
+    </>
   );
 };
 

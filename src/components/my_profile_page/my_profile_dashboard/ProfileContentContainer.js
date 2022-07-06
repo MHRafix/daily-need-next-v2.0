@@ -1,6 +1,6 @@
 import Cookie from "js-cookie";
-import React from "react";
 import ProfileNavigation from "./ProfileNavigation";
+
 export default function ProfileContentContainer({ children }) {
   const userInfo =
     Cookie.get("user_information") &&

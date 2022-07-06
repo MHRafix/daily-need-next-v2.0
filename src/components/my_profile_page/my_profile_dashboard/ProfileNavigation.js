@@ -1,26 +1,20 @@
 import Cookie from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { CgLogOut } from "react-icons/cg";
 import { profile_navigation } from "../../../fake_data/all_fakedata";
 import UserPic from "../../../images/logo/1642355899259.jpg";
 import ProfileNav from "../../../utilities/ProfileNav";
 
 export default function ProfileNavigation() {
-  // breadcrunb navigation
+  // user info
   const userInfo =
     Cookie.get("user_information") &&
     JSON.parse(Cookie.get("user_information"));
 
-  // prevent fake user
-  const history = useRouter();
-  useEffect(() => {
-    if (!userInfo?.user_email) {
-      history.push("/");
-    }
-  });
-
   // handle logout and remove user information cookie from the browser
+  const history = useRouter();
+
   const handleLogout = () => {
     Cookie.remove("user_information");
     Cookie.remove("user_verify");
@@ -45,7 +39,7 @@ export default function ProfileNavigation() {
           id="cart_btn"
           onClick={handleLogout}
         >
-          Logout Now
+          Logout Now &nbsp; <CgLogOut className="!text-normal" />
         </button>
       </div>
       <div className="profile_navigation_wrapper">

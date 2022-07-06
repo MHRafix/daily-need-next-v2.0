@@ -1,5 +1,5 @@
 import Cookie from "js-cookie";
-import React from "react";
+import { MyProfileErrMssg } from "../../../utilities/AlertMessage";
 import Breadcrumb from "../../commons/Breadcrumb/Breadcrumb";
 import ProfileContentContainer from "../my_profile_dashboard/ProfileContentContainer";
 import HistoryDownloadContent from "./HistoryDownloadContent";
@@ -12,6 +12,16 @@ export default function HistoryDownloadMain() {
 
   if (userInfo?.user_name) {
     var bread_string = `My Profile/${userInfo?.user_name}/history download`;
+  } else {
+    // prevent fake user
+    const bread_string = "fake user";
+
+    return (
+      <MyProfileErrMssg
+        bread_string={bread_string}
+        message="You are not logged in. Please login to explore more!"
+      />
+    );
   }
 
   return (
