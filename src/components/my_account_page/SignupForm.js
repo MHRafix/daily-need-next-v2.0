@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BiErrorCircle } from "react-icons/bi";
+import { MdCloudDone } from "react-icons/md";
 import AlertToast from "../../utilities/alertToast/AlertToast";
 import { FormButton, FormTextField } from "../../utilities/Form/FormField";
 import handleForm from "../../utilities/Form/handleForm";
@@ -23,8 +24,14 @@ export default function SignupForm() {
   const api_url = "my_account/signup_api";
 
   // handle form submit import here
-  const { toastOn, setToastOn, toastText, processing, handleFormSubmit } =
-    handleForm(user_info, password, api_url);
+  const {
+    toastOn,
+    setToastOn,
+    toastType,
+    toastText,
+    processing,
+    handleFormSubmit,
+  } = handleForm(user_info, password, api_url);
 
   // handle close toast here
   const handleRemoveToast = () => {
@@ -40,9 +47,11 @@ export default function SignupForm() {
 
   // toast setting configuration here
   const toast_config = {
-    toastStyle: "signup_error_toast",
+    toastStyle: toastType,
     alertText: toastText,
-    toastIcon: <BiErrorCircle />,
+    toastIcon:
+      toastType === "error_toast" ? <BiErrorCircle /> : <MdCloudDone />,
+
     handleRemoveToast: handleRemoveToast,
   };
 

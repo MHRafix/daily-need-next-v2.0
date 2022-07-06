@@ -625,19 +625,18 @@
     box-shadow: 0px 0px 6px 1px #1812124d;
   }
 
-  .signup_error_toast {
-    color: red;
+  .warning_toast {
+    color: #ffa501;
     background: #fff;
+    border-left: 4px solid #ffa501;
     text-align: left;
     border-radius: 3px;
-    border-left: 4px solid red;
     font-size: 14px;
     display: flex;
     align-items: center;
     padding: 10px;
     position: fixed;
     bottom: 30px;
-    right: 6%;
     z-index: 50;
     -webkit-animation-name: example;
     animation-name: example;
@@ -646,10 +645,10 @@
     box-shadow: 0px 0px 6px 1px #1812124d;
   }
 
-  .warning_toast {
-    color: #ffa501;
+  .success_toast {
+    color: rgb(110 192 95);
     background: #fff;
-    border-left: 4px solid #ffa501;
+    border-left: 4px solid rgb(110 192 95);
     text-align: left;
     border-radius: 3px;
     font-size: 14px;

@@ -382,13 +382,6 @@
     "json-schema-traverse" "^0.4.1"
     "uri-js" "^4.2.2"
 
-"alert@^5.1.0":
-  "integrity" "sha512-cAgYmEHivFaQRT/pYc7mdw86At8hkS61VUrNBD8udE6gRRTkz1oPQZtRKLGWBegVlwGm5MPObDRe8E7I8exzcw=="
-  "resolved" "https://registry.npmjs.org/alert/-/alert-5.1.0.tgz"
-  "version" "5.1.0"
-  dependencies:
-    "is-program-installed" "2.3.1"
-
 "ansi-regex@^5.0.1":
   "integrity" "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="
   "resolved" "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz"
@@ -1515,11 +1508,6 @@
   "resolved" "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz"
   "version" "7.0.0"
 
-"is-program-installed@2.3.1":
-  "integrity" "sha512-qah38oPe/GtQ4sAHFVGhI8wQ4ovBTqUy9ESao8O1WM6QGnlRZLq7OUgqGPahkNEcTETNW4SYQ/Fkbo9eGfJc9w=="
-  "resolved" "https://registry.npmjs.org/is-program-installed/-/is-program-installed-2.3.1.tgz"
-  "version" "2.3.1"
-
 "is-regex@^1.1.4":
   "integrity" "sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg=="
   "resolved" "https://registry.npmjs.org/is-regex/-/is-regex-1.1.4.tgz"
@@ -2505,11 +2493,6 @@
   "integrity" "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w=="
   "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
-
-"sweetalert2@^11.4.20":
-  "integrity" "sha512-3LiBFa5yRmTcqM0vGcFmo0EnhmaMSJfzhFpvZoXK6BOY94HIcIUbwhhW+NY5oXOpz5CT21qFAu0fKCUkOc/Pew=="
-  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.4.20.tgz"
-  "version" "11.4.20"
 
 "tailwindcss@^3.0.24":
   "integrity" "sha512-H3uMmZNWzG6aqmg9q07ZIRNIawoiEcNFKDfL+YzOPuPsXuDXxJxB9icqzLgdzKNwjG3SAro2h9SYav8ewXNgig=="

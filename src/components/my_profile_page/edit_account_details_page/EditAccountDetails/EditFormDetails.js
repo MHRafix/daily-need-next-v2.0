@@ -2,6 +2,9 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { BiErrorCircle } from "react-icons/bi";
+import { MdCloudDone } from "react-icons/md";
+import AlertToast from "../../../../utilities/alertToast/AlertToast";
 import {
   FormButton,
   FormTextField,
@@ -28,29 +31,10 @@ export default function EditFormDetails() {
   const [verifypass, setVerifypass] = useState("");
   const [verifyon, setVerifyon] = useState(isVerify.verify);
 
-  const handleVerifyUser = async (e) => {
-    e.preventDefault();
-
-    const { data } = await axios.post(
-      // "http://localhost:3000/api/my_account/verify_user",
-      "https://daily-need.vercel.app/api/my_account/verify_user",
-      { verifypass, useremail }
-    );
-
-    if (data?.success) {
-      // successToast(data?.success);
-      Cookie.set("user_verify", JSON.stringify(data), {
-        expires: 1, // 1 days
-        secure: true,
-        sameSite: "strict",
-        path: "/",
-      });
-      setVerifyon(true);
-      router.push("/my_account/my_profile/edit_account_details");
-    } else {
-      // errorToast(data.error);
-    }
-  };
+  // toast state here
+  const [verifing, setVerifing] = useState(false);
+  const [toastTypeV, setToastTypeV] = useState("");
+  const [toastTextV, setToastTextV] = useState("");
 
   // make a data object
   const user_info = {
@@ -61,35 +45,110 @@ export default function EditFormDetails() {
     user_admin: false,
   };
 
-  const { processing, handleFormSubmit } = handleForm(
-    user_info,
-    cnfPassword,
-    "my_account/update_acc_details"
-  );
+  const {
+    toastOn,
+    setToastOn,
+    toastType,
+    toastText,
+    processing,
+    handleFormSubmit,
+  } = handleForm(user_info, cnfPassword, "my_account/update_acc_details");
+
+  // handle close toast here
+  const handleRemoveToast = () => {
+    setToastOn(false);
+  };
+
+  // auto close toast after ther 3000ms delay
+  if (toastOn) {
+    setTimeout(() => {
+      setToastOn(false);
+    }, 3000);
+  }
+
+  // toast setting configuration here
+  const toast_config = {
+    toastStyle: toastType || toastTypeV,
+    alertText: toastText || toastTextV,
+    toastIcon:
+      toastTypeV || toastType === "error_toast" ? (
+        <BiErrorCircle />
+      ) : (
+        <MdCloudDone />
+      ),
+    handleRemoveToast: handleRemoveToast,
+  };
+
+  const handleVerifyUser = async (e) => {
+    e.preventDefault();
+    setVerifing(true);
+
+    if (verifypass.length < 6) {
+      setToastOn(true);
+      setVerifing(false);
+      setToastTextV("Password must be 6 charecters!");
+      setToastTypeV("error_toast");
+    } else {
+      const { data } = await axios.post(
+        // "http://localhost:3000/api/my_account/verify_user",
+        "https://daily-need.vercel.app/api/my_account/verify_user",
+        { verifypass, useremail }
+      );
+
+      if (data?.success) {
+        setToastOn(true);
+        setVerifing(false);
+        setToastTextV(data?.success);
+        setToastTypeV("success_toast");
+        setUsername(userInfo?.user_name);
+
+        // set verify status in browser cookie
+        Cookie.set("user_verify", JSON.stringify(data), {
+          expires: 1, // 1 days
+          secure: true,
+          sameSite: "strict",
+          path: "/",
+        });
+        setVerifyon(true);
+        router.push("/my_account/my_profile/edit_account_details");
+      } else {
+        setToastOn(true);
+        setVerifing(false);
+        setToastTextV(data?.error);
+        setToastTypeV("error_toast");
+      }
+    }
+  };
 
   return (
     <>
       {/* message toast alert */}
-      {/* <ToastContainer /> */}
+      {toastOn && <AlertToast toast_config={toast_config} />}
 
       {!verifyon ? (
         <form onSubmit={handleVerifyUser}>
           <FormTextField
             form_label="Current password"
             type="password"
-            required={false}
+            required={true}
             disabled={false}
             setState={setVerifypass}
           />
 
-          <FormButton type="submit" btn_name="Verify First" />
+          <FormButton
+            type="submit"
+            processing={verifing}
+            btn_name="Verify First"
+            disable={verifing}
+          />
         </form>
       ) : (
         <form onSubmit={handleFormSubmit}>
           <FormTextField
             form_label="user name"
             type="text"
-            defaultValue={userInfo?.user_name}
+            defaultValue={username}
+            // defaultValue={userInfo?.user_name}
             required={true}
             disabled={false}
             setState={setUsername}

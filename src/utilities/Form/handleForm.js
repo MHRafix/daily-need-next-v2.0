@@ -9,6 +9,7 @@ export default function handleForm(user_info, cnfPassword, api_url) {
 
   // toast state here
   const [toastOn, setToastOn] = useState(false);
+  const [toastType, setToastType] = useState("");
   const [toastText, setToastText] = useState("");
 
   // server req data
@@ -19,6 +20,7 @@ export default function handleForm(user_info, cnfPassword, api_url) {
     setProcessing,
     setToastOn,
     setToastText,
+    setToastType,
   };
 
   const handleFormSubmit = (e) => {
@@ -34,7 +36,8 @@ export default function handleForm(user_info, cnfPassword, api_url) {
           } else {
             setProcessing(false);
             setToastOn(true);
-            setToastText("Password is too short!");
+            setToastType("error_toast");
+            setToastText("Password must be 6 charecters!");
           }
         } else {
           // send req to server
@@ -43,17 +46,20 @@ export default function handleForm(user_info, cnfPassword, api_url) {
       } else {
         setProcessing(false);
         setToastOn(true);
-        setToastText("Password didn't matched!");
+        setToastType("error_toast");
+        setToastText("Password and confirm password didn't matched!");
       }
     } catch (err) {
       setProcessing(false);
       setToastOn(true);
+      setToastType("error_toast");
       setToastText(error);
     }
   };
   return {
     toastOn,
     setToastOn,
+    toastType,
     toastText,
     processing,
     handleFormSubmit,
@@ -69,6 +75,7 @@ const sendReq = async (reqDep, redirect_url) => {
     setProcessing,
     setToastOn,
     setToastText,
+    setToastType,
   } = reqDep;
 
   const { redirect } = router.query;
@@ -80,6 +87,7 @@ const sendReq = async (reqDep, redirect_url) => {
 
   if (data?.success) {
     setProcessing(false);
+    setToastType("success_toast");
     setToastOn(true);
     setToastText(data?.success);
 
@@ -96,6 +104,7 @@ const sendReq = async (reqDep, redirect_url) => {
     }, 2000);
   } else {
     setProcessing(false);
+    setToastType("error_toast");
     setToastOn(true);
     setToastText(data?.error);
   }

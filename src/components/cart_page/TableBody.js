@@ -9,20 +9,13 @@ import AlertToast from "../../utilities/alertToast/AlertToast";
 import { handleReduceCart } from "../../utilities/handleReduceCart";
 
 export default function TableBody({ carted_products }) {
-  // const SweetAlert = dynamic(
-  //   () => import("../../utilities/alertToast/SweetAlert"),
-  //   {
-  //     ssr: false,
-  //     // suspense: true,
-  //   }
-  // );
-
   // destructure product information
   const { _id, slug, thumbnail, title, prices, quantity } = carted_products;
   const dispatch = useDispatch();
 
   // toast state here
   const [toastOn, setToastOn] = useState(false);
+  const [toastType, setToastType] = useState("");
   const [toastText, setToastText] = useState("");
 
   // handle close toast here
@@ -40,7 +33,7 @@ export default function TableBody({ carted_products }) {
 
   // toast setting configuration here
   const toast_config = {
-    toastStyle: "warning_toast",
+    toastStyle: toastType,
     alertText: toastText,
     toastIcon: <AiFillWarning />,
     handleRemoveToast: handleRemoveToast,
@@ -75,6 +68,7 @@ export default function TableBody({ carted_products }) {
               onClick={() => {
                 handleUpdateCart(
                   setToastOn,
+                  setToastType,
                   setToastText,
                   dispatch,
                   qtyDecrease,
@@ -91,6 +85,7 @@ export default function TableBody({ carted_products }) {
               onClick={() =>
                 handleUpdateCart(
                   setToastOn,
+                  setToastType,
                   setToastText,
                   dispatch,
                   qtyIncrease,
@@ -122,6 +117,7 @@ export default function TableBody({ carted_products }) {
 
 const handleUpdateCart = (
   setToastOn,
+  setToastType,
   setToastText,
   dispatch,
   updateDep,
@@ -142,6 +138,7 @@ const handleUpdateCart = (
         dispatch(updateDep(_id));
       } else {
         setToastOn(true);
+        setToastType("warning_toast");
         setToastText("Maximum quantity limit exceed!");
       }
     } else {
@@ -150,6 +147,7 @@ const handleUpdateCart = (
         dispatch(updateDep(_id));
       } else {
         setToastOn(true);
+        setToastType("warning_toast");
         setToastText("Minimum quantity limit exceed!");
       }
     }

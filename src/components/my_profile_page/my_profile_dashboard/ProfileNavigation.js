@@ -1,7 +1,6 @@
 import Cookie from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
 import { profile_navigation } from "../../../fake_data/all_fakedata";
 import UserPic from "../../../images/logo/1642355899259.jpg";
 import ProfileNav from "../../../utilities/ProfileNav";
@@ -32,7 +31,7 @@ export default function ProfileNavigation() {
           width={90}
           height={90}
         />
-        <h3 className="text-deep_cyan font-semibold tracking-wide text-normal">
+        <h3 className="text-deep_cyan font-semibold tracking-wide text-normal capitalize">
           {userInfo?.user_name}
         </h3>
         <button

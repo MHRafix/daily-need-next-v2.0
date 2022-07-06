@@ -26,6 +26,7 @@ export default function ListProductCard({ product_data }) {
 
   // toast state here
   const [toastOn, setToastOn] = useState(false);
+  const [toastType, setToastType] = useState("");
   const [toastText, setToastText] = useState("");
 
   // handle close toast here
@@ -43,7 +44,7 @@ export default function ListProductCard({ product_data }) {
 
   // toast setting configuration here
   const toast_config = {
-    toastStyle: "warning_toast",
+    toastStyle: toastType,
     alertText: toastText,
     toastIcon: <AiFillWarning />,
     handleRemoveToast: handleRemoveToast,
@@ -102,6 +103,7 @@ export default function ListProductCard({ product_data }) {
                   setQty(qty - 1);
                 } else {
                   setToastOn(true);
+                  setToastType("warning_toast");
                   setToastText("Minimum quantity limit exceed!");
                 }
               }}
@@ -116,6 +118,7 @@ export default function ListProductCard({ product_data }) {
                   setQty(qty + 1);
                 } else {
                   setToastOn(true);
+                  setToastType("warning_toast");
                   setToastText("Maximum quantity limit exceed!");
                 }
               }}

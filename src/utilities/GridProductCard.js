@@ -26,11 +26,11 @@ export default function GridProductCard({ product_data }) {
 
   // toast state here
   const [toastOn, setToastOn] = useState(false);
+  const [toastType, setToastType] = useState("");
   const [toastText, setToastText] = useState("");
 
   // handle close toast here
   const handleRemoveToast = () => {
-    // setToastText("");
     setToastOn(false);
   };
 
@@ -43,7 +43,7 @@ export default function GridProductCard({ product_data }) {
 
   // toast setting configuration here
   const toast_config = {
-    toastStyle: "warning_toast",
+    toastStyle: toastType,
     alertText: toastText,
     toastIcon: <AiFillWarning />,
     handleRemoveToast: handleRemoveToast,
@@ -113,7 +113,9 @@ export default function GridProductCard({ product_data }) {
                 if (qty > 1) {
                   setQty(qty - 1);
                 } else {
+                  // show toast
                   setToastOn(true);
+                  setToastType("warning_toast");
                   setToastText("Minimum quantity limit exceed!");
                 }
               }}
@@ -127,7 +129,9 @@ export default function GridProductCard({ product_data }) {
                 if (qty < 10) {
                   setQty(qty + 1);
                 } else {
+                  // show toast
                   setToastOn(true);
+                  setToastType("warning_toast");
                   setToastText("Maximum quantity limit exceed!");
                 }
               }}
