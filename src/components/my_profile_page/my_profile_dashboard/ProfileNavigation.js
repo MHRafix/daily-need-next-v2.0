@@ -1,6 +1,7 @@
 import Cookie from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { profile_navigation } from "../../../fake_data/all_fakedata";
 import UserPic from "../../../images/logo/1642355899259.jpg";
 import ProfileNav from "../../../utilities/ProfileNav";
@@ -13,9 +14,11 @@ export default function ProfileNavigation() {
 
   // prevent fake user
   const history = useRouter();
-  if (!userInfo?.user_email) {
-    console.log(history.push("/"));
-  }
+  useEffect(() => {
+    if (!userInfo?.user_email) {
+      history.push("/");
+    }
+  });
 
   // handle logout and remove user information cookie from the browser
   const handleLogout = () => {
