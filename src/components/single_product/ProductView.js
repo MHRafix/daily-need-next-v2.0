@@ -6,6 +6,7 @@ import { GiBeachBag } from "react-icons/gi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import AlertToast from "../../utilities/alertToast/AlertToast";
+import FeaturesCard from "../../utilities/FeaturesCard";
 import { handleAddToCart } from "../../utilities/handleCart";
 
 export default function ProductView({ product }) {
@@ -158,24 +159,16 @@ export default function ProductView({ product }) {
               Why shop from Daily Need?
             </h3>
             <div className="our_features">
-              <div className="feature_card">
-                <div className="card_icon">
-                  <FaTruckMoving />
-                </div>
-                <div className="card_content">
-                  <h3 className="text-light text-info_color">Free Delivery</h3>
-                  <p className="text-thin text-black3">Lorem ispum dollar...</p>
-                </div>
-              </div>
-              <div className="feature_card">
-                <div className="card_icon">
-                  <GiBeachBag />
-                </div>
-                <div className="card_content">
-                  <h3 className="text-light text-info_color">100% Guarantee</h3>
-                  <p className="text-thin text-black3">Lorem ispum dollar...</p>
-                </div>
-              </div>
+              <FeaturesCard
+                features_name="Free Delivery"
+                features_icon={<FaTruckMoving />}
+                features_desc="Lorem ipsum dolor..."
+              />
+              <FeaturesCard
+                features_name="100% Guarantee"
+                features_icon={<GiBeachBag />}
+                features_desc="Lorem Ipsum Dolor sit..."
+              />
             </div>
           </div>
         </div>

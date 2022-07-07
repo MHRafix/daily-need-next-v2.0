@@ -1,5 +1,6 @@
 import Head from "next/head";
-import React from "react";
+import FooterFeaturesCard from "../Footer/FooterFeaturesCard";
+import FooterMain from "../Footer/FooterMain";
 import HeaderMain from "../Header/HeaderMain";
 
 export default function LayoutContainer({ children, title, description }) {
@@ -20,8 +21,9 @@ export default function LayoutContainer({ children, title, description }) {
       </main>
 
       {/* app footer is here */}
-      <footer className="bg-black text-white p-5 my-20">
-        This is footer here...!
+      <footer className="bg-slate-100">
+        <FooterFeaturesCard />
+        <FooterMain />
       </footer>
     </div>
   );
