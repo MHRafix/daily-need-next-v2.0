@@ -1,4 +1,5 @@
 import Head from "next/head";
+import FooterCopyrightArea from "../Footer/FooterCopyrightArea";
 import FooterFeaturesCard from "../Footer/FooterFeaturesCard";
 import FooterMain from "../Footer/FooterMain";
 import HeaderMain from "../Header/HeaderMain";
@@ -21,9 +22,10 @@ export default function LayoutContainer({ children, title, description }) {
       </main>
 
       {/* app footer is here */}
-      <footer className="bg-slate-100">
+      <footer className="bg-slate-100 mt-20">
         <FooterFeaturesCard />
         <FooterMain />
+        <FooterCopyrightArea />
       </footer>
     </div>
   );

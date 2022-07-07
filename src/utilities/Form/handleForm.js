@@ -1,11 +1,10 @@
 import axios from "axios";
 import Cookie from "js-cookie";
-import { useRouter } from "next/router";
+import Router from "next/router";
 import { useState } from "react";
 
 export default function handleForm(user_info, cnfPassword, api_url) {
   const [processing, setProcessing] = useState(false);
-  const router = useRouter();
 
   // toast state here
   const [toastOn, setToastOn] = useState(false);
@@ -16,7 +15,6 @@ export default function handleForm(user_info, cnfPassword, api_url) {
   const reqDep = {
     api_url,
     user_info,
-    router,
     setProcessing,
     setToastOn,
     setToastText,
@@ -32,7 +30,7 @@ export default function handleForm(user_info, cnfPassword, api_url) {
         if (user_info?.user_password) {
           if (user_info?.user_password.length > 5) {
             // send req to server
-            sendReq(reqDep, "/my_account/my_profile/edit_account_details");
+            sendReq(reqDep);
           } else {
             setProcessing(false);
             setToastOn(true);
@@ -41,7 +39,7 @@ export default function handleForm(user_info, cnfPassword, api_url) {
           }
         } else {
           // send req to server
-          sendReq(reqDep, "/my_account/my_profile/dashboard");
+          sendReq(reqDep);
         }
       } else {
         setProcessing(false);
@@ -67,18 +65,16 @@ export default function handleForm(user_info, cnfPassword, api_url) {
 }
 
 // const send req to server with data
-const sendReq = async (reqDep, redirect_url) => {
+const sendReq = async (reqDep) => {
   const {
     api_url,
     user_info,
-    router,
     setProcessing,
     setToastOn,
     setToastText,
     setToastType,
   } = reqDep;
 
-  const { redirect } = router.query;
   const { data } = await axios.post(
     // `http://localhost:3000/api/${api_url}`,
     `https://daily-need.vercel.app/api/${api_url}`,
@@ -98,10 +94,8 @@ const sendReq = async (reqDep, redirect_url) => {
       path: "/",
     });
 
-    // redirect after delay
-    setTimeout(() => {
-      router.push(redirect || redirect_url);
-    }, 2000);
+    // redirect to aspected page
+    Router.back();
   } else {
     setProcessing(false);
     setToastType("error_toast");

@@ -8,7 +8,7 @@ export default function FooterFeaturesCard() {
     <>
       <div className="border-b-1 border-b-slate-300">
         <div className="container_wrapper">
-          <div className="our_features  py-4 lg:grid-cols-2 xs:grid-cols-1">
+          <div className="our_features  py-4 grid sm:grid-cols-2 md:!grid-cols-3 lg:!grid-cols-4 sm:gap-x-44 md:gap-x-16 lg:gap-x-10 gap-y-10">
             <FeaturesCard
               features_name="Free & Next Day Delivery"
               features_icon={<FaTruckMoving />}

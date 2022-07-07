@@ -1,10 +1,16 @@
 import axios from "axios";
 import Cookie from "js-cookie";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { MdShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { reduceCookie } from "../../redux/cart_products/action";
-import { ErrorAlert, SuccessMessage } from "../../utilities/AlertMessage";
+import {
+  ErrorAlert,
+  ErrorMessage,
+  SuccessMessage,
+} from "../../utilities/AlertMessage";
 import { FormButton, FormTextField } from "../../utilities/Form/FormField";
 import StripePaymentForm from "../../utilities/StripePayment/StripePaymentForm";
 import OrderOverview from "./OrderOverview/OrderOverview";
@@ -15,6 +21,16 @@ export default function BillingDetails() {
   const dispatch = useDispatch();
   const empty_data = [];
   const products_data = useSelector((state) => state.cart_product.cart_list);
+
+  // if user loggedin but no product added in cart
+
+  // useEffect(() => {
+  //   if (!products_data?.length) {
+  //     return (
+
+  //     );
+  //   }
+  // }, [products_data?.length]);
 
   // calculate net total payable amount
   let total_amount = 0;
@@ -28,7 +44,7 @@ export default function BillingDetails() {
   }
   const net_total = (total_amount + (total_amount / 100) * 3).toFixed(2);
 
-  // loggedin userinfo and form data state
+  // loggedin user info and form data state
   const userInfo =
     Cookie.get("user_information") &&
     JSON.parse(Cookie.get("user_information"));
@@ -121,116 +137,136 @@ export default function BillingDetails() {
 
   return (
     <>
-      <div className="lg:flex justify-between">
-        <div className="order_overview lg:w-2/5 lg:mr-10 ">
-          <div className="title_of_details">
-            <h1 className="text-medium font-semibold tracking-wider my-5 text-black2">
-              Your Order
-            </h1>
-          </div>
-          <OrderOverview
-            carted_products={products_data}
-            net_total={net_total}
-          />
-        </div>
-        {!paypalModal ? (
-          <div className="billing_details_form lg:w-3/5 lg:!mt-0 !mt-15">
+      {products_data?.length ? (
+        <div className="lg:flex justify-between">
+          <div className="order_overview lg:w-2/5 lg:mr-10 ">
             <div className="title_of_details">
               <h1 className="text-medium font-semibold tracking-wider my-5 text-black2">
-                Billing Details
+                Your Order
               </h1>
             </div>
-            <form onSubmit={handleFormSubmit}>
-              {/* message alert */}
-              {success && <SuccessMessage message={success} />}
-              {error && <ErrorAlert message={error} />}
-
-              <FormTextField
-                form_label="your name"
-                type="text"
-                defaultValue={userInfo?.user_name}
-                required={true}
-                disabled={false}
-                setState={setName}
-              />
-              <FormTextField
-                form_label="your email"
-                type="email"
-                defaultValue={userInfo?.user_email}
-                required={true}
-                disabled={false}
-                setState={setEmail}
-              />
-              <FormTextField
-                form_label="mobile number"
-                type="text"
-                required={true}
-                disabled={false}
-                setState={setMobile}
-              />
-              <FormTextField
-                form_label="your country"
-                type="text"
-                required={true}
-                disabled={false}
-                setState={setCountry}
-              />
-              <FormTextField
-                form_label="your district"
-                type="text"
-                required={true}
-                disabled={false}
-                setState={setDistrict}
-              />
-              <FormTextField
-                form_label="street address"
-                type="text"
-                required={true}
-                disabled={false}
-                setState={setStreet}
-              />
-
-              <div>
-                <label id="input_label" htmlFor="field_label">
-                  Payment Type
-                </label>
-                <br />
-                <input
-                  style={{ marginBottom: "20px", marginTop: "10px" }}
-                  type="radio"
-                  name="payment_method"
-                  value="cash-on"
-                  onChange={(e) => setPayment(e.target.value)}
-                />
-                &nbsp;&nbsp; Cash On &nbsp;&nbsp;&nbsp;
-                <input
-                  type="radio"
-                  name="payment_method"
-                  value="stripe card"
-                  onChange={(e) => setPayment(e.target.value)}
-                />
-                &nbsp;&nbsp; Card Payment
+            <OrderOverview
+              carted_products={products_data}
+              net_total={net_total}
+            />
+          </div>
+          {!paypalModal ? (
+            <div className="billing_details_form lg:w-3/5 lg:!mt-0 !mt-15">
+              <div className="title_of_details">
+                <h1 className="text-medium font-semibold tracking-wider my-5 text-black2">
+                  Billing Details
+                </h1>
               </div>
+              <form onSubmit={handleFormSubmit}>
+                {/* message alert */}
+                {success && <SuccessMessage message={success} />}
+                {error && <ErrorAlert message={error} />}
 
-              <FormButton
-                type="submit"
-                btn_name="Place Order"
-                processing={processing}
-                disable={processing || !products_data.length ? true : false}
-              />
-            </form>
-          </div>
-        ) : (
-          <div className="billing_details_form lg:w-3/5 lg:!mt-0 !mt-15">
-            <div className="title_of_details">
-              <h1 className="text-medium font-semibold tracking-wider my-5 text-black2">
-                Get Paid
-              </h1>
+                <FormTextField
+                  form_label="your name"
+                  type="text"
+                  defaultValue={userInfo?.user_name}
+                  required={true}
+                  disabled={false}
+                  setState={setName}
+                />
+                <FormTextField
+                  form_label="your email"
+                  type="email"
+                  defaultValue={userInfo?.user_email}
+                  required={true}
+                  disabled={false}
+                  setState={setEmail}
+                />
+                <FormTextField
+                  form_label="mobile number"
+                  type="text"
+                  required={true}
+                  disabled={false}
+                  setState={setMobile}
+                />
+                <FormTextField
+                  form_label="your country"
+                  type="text"
+                  required={true}
+                  disabled={false}
+                  setState={setCountry}
+                />
+                <FormTextField
+                  form_label="your district"
+                  type="text"
+                  required={true}
+                  disabled={false}
+                  setState={setDistrict}
+                />
+                <FormTextField
+                  form_label="street address"
+                  type="text"
+                  required={true}
+                  disabled={false}
+                  setState={setStreet}
+                />
+
+                <div>
+                  <label id="input_label" htmlFor="field_label">
+                    Payment Type
+                  </label>
+                  <br />
+                  <input
+                    style={{ marginBottom: "20px", marginTop: "10px" }}
+                    type="radio"
+                    name="payment_method"
+                    value="cash-on"
+                    onChange={(e) => setPayment(e.target.value)}
+                  />
+                  &nbsp;&nbsp; Cash On &nbsp;&nbsp;&nbsp;
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="stripe card"
+                    onChange={(e) => setPayment(e.target.value)}
+                  />
+                  &nbsp;&nbsp; Card Payment
+                </div>
+
+                <FormButton
+                  type="submit"
+                  btn_name="Place Order"
+                  processing={processing}
+                  disable={processing || !products_data.length ? true : false}
+                />
+              </form>
             </div>
-            <StripePaymentForm amount={net_total} order_id={orderid} />
+          ) : (
+            <div className="billing_details_form lg:w-3/5 lg:!mt-0 !mt-15">
+              <div className="title_of_details">
+                <h1 className="text-medium font-semibold tracking-wider my-5 text-black2">
+                  Get Paid
+                </h1>
+              </div>
+              <StripePaymentForm amount={net_total} order_id={orderid} />
+            </div>
+          )}
+        </div>
+      ) : (
+        <>
+          <ErrorMessage message="No products added in cart. Please go back and add product in cart!" />
+          <div className="flex items-center" style={{ marginTop: "10px" }}>
+            <span>
+              <NextLink href="/shop/grid_shop" passHref>
+                <button
+                  id="cart_btn"
+                  className="!rounded-sm !text-light"
+                  style={{ textTransform: "capitalize" }}
+                >
+                  continue shopping &nbsp;
+                  <MdShoppingCart className="!text-normal" />
+                </button>
+              </NextLink>
+            </span>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </>
   );
 }

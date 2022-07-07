@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { BsTelephone } from "react-icons/bs";
 import { FaMobileAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -53,28 +54,40 @@ export default function FooterMain() {
                     <BsTelephone />
                   </span>
                   &nbsp; &nbsp;
-                  <span>+880 1611859722</span>
+                  <span className="tracking-wider">+880 1611859722</span>
                 </div>
                 <div className="block_content">
                   <span>
                     <FaMobileAlt />
                   </span>
                   &nbsp; &nbsp;
-                  <span>+880 1611859722</span>
+                  <span className="tracking-wider">12345 6780, 5684 98562</span>
                 </div>
                 <div className="block_content">
-                  <span>
+                  <span className="text-green">
                     <MdEmail />
                   </span>
                   &nbsp; &nbsp;
-                  <span>rafiz.mehedi@gmail.com</span>
+                  <Link href="https://mail.google.com" passHref>
+                    <a target="_blank">
+                      <span className="text-green tracking-wider">
+                        rafiz.mehedi@gmail.com
+                      </span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="block_content">
-                  <span>
+                  <span className="text-light_blue">
                     <SiTorbrowser />
                   </span>
                   &nbsp; &nbsp;
-                  <span>www.rafix.netlify.app</span>
+                  <Link href="https://rafix.netlify.app/" passHref>
+                    <a target="_blank">
+                      <span className="tracking-wider text-light_blue">
+                        https://rafix.netlify.app
+                      </span>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

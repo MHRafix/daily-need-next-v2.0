@@ -160,12 +160,13 @@ export default function ProductView({ product }) {
             <h3 className="text-light text-black2">
               Why shop from Daily Need?
             </h3>
-            <div className="our_features">
+            <div className="our_features2">
               <FeaturesCard
                 features_name="free delivery"
                 features_icon={<FaTruckMoving />}
                 features_desc="Lorem ipsum dolor..."
               />
+
               <FeaturesCard
                 features_name="100% Guarantee"
                 features_icon={<GiBeachBag />}

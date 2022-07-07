@@ -11,7 +11,10 @@ export default function CheckoutMain() {
 
   if (userInfo?.user_email) {
     var bread_string = "checkout";
-  } else {
+  }
+
+  // if user not logged in
+  if (!userInfo?.user_email) {
     var bread_string = "fake user";
 
     return (

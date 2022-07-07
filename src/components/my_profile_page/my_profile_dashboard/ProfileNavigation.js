@@ -1,7 +1,7 @@
 import Cookie from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { CgLogOut } from "react-icons/cg";
+import { MdLogout } from "react-icons/md";
 import { profile_navigation } from "../../../fake_data/all_fakedata";
 import UserPic from "../../../images/logo/1642355899259.jpg";
 import ProfileNav from "../../../utilities/ProfileNav";
@@ -39,7 +39,7 @@ export default function ProfileNavigation() {
           id="cart_btn"
           onClick={handleLogout}
         >
-          Logout Now &nbsp; <CgLogOut className="!text-normal" />
+          Logout Now &nbsp; <MdLogout className="!text-normal" />
         </button>
       </div>
       <div className="profile_navigation_wrapper">

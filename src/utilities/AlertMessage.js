@@ -20,12 +20,13 @@ export const MyProfileErrMssg = ({ message, bread_string }) => {
     <>
       <Breadcrumb bread_nav={bread_string} />
       <ErrorMessage message={message} />
-      <div className="flex items-center mt-5">
+      <div className="flex items-center" style={{ marginTop: "10px" }}>
         <span>
           <button
             onClick={() => history.push("/")}
             id="cart_btn"
-            className="!rounded-sm !text-light !capitalize"
+            className="!rounded-sm !text-light"
+            style={{ textTransform: "capitalize" }}
           >
             <IoMdArrowRoundBack className="!text-normal" /> &nbsp; go home
           </button>
@@ -35,7 +36,8 @@ export const MyProfileErrMssg = ({ message, bread_string }) => {
           <button
             onClick={() => history.push("/my_account/my_acc")}
             id="cart_btn"
-            className="!rounded-sm !text-light !capitalize"
+            className="!rounded-sm !text-light"
+            style={{ textTransform: "capitalize" }}
           >
             login now &nbsp; <CgLogIn className="!text-normal" />
           </button>
