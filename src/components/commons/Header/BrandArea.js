@@ -66,6 +66,7 @@ export default function BrandArea({ setNavbarToggle, navbarToggle }) {
               <span className="xs:hidden lg:!block">My Cart</span>
             </div>
             {/* &nbsp;&nbsp;&nbsp; */}
+
             <NextLink
               href={
                 user_loggedin
