@@ -3,6 +3,8 @@ import { useState } from "react";
 import { AiFillWarning } from "react-icons/ai";
 import { FaTruckMoving } from "react-icons/fa";
 import { GiBeachBag } from "react-icons/gi";
+// import { FaTruckMoving } from "react-icons/fa";
+// import { GiBeachBag } from "react-icons/gi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import AlertToast from "../../utilities/alertToast/AlertToast";
@@ -160,14 +162,14 @@ export default function ProductView({ product }) {
             </h3>
             <div className="our_features">
               <FeaturesCard
-                features_name="Free Delivery"
+                features_name="free delivery"
                 features_icon={<FaTruckMoving />}
                 features_desc="Lorem ipsum dolor..."
               />
               <FeaturesCard
                 features_name="100% Guarantee"
                 features_icon={<GiBeachBag />}
-                features_desc="Lorem Ipsum Dolor sit..."
+                features_desc="Lorem ipsum dolor sit..."
               />
             </div>
           </div>

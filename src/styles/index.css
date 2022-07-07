@@ -283,10 +283,10 @@
     @apply flex justify-between items-center mt-8;
   }
 
-  .feature_card {
+  #feature_card {
     @apply flex justify-between items-center;
   }
-  .card_icon {
+  #card_icon {
     @apply p-2 bg-deep_green text-semi_medium text-white rounded-full mr-5;
   }
 
@@ -501,6 +501,39 @@
 
   #alertIdSuccess {
     @apply text-white !bg-gradient-to-r from-deep_cyan to-green text-light text-left tracking-wide !p-1 rounded-sm;
+  }
+
+  /* footer css style here */
+  .footer_main {
+    @apply py-4;
+  }
+
+  .footer_main_grid_layout {
+    @apply grid lg:grid-cols-5 sm:grid-cols-3  gap-5;
+  }
+
+  .block_header {
+    @apply h-15 mb-10;
+  }
+
+  .block_body {
+    @apply text-black3 xs:text-thin md:!text-sm;
+  }
+
+  .block_content {
+    @apply flex items-center justify-start my-4;
+  }
+
+  .block_header_line {
+    @apply text-black2 text-normal font-semibold tracking-wider capitalize;
+  }
+
+  #block_body_item {
+    @apply text-black3 tracking-wider my-4 xs:text-thin md:!text-sm;
+  }
+
+  .store_images {
+    @apply flex justify-between items-center -mt-4;
   }
 
   /* all btn css here */

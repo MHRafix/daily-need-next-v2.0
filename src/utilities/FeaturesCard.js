@@ -5,9 +5,9 @@ export default function FeaturesCard({
 }) {
   return (
     <>
-      <div className="feature_card">
-        <div className="card_icon">{features_icon}</div>
-        <div className="card_content">
+      <div id="feature_card">
+        <div id="card_icon">{features_icon}</div>
+        <div id="card_content">
           <h3 className="text-light text-info_color capitalize">
             {features_name}
           </h3>

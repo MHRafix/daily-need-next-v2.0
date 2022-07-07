@@ -1,4 +1,4 @@
-import { FaTruckMoving } from "react-icons/fa";
+import { FaRecycle, FaTruckMoving } from "react-icons/fa";
 import { GiBeachBag } from "react-icons/gi";
 import { ImPriceTags } from "react-icons/im";
 import FeaturesCard from "../../../utilities/FeaturesCard";
@@ -8,23 +8,29 @@ export default function FooterFeaturesCard() {
     <>
       <div className="border-b-1 border-b-slate-300">
         <div className="container_wrapper">
-          <div className="our_features  py-4">
+          <div className="our_features  py-4 lg:grid-cols-2 xs:grid-cols-1">
             <FeaturesCard
               features_name="Free & Next Day Delivery"
               features_icon={<FaTruckMoving />}
-              features_desc="Lorem ipsum dolor sit amet, cons..."
+              features_desc="Lorem ipsum dolor sit ..."
             />
 
             <FeaturesCard
-              features_name="100% Satisfaction Guarantee"
+              features_name="100% satisfaction"
               features_icon={<GiBeachBag />}
-              features_desc="Rorem Ipsum Dolor sit amet, cons..."
+              features_desc="Lorem ipsum dolor sit ..."
             />
 
             <FeaturesCard
-              features_name="Great Daily Deals Discount"
+              features_name="7 days replacement"
+              features_icon={<FaRecycle />}
+              features_desc="Lorem ipsum dolor sit ..."
+            />
+
+            <FeaturesCard
+              features_name="great discount"
               features_icon={<ImPriceTags />}
-              features_desc="Rorem Ipsum Dolor sit amet, cons..."
+              features_desc="Lorem ipsum dolor sit ..."
             />
           </div>
         </div>
