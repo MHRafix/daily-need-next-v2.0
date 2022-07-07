@@ -72,7 +72,11 @@ export default function GridProductCard({ product_data }) {
           </div>
           <NextLink href={`/shop/singleProducts/${slug}`} passHref>
             <div id="product_thumbnail">
-              <Image src={thumbnail} alt="product_thumbnail" />
+              <Image
+                id="product_thumbnail"
+                src={thumbnail}
+                alt="product_thumbnail"
+              />
             </div>
           </NextLink>
         </div>
