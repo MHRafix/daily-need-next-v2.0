@@ -78,6 +78,22 @@
     @apply absolute top-3 left-12 text-thin bg-gradient-to-r from-orangee to-orangee_red px-extra_padding rounded-full flex items-center text-white;
   }
 
+  .notification_counter {
+    @apply absolute bottom-7 left-6 text-thin px-extra_padding2  rounded-full flex items-center text-white;
+  }
+
+  .green {
+    @apply bg-green;
+  }
+
+  .purple {
+    @apply bg-light_purple;
+  }
+
+  .red {
+    @apply bg-red-500;
+  }
+
   .navigation_wrapper {
     @apply border-b-1 border-zinc-200 py-1.5 lg:!block xs:hidden;
   }
@@ -547,6 +563,27 @@
 
   .copyright_wrapper {
     @apply md:flex md:justify-between items-center xs:text-center;
+  }
+
+  /* admin dashboard css here */
+  .admin_pannel_top_navigation_wrapper {
+    @apply flex justify-between items-center text-light_purple text-semi_medium;
+  }
+
+  #admin_pannel_search_input {
+    @apply w-full border-1 border-slate-200 rounded-md outline-none p-extra_padding5 text-sm tracking-wider;
+  }
+
+  .left_side_search_area {
+    @apply w-2/4 flex justify-between items-center;
+  }
+
+  .right_side_action_icon {
+    @apply w-2/4 flex justify-end items-center text-light_purple text-semi_medium;
+  }
+
+  .admin_pannel_header_action_icon {
+    @apply flex items-center mx-4 cursor-pointer relative p-extra_padding2;
   }
 
   /* additional info of single product css here */

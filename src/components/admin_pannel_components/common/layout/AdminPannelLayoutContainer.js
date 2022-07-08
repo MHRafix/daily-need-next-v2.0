@@ -1,5 +1,6 @@
 import Head from "next/head";
-import AdminPannelNavigation from "../AdminPannelNavigation/AdminPannelNavigation";
+import AdminPannelLeftNavigation from "../AdminPannelNavigation/AdminPannelLeftNavigation";
+import AdminPannelTopNavigation from "../AdminPannelNavigation/AdminPannelTopNavigation";
 
 export default function AdminPannelLayoutContainer({
   children,
@@ -19,16 +20,16 @@ export default function AdminPannelLayoutContainer({
           {/* admin pannel header here */}
           <header className="w-2/12 bg-white border-r-1 border-r-slate-200 h-screen">
             <div className="left_navigation">
-              <AdminPannelNavigation />
+              <AdminPannelLeftNavigation />
             </div>
           </header>
 
           {/* admin pannel body is here */}
-          <main className="w-10/12 bg-slate-50 border-r-1 border-r-slate-200 h-screen">
+          <main className="w-10/12 bg-slate-100 border-r-1 border-r-slate-200 h-screen">
             <div className="right_content_body">
               <div className="grid gap-y-10">
-                <div className="p-2.4 bg-white border-b-1 border-b-slate-200">
-                  Header2
+                <div className="!p-1.4 bg-white border-b-1 border-b-slate-200">
+                  <AdminPannelTopNavigation />
                 </div>
                 <div className="p-2">{children}</div>
                 {/* <div className="p-2">

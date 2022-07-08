@@ -1,4 +1,6 @@
-import AdminPannelLayoutContainer from "../../../../components/admin_pannel_components/common/Layout/AdminPannelLayoutContainer";
+// import AdminPannelLayoutContainer from "../../../../components/admin_pannel_components/common/Layout/AdminPannelLayoutContainer";
+
+import AdminPannelLayoutContainer from "../../../../components/admin_pannel_components/common/layout/AdminPannelLayoutContainer";
 
 export default function admin_dashboard() {
   return (

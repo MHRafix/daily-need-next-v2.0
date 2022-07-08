@@ -85,6 +85,7 @@ module.exports = {
         page_white: "#fef6d4",
         bg_blue: "#eff7fa",
         off_white: "#e7dee0",
+        light_purple: "#6c5ffc",
       },
       spacing: {
         1: "2px",
@@ -115,6 +116,7 @@ module.exports = {
         per_10: "50%",
       },
       padding: {
+        extra_padding0: ".2px",
         extra_padding1: "2px",
         extra_padding2: "4px",
         extra_padding: "5px",
@@ -125,6 +127,7 @@ module.exports = {
         1.1: "11px",
         1.2: "12px",
         1.3: "13px",
+        1.4: "14.5px",
         1.5: "15px",
         1.9: "19px",
         2: "20px",
