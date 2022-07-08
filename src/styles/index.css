@@ -586,6 +586,10 @@
     @apply flex items-center mx-4 cursor-pointer relative p-extra_padding2;
   }
 
+  #admin_pannel_nav_link {
+    @apply cursor-pointer capitalize tracking-wider my-2 text-sm;
+  }
+
   /* additional info of single product css here */
   .additional_info_wrapper {
     @apply my-10 shadow-lg pb-3;
@@ -594,6 +598,7 @@
   .additional_info_content_wrapper {
     @apply p-1 text-sm text-black3 tracking-wider;
   }
+
   /* all btn css here */
   .btn {
     @apply bg-gradient-to-r from-orangee to-orangee_red;
