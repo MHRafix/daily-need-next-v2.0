@@ -74,6 +74,10 @@
     @apply w-13 h-13 rounded-full bg-white relative flex items-center justify-center text-normal mr-6 text-black hover:bg-gradient-to-r hover:from-orangee hover:to-orangee_red hover:text-white hover:duration-300;
   }
 
+  .cross_admin_pannel_navigation {
+    @apply w-13 h-13 rounded-full text-normal shadow-sm bg-light_purple text-white hover:text-white hover:duration-300;
+  }
+
   .cart_counter {
     @apply absolute top-3 left-12 text-thin bg-gradient-to-r from-orangee to-orangee_red px-extra_padding rounded-full flex items-center text-white;
   }
@@ -571,12 +575,11 @@
   }
 
   .admin_pannel_left_header_half {
-    @apply w-2/12 lg:!block xs:hidden bg-white border-r-1 border-r-slate-200 h-screen;
+    @apply w-1/5 lg:!block xs:hidden bg-white border-r-1 border-r-slate-200 h-screen;
   }
 
   .admin_pannel_left_header_none {
-    /* @apply w-2/12 lg:!block xs:hidden bg-white border-r-1 border-r-slate-200 h-screen; */
-    @apply w-0 hidden bg-white border-r-1 border-r-slate-200 h-screen;
+    @apply lg:hidden md:!w-4/12 xs:w-3/4 lg:!relative xs:absolute z-50 bg-white border-r-1 border-r-slate-200 h-screen;
   }
 
   .admin_pannel_body_half {

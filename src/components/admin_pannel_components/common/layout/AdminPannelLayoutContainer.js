@@ -29,7 +29,7 @@ export default function AdminPannelLayoutContainer({
             }
           >
             <div className="left_navigation">
-              <AdminPannelLeftNavigation />
+              <AdminPannelLeftNavigation setNavigationOn={setNavigationOn} />
             </div>
           </header>
 

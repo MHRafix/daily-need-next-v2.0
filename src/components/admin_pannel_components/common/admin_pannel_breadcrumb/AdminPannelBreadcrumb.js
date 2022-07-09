@@ -8,7 +8,7 @@ export default function AdminPannelBreadcrumb({ page_name, breadcrumb_name }) {
 
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-5">
         {/* page name */}
         <div id="page_content_title">
           <h1 id="content_title" className="!text-light_purple tracking-wider">

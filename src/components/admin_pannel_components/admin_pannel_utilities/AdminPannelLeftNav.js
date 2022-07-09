@@ -29,13 +29,19 @@ export default function AdminPannelLeftNav({ nav_data }) {
               passHref
             >
               <h3 id="admin_pannel_nav_link" className="!text-light">
-                <span>{main_nav_icon}</span> &nbsp; {main_nav}
+                <span className="text-light_purple text-normal">
+                  {main_nav_icon}
+                </span>
+                &nbsp; {main_nav}
               </h3>
             </NextLink>
           ) : (
             <>
               <h3 id="admin_pannel_nav_link" className="!text-light">
-                <span>{main_nav_icon}</span> &nbsp; {main_nav}
+                <span className="text-light_purple text-normal">
+                  {main_nav_icon}
+                </span>{" "}
+                &nbsp; {main_nav}
               </h3>
             </>
           )}

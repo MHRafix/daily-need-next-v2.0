@@ -1,16 +1,22 @@
+import { BiHomeAlt, BiSlider } from "react-icons/bi";
+import { BsCartCheck } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
+import { FiUsers } from "react-icons/fi";
+import { HiOutlineMail } from "react-icons/hi";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { MdBorderAll, MdSecurity } from "react-icons/md";
 
 export const admin_pannel_navigation = [
   {
     _id: 1,
     main_nav: "Dashboard",
-    main_nav_icon: "D",
+    main_nav_icon: <BiHomeAlt />,
     main_nav_link: "/admin_dashboard",
   },
   {
     _id: 2,
     main_nav: "Manage Products",
-    main_nav_icon: "H",
+    main_nav_icon: <MdBorderAll />,
     sub_navs: [
       {
         _id: 1,
@@ -47,7 +53,7 @@ export const admin_pannel_navigation = [
   {
     _id: 3,
     main_nav: "Manage Orders",
-    main_nav_icon: "O",
+    main_nav_icon: <BsCartCheck />,
     sub_navs: [
       {
         _id: 1,
@@ -84,7 +90,7 @@ export const admin_pannel_navigation = [
   {
     _id: 4,
     main_nav: "Authentication",
-    main_nav_icon: "A",
+    main_nav_icon: <MdSecurity />,
     sub_navs: [
       {
         _id: 1,
@@ -117,7 +123,7 @@ export const admin_pannel_navigation = [
   {
     _id: 5,
     main_nav: "My Profile",
-    main_nav_icon: "P",
+    main_nav_icon: <CgProfile />,
     sub_navs: [
       {
         _id: 1,
@@ -135,7 +141,7 @@ export const admin_pannel_navigation = [
   {
     _id: 6,
     main_nav: "Mail Box",
-    main_nav_icon: "M",
+    main_nav_icon: <HiOutlineMail />,
     sub_navs: [
       {
         _id: 1,
@@ -162,7 +168,7 @@ export const admin_pannel_navigation = [
   {
     _id: 7,
     main_nav: "Users",
-    main_nav_icon: "U",
+    main_nav_icon: <FiUsers />,
     sub_navs: [
       {
         _id: 1,
@@ -189,7 +195,7 @@ export const admin_pannel_navigation = [
   {
     _id: 8,
     main_nav: "Manage Sliders",
-    main_nav_icon: "S",
+    main_nav_icon: <BiSlider />,
     sub_navs: [
       {
         _id: 1,
