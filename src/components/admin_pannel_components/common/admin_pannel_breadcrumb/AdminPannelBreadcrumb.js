@@ -1,4 +1,5 @@
 import Cookie from "js-cookie";
+import NextLink from "next/link";
 import React from "react";
 
 export default function AdminPannelBreadcrumb({ page_name, breadcrumb_name }) {
@@ -21,12 +22,12 @@ export default function AdminPannelBreadcrumb({ page_name, breadcrumb_name }) {
         {/* breadcrumb */}
         {breadcrumb_name && (
           <div>
-            <span
-              className="home_nav capitalize"
+            <NextLink
               href={`/admin_pannel/${userInfo?.user_name}/${userInfo?.user_email}/admin_dashboard`}
+              passHref
             >
-              dashboard
-            </span>
+              <span className="home_nav capitalize">dashboard</span>
+            </NextLink>
             &nbsp;
             <span className="tracking-wider capitalize">
               / {breadcrumb_name}

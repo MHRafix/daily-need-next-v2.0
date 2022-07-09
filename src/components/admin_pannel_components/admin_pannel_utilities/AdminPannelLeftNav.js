@@ -1,6 +1,7 @@
 import Cookie from "js-cookie";
 import NextLink from "next/link";
 import React, { useState } from "react";
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 
 export default function AdminPannelLeftNav({ nav_data }) {
   const { main_nav, main_nav_link, main_nav_icon, sub_navs, sub_nav_link } =
@@ -28,7 +29,14 @@ export default function AdminPannelLeftNav({ nav_data }) {
               href={`/admin_pannel/${userInfo?.user_name}/${userInfo?.user_email}${main_nav_link}`}
               passHref
             >
-              <h3 id="admin_pannel_nav_link" className="!text-light">
+              <h3
+                id={
+                  subNavOn
+                    ? "admin_pannel_nav_link_active"
+                    : "admin_pannel_nav_link"
+                }
+                className="!text-light"
+              >
                 <span className="text-light_purple text-normal">
                   {main_nav_icon}
                 </span>
@@ -37,10 +45,17 @@ export default function AdminPannelLeftNav({ nav_data }) {
             </NextLink>
           ) : (
             <>
-              <h3 id="admin_pannel_nav_link" className="!text-light">
+              <h3
+                id={
+                  subNavOn
+                    ? "admin_pannel_nav_link_active"
+                    : "admin_pannel_nav_link"
+                }
+                className="!text-light"
+              >
                 <span className="text-light_purple text-normal">
                   {main_nav_icon}
-                </span>{" "}
+                </span>
                 &nbsp; {main_nav}
               </h3>
             </>
@@ -84,7 +99,7 @@ export const SubNav = ({ sub_nav }) => {
           id="admin_pannel_nav_link"
           className="hover:text-light_purple hover:duration-300"
         >
-          - {sub_nav_name}
+          <MdOutlineKeyboardArrowLeft /> &nbsp;{sub_nav_name}
         </h3>
       </NextLink>
     </>

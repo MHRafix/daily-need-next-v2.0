@@ -611,6 +611,14 @@
     @apply cursor-pointer capitalize tracking-wider my-3 text-sm flex items-center;
   }
 
+  #admin_pannel_nav_link_active {
+    @apply cursor-pointer capitalize tracking-wider my-3 text-sm flex items-center text-light_purple;
+  }
+
+  .sub_nav_link {
+    @apply border-l-1 border-l-light_purple;
+  }
+
   /* additional info of single product css here */
   .additional_info_wrapper {
     @apply my-10 shadow-lg pb-3;
