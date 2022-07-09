@@ -1,30 +1,61 @@
+import Cookie from "js-cookie";
 import NextLink from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 export default function AdminPannelLeftNav({ nav_data }) {
-  const { main_nav, main_nav_link, sub_navs, sub_nav_link } = nav_data;
+  const { main_nav, main_nav_link, main_nav_icon, sub_navs, sub_nav_link } =
+    nav_data;
+
+  // user information
+  const userInfo =
+    Cookie.get("user_information") &&
+    JSON.parse(Cookie.get("user_information"));
+
+  const [subNavOn, setSubNavOn] = useState(false);
 
   return (
     <>
       <div className="main_navs_wrapper">
-        <div className="main_nav_link text-black3">
+        <button
+          onClick={() => {
+            if (subNavOn) setSubNavOn(false);
+            else setSubNavOn(true);
+          }}
+          className="main_nav_link text-black2"
+        >
           {main_nav_link ? (
-            <NextLink href={main_nav_link} passHref>
+            <NextLink
+              href={`/admin_pannel/${userInfo?.user_name}/${userInfo?.user_email}${main_nav_link}`}
+              passHref
+            >
               <h3 id="admin_pannel_nav_link" className="!text-light">
-                {main_nav}
+                <span>{main_nav_icon}</span> &nbsp; {main_nav}
               </h3>
             </NextLink>
           ) : (
-            <h3>{main_nav}</h3>
+            <>
+              <h3 id="admin_pannel_nav_link" className="!text-light">
+                <span>{main_nav_icon}</span> &nbsp; {main_nav}
+              </h3>
+            </>
           )}
-        </div>
-        <div className="sub_navs_wrapper pl-2 text-black4 my-2">
-          <div className="sub_nav_link">
-            {sub_navs?.map((sub_nav) => (
-              <SubNav key={sub_nav?._id} sub_nav={sub_nav} />
-            ))}
-          </div>
-        </div>
+        </button>
+        {sub_navs?.length && (
+          <>
+            {subNavOn && (
+              <div className="sub_navs_wrapper pl-2.2 text-black4">
+                <div
+                  className="sub_nav_link"
+                  style={{ margin: "10px 0px 20px 0px" }}
+                >
+                  {sub_navs?.map((sub_nav) => (
+                    <SubNav key={sub_nav?._id} sub_nav={sub_nav} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </>
   );
@@ -33,10 +64,22 @@ export default function AdminPannelLeftNav({ nav_data }) {
 export const SubNav = ({ sub_nav }) => {
   const { sub_nav_name, sub_nav_link } = sub_nav;
 
+  // user information
+  const userInfo =
+    Cookie.get("user_information") &&
+    JSON.parse(Cookie.get("user_information"));
   return (
     <>
-      <NextLink href={sub_nav_link} passHref>
-        <h3 id="admin_pannel_nav_link">{sub_nav_name}</h3>
+      <NextLink
+        href={`/admin_pannel/${userInfo?.user_name}/${userInfo?.user_email}${sub_nav_link}`}
+        passHref
+      >
+        <h3
+          id="admin_pannel_nav_link"
+          className="hover:text-light_purple hover:duration-300"
+        >
+          - {sub_nav_name}
+        </h3>
       </NextLink>
     </>
   );

@@ -570,6 +570,24 @@
     @apply flex justify-between items-center text-light_purple text-semi_medium;
   }
 
+  .admin_pannel_left_header_half {
+    @apply w-2/12 lg:!block xs:hidden bg-white border-r-1 border-r-slate-200 h-screen;
+  }
+
+  .admin_pannel_left_header_none {
+    /* @apply w-2/12 lg:!block xs:hidden bg-white border-r-1 border-r-slate-200 h-screen; */
+    @apply w-0 hidden bg-white border-r-1 border-r-slate-200 h-screen;
+  }
+
+  .admin_pannel_body_half {
+    @apply lg:!w-10/12 xs:w-full bg-slate-100 border-r-1 border-r-slate-200 h-screen;
+  }
+
+  .admin_pannel_body_full {
+    /* @apply lg:!w-10/12 xs:w-full bg-slate-100 border-r-1 border-r-slate-200 h-screen; */
+    @apply w-full bg-slate-100 border-r-1 border-r-slate-200 h-screen;
+  }
+
   #admin_pannel_search_input {
     @apply w-full border-1 border-slate-200 rounded-md outline-none p-extra_padding5 text-sm tracking-wider;
   }
@@ -587,7 +605,7 @@
   }
 
   #admin_pannel_nav_link {
-    @apply cursor-pointer capitalize tracking-wider my-2 text-sm;
+    @apply cursor-pointer capitalize tracking-wider my-3 text-sm flex items-center;
   }
 
   /* additional info of single product css here */
@@ -1005,5 +1023,24 @@
   #feature_card:hover #card_icon {
     transform: scale(1.1);
     transition: 0.3s;
+  }
+
+  /* admin pannel utilities css here */
+  .admin_pannel_navigation_link {
+    overflow: auto;
+    height: 88vh;
+  }
+
+  .admin_pannel_navigation_link::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+
+  .admin_pannel_navigation_link::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .admin_pannel_navigation_link::-webkit-scrollbar-thumb {
+    background: #6c5ffc;
+    border-radius: 5rem;
   }
 }

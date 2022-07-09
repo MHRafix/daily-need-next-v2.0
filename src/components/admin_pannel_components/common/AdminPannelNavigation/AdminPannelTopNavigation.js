@@ -6,7 +6,10 @@ import { MdOutlineDarkMode, MdOutlineLanguage } from "react-icons/md";
 import { RiBarChartHorizontalLine } from "react-icons/ri";
 import UserPic from "../../../../images/logo/12.jpg";
 
-export default function AdminPannelTopNavigation() {
+export default function AdminPannelTopNavigation({
+  setNavigationOn,
+  navigationOn,
+}) {
   const [notification, setNotification] = useState(0);
   const [messages, setMessages] = useState(1);
 
@@ -15,9 +18,18 @@ export default function AdminPannelTopNavigation() {
       <div className="admin_pannel_top_navigation_wrapper">
         <div className="left_side_search_area">
           <div className="w-1/12 text-medium">
-            <span className="cursor-pointer">
+            <button
+              className="cursor-pointer"
+              onClick={() => {
+                if (navigationOn) {
+                  setNavigationOn(false);
+                } else {
+                  setNavigationOn(true);
+                }
+              }}
+            >
               <RiBarChartHorizontalLine />
-            </span>
+            </button>
           </div>
           <div className="w-10/12 relative">
             <input
@@ -25,7 +37,7 @@ export default function AdminPannelTopNavigation() {
               placeholder="Search for result..."
               id="admin_pannel_search_input"
             />
-            <button className="absolute right-2 top-5 text-slate-400 text-normal">
+            <button className="absolute right-4 top-5 text-slate-400 text-normal">
               <FiSearch />
             </button>
           </div>
