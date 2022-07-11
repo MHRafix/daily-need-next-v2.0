@@ -76,8 +76,8 @@ const sendReq = async (reqDep) => {
   } = reqDep;
 
   const { data } = await axios.post(
-    `http://localhost:3000/api/${api_url}`,
-    // `https://daily-need.vercel.app/api/${api_url}`,
+//     `http://localhost:3000/api/${api_url}`,
+    `https://daily-need.vercel.app/api/${api_url}`,
     user_info
   );
 
