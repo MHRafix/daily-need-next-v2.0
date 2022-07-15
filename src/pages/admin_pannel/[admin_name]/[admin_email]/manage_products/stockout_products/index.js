@@ -6,8 +6,8 @@ export default function AllProducts() {
   return (
     <>
       <AdminPannelLayoutContainer
-        title="Manage Products"
-        description="This is manage products of 'Daily Needs Grocery' web application admin pannel."
+        title="Manage Stock Out Products"
+        description="This is manage stock out products of 'Daily Needs Grocery' web application admin pannel."
       >
         <StockOutProductsMain />
       </AdminPannelLayoutContainer>
