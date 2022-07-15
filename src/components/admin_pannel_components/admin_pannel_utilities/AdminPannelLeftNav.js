@@ -35,7 +35,7 @@ export default function AdminPannelLeftNav({ nav_data }) {
                     ? "admin_pannel_nav_link_active"
                     : "admin_pannel_nav_link"
                 }
-                className="!text-light"
+                className="!text-normal"
               >
                 <span className="text-light_purple text-normal">
                   {main_nav_icon}
@@ -51,7 +51,7 @@ export default function AdminPannelLeftNav({ nav_data }) {
                     ? "admin_pannel_nav_link_active"
                     : "admin_pannel_nav_link"
                 }
-                className="!text-light"
+                className="!text-normal"
               >
                 <span className="text-light_purple text-normal">
                   {main_nav_icon}
@@ -97,7 +97,7 @@ export const SubNav = ({ sub_nav }) => {
       >
         <h3
           id="admin_pannel_nav_link"
-          className="hover:text-light_purple hover:duration-300"
+          className="!text-light hover:text-light_purple hover:duration-300"
         >
           <MdOutlineKeyboardArrowLeft /> &nbsp;{sub_nav_name}
         </h3>
