@@ -1,5 +1,7 @@
+import Cookie from "js-cookie";
 import Image from "next/image";
-import React, { useState } from "react";
+import Router from "next/router";
+import React, { useEffect, useState } from "react";
 import { FiMessageSquare, FiSearch } from "react-icons/fi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineDarkMode, MdOutlineLanguage } from "react-icons/md";
@@ -13,11 +15,21 @@ export default function AdminPannelTopNavigation({
   const [notification, setNotification] = useState(0);
   const [messages, setMessages] = useState(1);
 
+  const userInfo =
+    Cookie.get("user_information") &&
+    JSON.parse(Cookie.get("user_information"));
+
+  useEffect(() => {
+    if (!userInfo?.user_admin) {
+      Router.back();
+    }
+  });
+
   return (
     <>
       <div className="admin_pannel_top_navigation_wrapper">
         <div className="left_side_search_area">
-          <div className="w-1/12 text-medium">
+          <div className="w-1/12 text-medium flex items-center">
             <button
               className="cursor-pointer"
               onClick={() => {
@@ -31,9 +43,9 @@ export default function AdminPannelTopNavigation({
               <RiBarChartHorizontalLine />
             </button>
           </div>
-          <div className="w-10/12 relative">
+          <div className="w-10/12 md:!block xs:hidden relative">
             <input
-              type="search"
+              type="text"
               placeholder="Search for result..."
               id="admin_pannel_search_input"
             />

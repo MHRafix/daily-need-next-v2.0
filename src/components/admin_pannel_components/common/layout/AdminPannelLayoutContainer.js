@@ -47,7 +47,7 @@ export default function AdminPannelLayoutContainer({
                     navigationOn={navigationOn}
                   />
                 </div>
-                <div className="p-1.4">{children}</div>
+                <div className="p-1.4 text-normal">{children}</div>
                 {/* <div className="p-2">
                 //   admin pannel footer is here
                   <footer className="bg-slate-50 text-center">
