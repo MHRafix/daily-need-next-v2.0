@@ -1,4 +1,6 @@
 import Image from "next/image";
+import NextLink from "next/link";
+import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 import Logo from "../../../../images/logo/logo_black.webp";
 import AdminPannelLeftNav from "../../admin_pannel_utilities/AdminPannelLeftNav";
 import { admin_pannel_navigation } from "../admin_pannel_fake_data/adminPannelFakeData";
@@ -21,6 +23,16 @@ export default function AdminPannelLeftNavigation({ setNavigationOn }) {
         {admin_pannel_navigation.map((nav) => (
           <AdminPannelLeftNav key={nav?._id} nav_data={nav} />
         ))}
+
+        {/* last menu */}
+        <NextLink href="/" passHref>
+          <h3 id="admin_pannel_nav_link" className="!text-light">
+            <span className="text-light_purple text-normal">
+              <HiOutlineSwitchHorizontal />
+            </span>
+            &nbsp; switch to customer
+          </h3>
+        </NextLink>
       </div>
     </div>
   );
