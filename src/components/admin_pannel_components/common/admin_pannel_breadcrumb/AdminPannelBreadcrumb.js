@@ -26,10 +26,12 @@ export default function AdminPannelBreadcrumb({ page_name, breadcrumb_name }) {
               href={`/admin_pannel/${userInfo?.user_name}/${userInfo?.user_email}/admin_dashboard`}
               passHref
             >
-              <span className="home_nav capitalize">dashboard</span>
+              <span className="text-black3 tracking-wider capitalize font-semibold cursor-pointer hover:text-light_purple hover:duration-300">
+                dashboard
+              </span>
             </NextLink>
             &nbsp;
-            <span className="tracking-wider capitalize">
+            <span className="text-black4 tracking-wider capitalize">
               / {breadcrumb_name}
             </span>
           </div>

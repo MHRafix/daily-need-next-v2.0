@@ -51,7 +51,7 @@ export default function ProfileNavigation() {
 
         {userInfo?.user_admin && (
           <NextLink
-            href={`/admin_pannel/${userInfo?.user_email}/${userInfo?.user_name}/admin_dashboard`}
+            href={`/admin_pannel/${userInfo?.user_name}/${userInfo?.user_email}/admin_dashboard`}
             passHref
           >
             <div id="profile_nav_normal">
