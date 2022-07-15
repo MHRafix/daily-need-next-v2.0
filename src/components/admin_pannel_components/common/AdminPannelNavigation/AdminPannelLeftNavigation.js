@@ -19,7 +19,7 @@ export default function AdminPannelLeftNavigation({ setNavigationOn }) {
           </button>
         </div>
       </div>
-      <div className="admin_pannel_navigation_link pl-2 py-1">
+      <div className="admin_pannel_navigation_link pl-2 py-1 pr-1">
         {admin_pannel_navigation.map((nav) => (
           <AdminPannelLeftNav key={nav?._id} nav_data={nav} />
         ))}

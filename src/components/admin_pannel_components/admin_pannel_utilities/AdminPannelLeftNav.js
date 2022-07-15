@@ -1,11 +1,14 @@
 import Cookie from "js-cookie";
 import NextLink from "next/link";
 import React, { useState } from "react";
-import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import {
+  MdArrowLeft,
+  MdKeyboardArrowRight,
+  MdKeyboardArrowUp,
+} from "react-icons/md";
 
 export default function AdminPannelLeftNav({ nav_data }) {
-  const { main_nav, main_nav_link, main_nav_icon, sub_navs, sub_nav_link } =
-    nav_data;
+  const { main_nav, main_nav_link, main_nav_icon, sub_navs } = nav_data;
 
   // user information
   const userInfo =
@@ -22,7 +25,7 @@ export default function AdminPannelLeftNav({ nav_data }) {
             if (subNavOn) setSubNavOn(false);
             else setSubNavOn(true);
           }}
-          className="main_nav_link text-black2"
+          className="main_nav_link text-black2 my-2 w-full"
         >
           {main_nav_link ? (
             <NextLink
@@ -40,7 +43,11 @@ export default function AdminPannelLeftNav({ nav_data }) {
                 <span className="text-light_purple text-normal">
                   {main_nav_icon}
                 </span>
-                &nbsp; {main_nav}
+                &nbsp;&nbsp;
+                <span className="w-full flex items-center justify-between">
+                  {main_nav}
+                  {subNavOn ? <MdKeyboardArrowUp /> : <MdKeyboardArrowRight />}
+                </span>
               </h3>
             </NextLink>
           ) : (
@@ -56,7 +63,11 @@ export default function AdminPannelLeftNav({ nav_data }) {
                 <span className="text-light_purple text-normal">
                   {main_nav_icon}
                 </span>
-                &nbsp; {main_nav}
+                &nbsp;&nbsp;
+                <span className="w-full flex items-center justify-between">
+                  {main_nav}
+                  {subNavOn ? <MdKeyboardArrowUp /> : <MdKeyboardArrowRight />}
+                </span>
               </h3>
             </>
           )}
@@ -99,7 +110,7 @@ export const SubNav = ({ sub_nav }) => {
           id="admin_pannel_nav_link"
           className="!text-light hover:text-light_purple hover:duration-300"
         >
-          <MdOutlineKeyboardArrowLeft /> &nbsp;{sub_nav_name}
+          <MdArrowLeft /> &nbsp;{sub_nav_name}
         </h3>
       </NextLink>
     </>
