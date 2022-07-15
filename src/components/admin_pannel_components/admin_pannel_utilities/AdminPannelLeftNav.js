@@ -1,5 +1,6 @@
 import Cookie from "js-cookie";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 
@@ -7,6 +8,8 @@ export default function AdminPannelLeftNav({ nav_data }) {
   const { main_nav, main_nav_link, main_nav_icon, sub_navs, sub_nav_link } =
     nav_data;
 
+  const query = useRouter();
+  console.log(query);
   // user information
   const userInfo =
     Cookie.get("user_information") &&

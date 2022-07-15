@@ -40,13 +40,8 @@ export const admin_pannel_navigation = [
       },
       {
         _id: 5,
-        sub_nav_name: "stock-in products",
-        sub_nav_link: "/manage_products/stockin_products",
-      },
-      {
-        _id: 6,
-        sub_nav_name: "stock-out products",
-        sub_nav_link: "/manage_products/stockout_products",
+        sub_nav_name: "manage stock",
+        sub_nav_link: "/manage_products/manage_stock_products",
       },
     ],
   },
