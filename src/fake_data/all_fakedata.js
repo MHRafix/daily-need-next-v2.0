@@ -70,7 +70,7 @@ export const profile_navigation = [
   {
     _id: 4,
     menu_name: "edit account details",
-    href: "/edit_account_details",
+    href: "/verify_user",
     menu_icon: <FiEdit />,
   },
 ];

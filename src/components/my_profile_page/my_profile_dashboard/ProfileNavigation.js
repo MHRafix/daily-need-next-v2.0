@@ -18,9 +18,9 @@ export default function ProfileNavigation() {
   const history = useRouter();
 
   const handleLogout = () => {
+    history.push("/my_account/my_acc");
     Cookie.remove("user_information");
     Cookie.remove("user_verify");
-    history.push("/my_account/my_acc");
   };
 
   return (

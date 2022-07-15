@@ -1,31 +1,17 @@
 import Cookie from "js-cookie";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { MyProfileErrMssg } from "../../../utilities/AlertMessage";
 import Breadcrumb from "../../commons/Breadcrumb/Breadcrumb";
 import ProfileContentContainer from "../my_profile_dashboard/ProfileContentContainer";
-import EditAccountContent from "./EditAccountContent";
+import VerifyUserContent from "./VerifyUserContent";
 
-export default function EditAccountDetailsMain() {
-  const router = useRouter();
-
+export default function VerifyUserDetailsMain() {
   // user info
   const userInfo =
     Cookie.get("user_information") &&
     JSON.parse(Cookie.get("user_information"));
 
-  const user_isverified =
-    Cookie.get("user_verify") && JSON.parse(Cookie.get("user_verify"));
-
-  // if is not logged in then redirect to login page
-  useEffect(() => {
-    if (!user_isverified) {
-      router.push("/my_account/my_profile/verify_user");
-    }
-  });
-
   if (userInfo?.user_name) {
-    var bread_string = `My Profile/${userInfo?.user_name}/edit account details`;
+    var bread_string = `My Profile / ${userInfo?.user_name} / user verification`;
   } else {
     // prevent fake user
     const bread_string = "fake user";
@@ -42,7 +28,7 @@ export default function EditAccountDetailsMain() {
     <>
       <Breadcrumb bread_nav={bread_string} />
       <ProfileContentContainer>
-        <EditAccountContent />
+        <VerifyUserContent />
       </ProfileContentContainer>
     </>
   );
