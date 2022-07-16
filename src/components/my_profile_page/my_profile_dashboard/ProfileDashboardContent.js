@@ -126,22 +126,19 @@ export default function ProfileDashboardContent({ my_orders }) {
               id="purchase_history_amount"
               // style={{ border: "1px solid #0cc5b7" }}
             >
-              <h1 id="amount_label">৳ {total_purchased}</h1>
+              <h1 id="amount_label">৳ {total_purchased.toFixed(2)}</h1>
               <span id="hstory_name">total purchased</span>
             </div>
-            <div
-              id="purchase_history_amount"
-              // style={{ border: "1px solid #0cc5b7" }}
-            >
-              <h1 id="amount_label">৳ {completed_amount}</h1>
+            <div id="purchase_history_amount">
+              <h1 id="amount_label">৳ {completed_amount.toFixed(2)}</h1>
               <span id="hstory_name">completed purchased</span>
             </div>
             <div id="purchase_history_amount">
-              <h1 id="amount_label">৳ {inprogress_amount}</h1>
+              <h1 id="amount_label">৳ {inprogress_amount.toFixed(2)}</h1>
               <span id="hstory_name">inprogress purchased</span>
             </div>
             <div id="purchase_history_amount" style={{ borderRight: "none" }}>
-              <h1 id="amount_label">৳ {canceled_amount}</h1>
+              <h1 id="amount_label">৳ {canceled_amount.toFixed(2)}</h1>
               <span id="hstory_name">canceled purchased</span>
             </div>
           </div>

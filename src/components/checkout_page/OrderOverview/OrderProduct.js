@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 export default function OrderProduct({ product }) {
   const dispatch = useDispatch();
   return (
-    <div className="flex items-center">
+    <div className="flex items-center shadow-sm">
       <div className="cart_item_wrapper w-4/6">
         <div className="cart_thumbnail shadow-lg">
           <Image

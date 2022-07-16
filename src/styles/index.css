@@ -402,7 +402,7 @@
   }
 
   .cart_item_wrapper {
-    @apply flex items-center bg-white shadow-sm rounded-md my-5 py-1.5 px-2;
+    @apply flex items-center bg-white rounded-md my-5 py-1.5 px-2;
   }
 
   .cart_footer_area {
