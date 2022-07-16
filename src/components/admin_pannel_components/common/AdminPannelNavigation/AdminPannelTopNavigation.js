@@ -6,7 +6,6 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineDarkMode, MdOutlineLanguage } from "react-icons/md";
 import { RiBarChartHorizontalLine } from "react-icons/ri";
 import UserPic from "../../../../images/logo/12.jpg";
-import ErrorPage from "../../../../pages/404";
 
 export default function AdminPannelTopNavigation({
   setNavigationOn,
@@ -18,10 +17,6 @@ export default function AdminPannelTopNavigation({
   const userInfo =
     Cookie.get("user_information") &&
     JSON.parse(Cookie.get("user_information"));
-
-  if (!userInfo?.user_admin) {
-    return <ErrorPage />;
-  }
 
   return (
     <>
