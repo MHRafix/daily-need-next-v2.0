@@ -3,14 +3,12 @@ import Cookie from "js-cookie";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { MdShoppingCart } from "react-icons/md";
+import { BiErrorCircle } from "react-icons/bi";
+import { MdCloudDone, MdShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { reduceCookie } from "../../redux/cart_products/action";
-import {
-  ErrorAlert,
-  ErrorMessage,
-  SuccessMessage,
-} from "../../utilities/AlertMessage";
+import { ErrorMessage } from "../../utilities/AlertMessage";
+import AlertToast from "../../utilities/alertToast/AlertToast";
 import { FormButton, FormTextField } from "../../utilities/Form/FormField";
 import StripePaymentForm from "../../utilities/StripePayment/StripePaymentForm";
 import OrderOverview from "./OrderOverview/OrderOverview";
@@ -22,16 +20,6 @@ export default function BillingDetails() {
   const empty_data = [];
   const products_data = useSelector((state) => state.cart_product.cart_list);
 
-  // if user loggedin but no product added in cart
-
-  // useEffect(() => {
-  //   if (!products_data?.length) {
-  //     return (
-
-  //     );
-  //   }
-  // }, [products_data?.length]);
-
   // calculate net total payable amount
   let total_amount = 0;
   if (products_data) {
@@ -42,6 +30,7 @@ export default function BillingDetails() {
           : total_amount + products?.prices?.regular_price * products?.quantity;
     }
   }
+
   const net_total = (total_amount + (total_amount / 100) * 3).toFixed(2);
 
   // loggedin user info and form data state
@@ -51,8 +40,11 @@ export default function BillingDetails() {
 
   const [paypalModal, setPaypalModal] = useState("");
   const [orderid, setOrderid] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+
+  // alert toast message state here
+  const [toastOn, setToastOn] = useState(false);
+  const [toastType, setToastType] = useState("");
+  const [toastText, setToastText] = useState("");
 
   const [name, setName] = useState(userInfo?.user_name);
   const [email, setEmail] = useState(userInfo?.user_email);
@@ -114,25 +106,49 @@ export default function BillingDetails() {
     );
 
     if (data?.success) {
-      setError("");
-      setSuccess(data?.success);
-      Cookie.remove("cart_product_ids");
+      setToastOn(true);
       setProccessing(false);
+      setToastText(data.success);
+      setToastType("success_toast");
+      Cookie.remove("cart_product_ids");
 
       setTimeout(() => {
         if (payment === "cash-on") {
-          dispatch(reduceCookie(empty_data));
           router.push("/shop/grid_shop");
+          dispatch(reduceCookie(empty_data));
         } else {
           setOrderid(data?.order_id);
           setPaypalModal(true);
         }
       }, 2000);
     } else {
-      setSuccess("");
-      setError(data.error);
+      setToastOn(true);
       setProccessing(false);
+      setToastText(data.error);
+      setToastType("error_toast");
     }
+  };
+
+  // handle close toast here
+  const handleRemoveToast = () => {
+    setToastOn(false);
+  };
+
+  // auto close toast after ther 5000ms delay
+  if (toastOn) {
+    setTimeout(() => {
+      setToastOn(false);
+    }, 5000);
+  }
+
+  // toast setting configuration here
+  const toast_config = {
+    toastStyle: toastType,
+    alertText: toastText,
+    toastIcon:
+      toastType === "error_toast" ? <BiErrorCircle /> : <MdCloudDone />,
+
+    handleRemoveToast: handleRemoveToast,
   };
 
   return (
@@ -158,9 +174,8 @@ export default function BillingDetails() {
                 </h1>
               </div>
               <form onSubmit={handleFormSubmit}>
-                {/* message alert */}
-                {success && <SuccessMessage message={success} />}
-                {error && <ErrorAlert message={error} />}
+                {/* message toast alert */}
+                {toastOn && <AlertToast toast_config={toast_config} />}
 
                 <FormTextField
                   form_label="your name"

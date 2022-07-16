@@ -1,4 +1,6 @@
+import NextLink from "next/link";
 import React from "react";
+import { MdShoppingCart } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { ErrorMessage } from "../../utilities/AlertMessage";
 import Breadcrumb from "../commons/Breadcrumb/Breadcrumb";
@@ -13,7 +15,23 @@ export default function CartPageMain() {
     return (
       <>
         <Breadcrumb bread_nav={bread_string} />
-        <ErrorMessage message="Cart is empty!" />
+        <>
+          <ErrorMessage message="No products added in cart!" />
+          <div className="flex items-center" style={{ marginTop: "10px" }}>
+            <span>
+              <NextLink href="/shop/grid_shop" passHref>
+                <button
+                  id="cart_btn"
+                  className="!rounded-sm !text-light"
+                  style={{ textTransform: "capitalize" }}
+                >
+                  continue shopping &nbsp;
+                  <MdShoppingCart className="!text-normal" />
+                </button>
+              </NextLink>
+            </span>
+          </div>
+        </>
       </>
     );
   }

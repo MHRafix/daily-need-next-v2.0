@@ -7,8 +7,8 @@ import Breadcrumb from "../components/commons/Breadcrumb/Breadcrumb";
 
 export const ErrorMessage = ({ message }) => {
   return (
-    <div className="text-red-500 text-big_ultra !font-bold text-center tracking-wider">
-      <h1 style={{ fontWeight: "bold!important" }}>{message}</h1>
+    <div className="text-red-500 text-big_ultra !font-bold text-left tracking-wider">
+      <h1 style={{ fontWeight: "700", fontSize: "20px" }}>{message}</h1>
     </div>
   );
 };

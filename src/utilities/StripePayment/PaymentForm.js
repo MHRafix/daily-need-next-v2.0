@@ -1,25 +1,29 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Router from "next/router";
 import { useEffect, useState } from "react";
+import { BiErrorCircle } from "react-icons/bi";
+import { MdCloudDone } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { ErrorAlert, SuccessMessage } from "../AlertMessage";
-import { FormTextField } from "../Form/FormField";
-import { FormButton } from "../Form/FormField";
 import { reduceCookie } from "../../redux/cart_products/action";
+import AlertToast from "../alertToast/AlertToast";
+import { FormButton, FormTextField } from "../Form/FormField";
 
 export default function PaymentForm({ payable_amount, order_id }) {
   const dispatch = useDispatch();
   const empty_data = [];
 
-  const [error, setError] = useState();
   const [processing, setprocessing] = useState(false);
-  const [success, setSuccess] = useState();
   const [clientSecret, setClientSecret] = useState("");
 
   // card details here
   const [customername, setCustomername] = useState("");
   const [customeremail, setCustomeremail] = useState("");
   const [customerphone, setCustomerphone] = useState("");
+
+  // alert toast message state here
+  const [toastOn, setToastOn] = useState(false);
+  const [toastType, setToastType] = useState("");
+  const [toastText, setToastText] = useState("");
 
   useEffect(() => {
     fetch(
@@ -36,7 +40,6 @@ export default function PaymentForm({ payable_amount, order_id }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.clientSecret);
         setClientSecret(data?.clientSecret);
       });
   }, [payable_amount]);
@@ -68,11 +71,12 @@ export default function PaymentForm({ payable_amount, order_id }) {
     });
 
     if (error) {
+      setToastOn(true);
       setprocessing(false);
-      setError(error.message);
-      setSuccess("");
+      setToastText(error.message);
+      setToastType("error_toast");
     } else {
-      setError("");
+      setToastText("");
     }
 
     // Paymey intent
@@ -84,12 +88,15 @@ export default function PaymentForm({ payable_amount, order_id }) {
       });
 
     if (intentError) {
-      setSuccess("");
-      setError(intentError.message);
-    } else {
-      setError("");
-      setSuccess("Your payment successfully proccesed!");
+      setToastOn(true);
       setprocessing(false);
+      setToastType("error_toast");
+      setToastText(intentError.message);
+    } else {
+      setToastOn(true);
+      setprocessing(false);
+      setToastType("success_toast");
+      setToastText("Your payment successfully proccesed!");
 
       // Save to database
       const payment_info = {
@@ -150,10 +157,34 @@ export default function PaymentForm({ payable_amount, order_id }) {
     // hidePostalCode: true,
   };
 
+  // toast controll configuration here
+  /****** */
+  // handle close toast here
+  const handleRemoveToast = () => {
+    setToastOn(false);
+  };
+
+  // auto close toast after ther 5000ms delay
+  if (toastOn) {
+    setTimeout(() => {
+      setToastOn(false);
+    }, 5000);
+  }
+
+  // toast setting configuration here
+  const toast_config = {
+    toastStyle: toastType,
+    alertText: toastText,
+    toastIcon:
+      toastType === "error_toast" ? <BiErrorCircle /> : <MdCloudDone />,
+
+    handleRemoveToast: handleRemoveToast,
+  };
+
   return (
     <form onSubmit={handleSubmit}>
-      {success && <SuccessMessage message={success} />}
-      {error && <ErrorAlert message={error} />}
+      {/* message toast alert */}
+      {toastOn && <AlertToast toast_config={toast_config} />}
 
       <FormTextField
         form_label="your name"
@@ -190,7 +221,7 @@ export default function PaymentForm({ payable_amount, order_id }) {
           type="submit"
           processing={processing}
           btn_name={`Pay Now ৳ ${payable_amount}`}
-          disabled={processing || !stripe || success}
+          disabled={processing || !stripe}
         />
       </div>
     </form>
