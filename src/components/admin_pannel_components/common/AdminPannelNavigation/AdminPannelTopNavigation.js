@@ -1,12 +1,12 @@
 import Cookie from "js-cookie";
 import Image from "next/image";
-import Router from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FiMessageSquare, FiSearch } from "react-icons/fi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineDarkMode, MdOutlineLanguage } from "react-icons/md";
 import { RiBarChartHorizontalLine } from "react-icons/ri";
 import UserPic from "../../../../images/logo/12.jpg";
+import ErrorPage from "../../../../pages/404";
 
 export default function AdminPannelTopNavigation({
   setNavigationOn,
@@ -19,11 +19,9 @@ export default function AdminPannelTopNavigation({
     Cookie.get("user_information") &&
     JSON.parse(Cookie.get("user_information"));
 
-  useEffect(() => {
-    if (!userInfo?.user_admin) {
-      Router.back();
-    }
-  });
+  if (!userInfo?.user_admin) {
+    return <ErrorPage />;
+  }
 
   return (
     <>
