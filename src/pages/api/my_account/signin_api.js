@@ -9,11 +9,14 @@ const handler = nc();
 handler.post(async (req, res) => {
   await db.connect();
   const user = await User.findOne({ user_email: req.body.user_email });
-  await db.disconnect();
 
-  if (user && bcrypt.compareSync(req.body.user_password, user.user_password)) {
+  if (
+    user &&
+    bcrypt.compareSync(req?.body?.user_password, user?.user_password)
+  ) {
     // generate jwt token here
     const token = signToken(user);
+    console.log(user);
     res.send({
       token,
       _id: user._id,
@@ -25,6 +28,7 @@ handler.post(async (req, res) => {
   } else {
     res.send({ error: "Invalid email or password!" });
   }
+  await db.disconnect();
 });
 
 export default handler;
