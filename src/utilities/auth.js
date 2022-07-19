@@ -4,14 +4,14 @@ const signToken = (user) => {
   return jwt.sign(
     {
       _id: user._id,
-      user_name: user.user_name,
-      user_email: user.user_email,
-      user_admin: user.user_admin,
+      user_name: user?.user_name,
+      user_email: user?.user_email,
+      user_admin: user?.user_admin,
     },
 
     process.env.JWT_SECRET,
     {
-      expiresIn: "1d", // 1d for1 day
+      expiresIn: "30d", // 30d for 30 days
     }
   );
 };

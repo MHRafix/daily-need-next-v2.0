@@ -69,8 +69,8 @@ export default function VerifyUserForm() {
       setToastTypeV("error_toast");
     } else {
       const { data } = await axios.post(
-        "http://localhost:3000/api/my_account/verify_user",
-        // "https://daily-need.vercel.app/api/my_account/verify_user",
+        // "http://localhost:3000/api/my_account/verify_user",
+        "https://daily-need.vercel.app/api/my_account/verify_user",
         { verifypass, useremail }
       );
 

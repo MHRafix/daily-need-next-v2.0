@@ -19,6 +19,11 @@ export default function LoginForm() {
   // let's make the api end point
   const api_url = "my_account/signin_api";
 
+  const request_dependency = {
+    user_info,
+    cnfPassword: password,
+    api_url,
+  };
   // handle form submit import here
   const {
     toastOn,
@@ -27,7 +32,7 @@ export default function LoginForm() {
     toastText,
     processing,
     handleFormSubmit,
-  } = handleForm(user_info, password, api_url);
+  } = handleForm(request_dependency);
 
   // handle close toast here
   const handleRemoveToast = () => {

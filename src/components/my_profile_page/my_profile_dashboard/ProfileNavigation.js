@@ -1,11 +1,9 @@
 import Cookie from "js-cookie";
-import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { MdLogout } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
 import { profile_navigation } from "../../../fake_data/all_fakedata";
-import UserPic from "../../../images/logo/1642355899259.jpg";
 import ProfileNav from "../../../utilities/ProfileNav";
 
 export default function ProfileNavigation() {
@@ -26,12 +24,11 @@ export default function ProfileNavigation() {
   return (
     <div className="profile_details_wrapper">
       <div className="profile_details">
-        <Image
-          className="rounded-full my-5"
-          src={UserPic}
+        <img
+          style={{ width: "90px", height: "90px" }}
+          className="rounded-full my-5 mx-auto"
+          src={userInfo?.user_pic}
           alt="Profile Picture"
-          width={90}
-          height={90}
         />
         <h3 className="text-deep_cyan font-semibold tracking-wide text-normal capitalize">
           {userInfo?.user_name}

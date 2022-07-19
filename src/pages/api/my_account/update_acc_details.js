@@ -31,25 +31,6 @@ handler.post(async (req, res) => {
 
       if (user.user_pic !== req_data.user_pic) {
         user.user_pic = req_data.user_pic;
-
-        // const Storage = multer.diskStorage({
-        //   destination: "uploads",
-        //   filename: (req, res, cb) => {
-        //     cb(null, file.originalname);
-        //   },
-        // });
-
-        // const upload = multer({
-        //   storage: Storage,
-        // }).single["testImage"];
-
-        // upload(req, res, (err) => {
-        //   if (err) {
-        //     console.log(err);
-        //   } else {
-        //     user.user_pic = req_data.user_pic;
-        //   }
-        // });
       }
 
       await user.save();

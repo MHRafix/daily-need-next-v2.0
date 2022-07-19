@@ -5,7 +5,6 @@ import { MyProfileErrMssg } from "../../../utilities/AlertMessage";
 import Breadcrumb from "../../commons/Breadcrumb/Breadcrumb";
 import ProfileContentContainer from "../my_profile_dashboard/ProfileContentContainer";
 import EditAccountContent from "./EditAccountContent";
-
 export default function EditAccountDetailsMain() {
   const router = useRouter();
 

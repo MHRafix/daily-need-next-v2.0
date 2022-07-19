@@ -28,6 +28,25 @@ export const FormTextField = ({
   );
 };
 
+export const FormFileField = ({ form_label, required, setState }) => {
+  return (
+    <div id="field_wrapper">
+      <label id="input_label" htmlFor="field_label">
+        {form_label}
+        {required && <span id="required_sign">*</span>}
+      </label>
+      <br />
+      <input
+        type="file"
+        id="field_input"
+        accept="image/*"
+        onChange={(e) => setState(e.target.files[0])}
+        required={required}
+      />
+    </div>
+  );
+};
+
 export const FormTextArea = ({ form_label, cols, rows, required }) => {
   return (
     <div id="field_wrapper">
@@ -51,7 +70,8 @@ export const FormButton = ({ type, btn_name, processing, disable }) => {
           className="lg:!w-full !w-full"
           disabled={disable}
         >
-          Loading... <Image src={Loader} width={100} height={90} />
+          Loading...{" "}
+          <Image src={Loader} alt="loader gif" width={100} height={90} />
         </button>
       ) : (
         <button

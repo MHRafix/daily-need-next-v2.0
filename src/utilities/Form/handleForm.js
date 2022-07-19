@@ -3,10 +3,12 @@ import Cookie from "js-cookie";
 import Router from "next/router";
 import { useState } from "react";
 
-export default function handleForm(user_info, cnfPassword, api_url) {
-  const [processing, setProcessing] = useState(false);
+export default function handleForm(request_dependency) {
+  const { user_info, cnfPassword, api_url, avatar_upload_cloudinary } =
+    request_dependency;
 
   // toast state here
+  const [processing, setProcessing] = useState(false);
   const [toastOn, setToastOn] = useState(false);
   const [toastType, setToastType] = useState("");
   const [toastText, setToastText] = useState("");
@@ -19,6 +21,7 @@ export default function handleForm(user_info, cnfPassword, api_url) {
     setToastOn,
     setToastText,
     setToastType,
+    avatar_upload_cloudinary,
   };
 
   const handleFormSubmit = (e) => {
@@ -73,33 +76,47 @@ const sendReq = async (reqDep) => {
     setToastOn,
     setToastText,
     setToastType,
+    avatar_upload_cloudinary,
   } = reqDep;
 
-  const { data } = await axios.post(
-    // `http://localhost:3000/api/${api_url}`,
-    `https://daily-need.vercel.app/api/${api_url}`,
-    user_info
-  );
+  // new added
+  if (avatar_upload_cloudinary) {
+    const avatar_url = await avatar_upload_cloudinary();
+    user_info.user_pic = avatar_url;
+  }
 
-  if (data?.success) {
-    setProcessing(false);
-    setToastType("success_toast");
-    setToastOn(true);
-    setToastText(data?.success);
+  try {
+    const { data } = await axios.post(
+      // `http://localhost:3000/api/${api_url}`,
+      `https://daily-need.vercel.app/api/${api_url}`,
+      user_info
+    );
 
-    Cookie.set("user_information", JSON.stringify(data), {
-      expires: 30, // 30 days
-      secure: true,
-      sameSite: "strict",
-      path: "/",
-    });
+    if (data?.success) {
+      setProcessing(false);
+      setToastType("success_toast");
+      setToastOn(true);
+      setToastText(data?.success);
+      Cookie.set("user_information", JSON.stringify(data), {
+        expires: 30, // 30 days
+        secure: true,
+        sameSite: "strict",
+        path: "/",
+      });
 
-    // redirect to aspected page
-    Router.back();
-  } else {
+      // redirect to aspected page
+      Router.back();
+    } else {
+      setProcessing(false);
+      setToastType("error_toast");
+      setToastOn(true);
+      setToastText(data?.error);
+    }
+  } catch (err) {
     setProcessing(false);
     setToastType("error_toast");
     setToastOn(true);
-    setToastText(data?.error);
+    setToastText(err.message);
+    console.log(err);
   }
 };

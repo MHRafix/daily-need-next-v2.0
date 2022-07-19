@@ -1,10 +1,12 @@
 import Cookie from "js-cookie";
+import Image from "next/image";
 import { useState } from "react";
 import { BiErrorCircle } from "react-icons/bi";
 import { MdCloudDone } from "react-icons/md";
 import AlertToast from "../../../../utilities/alertToast/AlertToast";
 import {
   FormButton,
+  FormFileField,
   FormTextField,
 } from "../../../../utilities/Form/FormField";
 import handleForm from "../../../../utilities/Form/handleForm";
@@ -21,6 +23,23 @@ export default function EditFormDetails() {
   const [cnfPassword, setCnfPassword] = useState("");
   const [userpic, setUserpic] = useState("");
 
+  // avatar uploaded to cloudinary cloud service
+  const avatar_upload_cloudinary = async () => {
+    const data = new FormData();
+    data.append("file", userpic);
+    data.append("upload_preset", "mystore");
+    data.append("cloud_name", "CoderXone");
+    const upload_req = await fetch(
+      "	https://api.cloudinary.com/v1_1/CoderXone/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const avatar_uploaded = await upload_req.json();
+    return avatar_uploaded.url;
+  };
+
   // make a data object
   const user_info = {
     user_name: username,
@@ -30,6 +49,13 @@ export default function EditFormDetails() {
     user_admin: false,
   };
 
+  const request_dependency = {
+    user_info,
+    cnfPassword,
+    api_url: "my_account/update_acc_details",
+    avatar_upload_cloudinary,
+  };
+
   const {
     toastOn,
     setToastOn,
@@ -37,7 +63,7 @@ export default function EditFormDetails() {
     toastText,
     processing,
     handleFormSubmit,
-  } = handleForm(user_info, cnfPassword, "my_account/update_acc_details");
+  } = handleForm(request_dependency);
 
   // handle close toast here
   const handleRemoveToast = () => {
@@ -91,13 +117,22 @@ export default function EditFormDetails() {
           setState={setCnfPassword}
         />
 
-        <FormTextField
+        <FormFileField
           form_label="profile pic"
-          type="file"
           required={false}
-          disabled={false}
           setState={setUserpic}
         />
+
+        {/* preview */}
+        {userpic && (
+          <Image
+            className="rounded-full"
+            src={userpic ? URL.createObjectURL(userpic) : ""}
+            alt="selected image preview"
+            width={100}
+            height={100}
+          />
+        )}
 
         <FormButton
           type="submit"

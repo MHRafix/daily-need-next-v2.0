@@ -23,6 +23,12 @@ export default function SignupForm() {
   // let's make the api end point
   const api_url = "my_account/signup_api";
 
+  const request_dependency = {
+    user_info,
+    cnfPassword: password,
+    api_url,
+  };
+
   // handle form submit import here
   const {
     toastOn,
@@ -31,7 +37,7 @@ export default function SignupForm() {
     toastText,
     processing,
     handleFormSubmit,
-  } = handleForm(user_info, password, api_url);
+  } = handleForm(request_dependency);
 
   // handle close toast here
   const handleRemoveToast = () => {
