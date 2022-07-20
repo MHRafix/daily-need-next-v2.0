@@ -40,7 +40,11 @@ import Product9 from "../images/products/product9.webp";
 export const header_navigation = [
   { _id: 1, menu_name: "home", href: "/" },
   { _id: 2, menu_name: "about us", href: "/about_us" },
-  { _id: 3, menu_name: "fruits & vegetables", href: "/fruits_and_vegetables" },
+  {
+    _id: 3,
+    menu_name: "fruits & vegetables",
+    href: "/categories/fruits_and_vegetables",
+  },
   { _id: 4, menu_name: "shop", href: "/shop/grid_shop" },
   { _id: 5, menu_name: "blog", href: "/blog" },
   { _id: 6, menu_name: "FAQ", href: "/faq" },

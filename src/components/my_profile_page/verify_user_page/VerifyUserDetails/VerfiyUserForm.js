@@ -60,41 +60,48 @@ export default function VerifyUserForm() {
 
   const handleVerifyUser = async (e) => {
     e.preventDefault();
-    setVerifing(true);
 
-    if (verifypass.length < 6) {
+    try {
+      setVerifing(true);
+      if (verifypass.length < 6) {
+        setToastOn(true);
+        setVerifing(false);
+        setToastTextV("Password must be 6 charecters!");
+        setToastTypeV("error_toast");
+      } else {
+        const { data } = await axios.post(
+          // `http://localhost:3000/api/my_account/verify_user`,
+          "https://daily-need.vercel.app/api/my_account/verify_user",
+          { verifypass, useremail }
+        );
+
+        if (data?.success) {
+          setToastOn(true);
+          setVerifing(false);
+          setToastTextV(data.success);
+          setToastTypeV("success_toast");
+          // setUsername(userInfo?.user_name);
+
+          // set verify status in browser cookie
+          Cookie.set("user_verify", JSON.stringify({ verify: data?.verify }), {
+            expires: 1, // 1 days
+            secure: true,
+            sameSite: "strict",
+            path: "/",
+          });
+          router.push("/my_account/my_profile/edit_account_details");
+        } else {
+          setToastOn(true);
+          setVerifing(false);
+          setToastTextV(data.error);
+          setToastTypeV("error_toast");
+        }
+      }
+    } catch (err) {
       setToastOn(true);
       setVerifing(false);
-      setToastTextV("Password must be 6 charecters!");
+      setToastTextV(err.message);
       setToastTypeV("error_toast");
-    } else {
-      const { data } = await axios.post(
-        // "http://localhost:3000/api/my_account/verify_user",
-        "https://daily-need.vercel.app/api/my_account/verify_user",
-        { verifypass, useremail }
-      );
-
-      if (data?.success) {
-        setToastOn(true);
-        setVerifing(false);
-        setToastTextV(data?.success);
-        setToastTypeV("success_toast");
-        // setUsername(userInfo?.user_name);
-
-        // set verify status in browser cookie
-        Cookie.set("user_verify", JSON.stringify({ verify: data?.verify }), {
-          expires: 1, // 1 days
-          secure: true,
-          sameSite: "strict",
-          path: "/",
-        });
-        router.push("/my_account/my_profile/edit_account_details");
-      } else {
-        setToastOn(true);
-        setVerifing(false);
-        setToastTextV(data?.error);
-        setToastTypeV("error_toast");
-      }
     }
   };
 

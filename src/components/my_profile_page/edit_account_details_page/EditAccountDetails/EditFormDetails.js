@@ -4,6 +4,7 @@ import { useState } from "react";
 import { BiErrorCircle } from "react-icons/bi";
 import { MdCloudDone } from "react-icons/md";
 import AlertToast from "../../../../utilities/alertToast/AlertToast";
+import avatarUploader from "../../../../utilities/Form/avatarUploader";
 import {
   FormButton,
   FormFileField,
@@ -23,22 +24,8 @@ export default function EditFormDetails() {
   const [cnfPassword, setCnfPassword] = useState("");
   const [userpic, setUserpic] = useState("");
 
-  // avatar uploaded to cloudinary cloud service
-  const avatar_upload_cloudinary = async () => {
-    const data = new FormData();
-    data.append("file", userpic);
-    data.append("upload_preset", "mystore");
-    data.append("cloud_name", "CoderXone");
-    const upload_req = await fetch(
-      "	https://api.cloudinary.com/v1_1/CoderXone/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const avatar_uploaded = await upload_req.json();
-    return avatar_uploaded.url;
-  };
+  // avatar uploader hook import here
+  const { avatar_upload_cloudinary } = avatarUploader(userpic);
 
   // make a data object
   const user_info = {
@@ -117,22 +104,28 @@ export default function EditFormDetails() {
           setState={setCnfPassword}
         />
 
-        <FormFileField
-          form_label="profile pic"
-          required={false}
-          setState={setUserpic}
-        />
-
-        {/* preview */}
-        {userpic && (
-          <Image
-            className="rounded-full"
-            src={userpic ? URL.createObjectURL(userpic) : ""}
-            alt="selected image preview"
-            width={100}
-            height={100}
-          />
-        )}
+        <label
+          id="input_label"
+          htmlFor="file_label"
+          style={{ marginBottom: "10px", display: "block" }}
+        >
+          change profile pic
+          <span id="required_sign">*</span>
+        </label>
+        <div className="flex items-center">
+          <FormFileField required={true} setState={setUserpic} />
+          &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+          {/* preview */}
+          {userpic && (
+            <Image
+              className="rounded-xl"
+              src={userpic ? URL.createObjectURL(userpic) : ""}
+              alt="selected image preview"
+              width={200}
+              height={200}
+            />
+          )}
+        </div>
 
         <FormButton
           type="submit"

@@ -7,6 +7,12 @@ export default function MyaccMain() {
   return (
     <>
       <Breadcrumb bread_nav={bread_string} />
+      {/* <div id="account_switcher_wrapper">
+        <button id="account_switch_btn">Customer Account</button>
+        &nbsp; &nbsp; &nbsp;
+        <button id="account_switch_btn">Vendor Account</button>
+      </div> */}
+      <br />
       <LoginMain />
     </>
   );

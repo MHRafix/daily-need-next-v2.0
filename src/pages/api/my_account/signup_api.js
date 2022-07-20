@@ -13,8 +13,9 @@ handler.post(async (req, res) => {
     (user) => user.user_email === req.body.user_email
   );
 
+  console.log(req.body);
   if (exist) {
-    res.status(406).send({ error: "User email is already in use!" });
+    res.send({ error: "User email is already in use!" });
   } else {
     // create user
     const newUser = new User({
@@ -22,7 +23,7 @@ handler.post(async (req, res) => {
       user_email: req.body.user_email,
       user_password: bcrypt.hashSync(req.body.user_password),
       user_admin: req.body.user_admin,
-      // user_pic: "" // default mongoose will set url
+      user_pic: req.body.user_pic,
     });
 
     const user = await newUser.save(); // save user to database

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaCloudUploadAlt } from "react-icons/fa";
 import Loader from "../../images/loader/loader.gif";
 
 export const FormTextField = ({
@@ -28,21 +29,25 @@ export const FormTextField = ({
   );
 };
 
-export const FormFileField = ({ form_label, required, setState }) => {
+export const FormFileField = ({ required, setState }) => {
   return (
-    <div id="field_wrapper">
-      <label id="input_label" htmlFor="field_label">
-        {form_label}
-        {required && <span id="required_sign">*</span>}
+    <div>
+      <label
+        id="input_label"
+        htmlFor="file"
+        style={{ width: "200px", height: "200px", display: "block" }}
+      >
+        <div id="file_field_wrapper">
+          <FaCloudUploadAlt />
+          <input
+            type="file"
+            id="file"
+            accept="image/*"
+            onChange={(e) => setState(e.target.files[0])}
+            required={required}
+          />
+        </div>
       </label>
-      <br />
-      <input
-        type="file"
-        id="field_input"
-        accept="image/*"
-        onChange={(e) => setState(e.target.files[0])}
-        required={required}
-      />
     </div>
   );
 };

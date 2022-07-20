@@ -628,6 +628,14 @@
     @apply p-1 text-sm text-black3 tracking-wider;
   }
 
+  #account_switcher_wrapper {
+    @apply w-96 flex items-center justify-center p-1 rounded-md bg-slate-200 mx-auto;
+  }
+
+  #account_switch_btn {
+    @apply p-1 rounded-md bg-gradient-to-r from-orangee to-orangee_red text-white;
+  }
+
   /* all btn css here */
   .btn {
     @apply bg-gradient-to-r from-orangee to-orangee_red;
@@ -1053,5 +1061,25 @@
   .admin_pannel_navigation_link::-webkit-scrollbar-thumb {
     background: #6c5ffc;
     border-radius: 5rem;
+  }
+
+  /* file input css here  */
+  #file_field_wrapper {
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #2ecc71;
+    position: relative;
+  }
+
+  #file_field_wrapper input[type="file"] {
+    display: none;
   }
 }

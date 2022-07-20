@@ -1,8 +1,14 @@
+import Image from "next/image";
 import { useState } from "react";
 import { BiErrorCircle } from "react-icons/bi";
 import { MdCloudDone } from "react-icons/md";
 import AlertToast from "../../utilities/alertToast/AlertToast";
-import { FormButton, FormTextField } from "../../utilities/Form/FormField";
+import avatarUploader from "../../utilities/Form/avatarUploader";
+import {
+  FormButton,
+  FormFileField,
+  FormTextField,
+} from "../../utilities/Form/FormField";
 import handleForm from "../../utilities/Form/handleForm";
 
 export default function SignupForm() {
@@ -11,22 +17,26 @@ export default function SignupForm() {
   const [useremail, setUseremail] = useState("");
   const [password, setPassword] = useState("");
   const [cnfPassword, setCnfPassword] = useState("");
+  const [userpic, setUserpic] = useState("");
+
+  // avatar uploader hook import here
+  const { avatar_upload_cloudinary } = avatarUploader(userpic);
 
   // make a data object
   const user_info = {
     user_name: username,
     user_email: useremail,
     user_password: password,
+    userpic: userpic,
     user_admin: false,
   };
 
-  // let's make the api end point
-  const api_url = "my_account/signup_api";
-
+  // make request dependency obj
   const request_dependency = {
     user_info,
-    cnfPassword: password,
-    api_url,
+    cnfPassword,
+    api_url: "my_account/signup_api",
+    avatar_upload_cloudinary,
   };
 
   // handle form submit import here
@@ -96,6 +106,32 @@ export default function SignupForm() {
           setState={setCnfPassword}
         />
 
+        <label
+          id="input_label"
+          htmlFor="file_label"
+          style={{ marginBottom: "10px", display: "block" }}
+        >
+          select profile pic
+          <span id="required_sign">*</span>
+        </label>
+        <div className="flex items-center">
+          <FormFileField
+            form_label="select profile pic"
+            required={true}
+            setState={setUserpic}
+          />
+          &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+          {/* preview */}
+          {userpic && (
+            <Image
+              className="rounded-xl"
+              src={userpic ? URL.createObjectURL(userpic) : ""}
+              alt="selected image preview"
+              width={200}
+              height={200}
+            />
+          )}
+        </div>
         <p className="text-light text-black4 tracking-wide my-10">
           Your personal data will be used to support your experience throughout
           this website, to manage access to your account, and for other purposes
