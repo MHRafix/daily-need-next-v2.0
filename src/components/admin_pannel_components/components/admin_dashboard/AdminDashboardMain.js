@@ -1,12 +1,15 @@
 import React from "react";
 import AdminPannelBreadcrumb from "../../common/admin_pannel_breadcrumb/AdminPannelBreadcrumb";
+import AdminDashboardContent from "./AdminDashboardContent";
 
 export default function AdminDashboardMain() {
-  const bread_nav = "admin dashboard";
   return (
     <>
+      {/* breadcrunb */}
       <AdminPannelBreadcrumb page_name="admin dashboard" />
-      Admin pannel dashboard....!
+
+      {/* others content  */}
+      <AdminDashboardContent />
     </>
   );
 }

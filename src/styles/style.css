@@ -1,0 +1,16 @@
+line.recharts-cartesian-axis-line {
+  display: none !important;
+}
+
+text.recharts-text.recharts-cartesian-axis-tick-value {
+  margin: 10px !important;
+  font-size: 12px !important;
+}
+
+.recharts-default-tooltip {
+  padding: 15px 25px !important;
+  background-color: rgb(255, 255, 255) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 0px 0px 6px 1px #6f767296;
+}

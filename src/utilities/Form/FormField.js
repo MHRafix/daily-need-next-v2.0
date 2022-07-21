@@ -35,7 +35,12 @@ export const FormFileField = ({ required, setState }) => {
       <label
         id="input_label"
         htmlFor="file"
-        style={{ width: "200px", height: "200px", display: "block" }}
+        style={{
+          width: "200px",
+          height: "200px",
+          display: "block",
+          margin: "10px auto",
+        }}
       >
         <div id="file_field_wrapper">
           <FaCloudUploadAlt />

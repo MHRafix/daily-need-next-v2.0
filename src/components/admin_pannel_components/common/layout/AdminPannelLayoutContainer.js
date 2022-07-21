@@ -19,7 +19,7 @@ export default function AdminPannelLayoutContainer({
       </Head>
       {/* app header is here */}
       <div className="dasboard_page_content_layout">
-        <div className="layout_wrapper flex justify-between items-center">
+        <div className="layout_wrapper flex justify-between">
           {/* admin pannel header here */}
           <header
             className={

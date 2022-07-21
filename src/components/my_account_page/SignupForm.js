@@ -114,7 +114,7 @@ export default function SignupForm() {
           select profile pic
           <span id="required_sign">*</span>
         </label>
-        <div className="flex items-center">
+        <div className="sm:!flex xs:grid items-center">
           <FormFileField
             form_label="select profile pic"
             required={true}
@@ -123,13 +123,21 @@ export default function SignupForm() {
           &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
           {/* preview */}
           {userpic && (
-            <Image
-              className="rounded-xl"
-              src={userpic ? URL.createObjectURL(userpic) : ""}
-              alt="selected image preview"
-              width={200}
-              height={200}
-            />
+            <div
+              style={{
+                width: "200px",
+                height: "200px",
+                margin: "auto",
+              }}
+            >
+              <Image
+                className="rounded-xl"
+                src={userpic ? URL.createObjectURL(userpic) : ""}
+                alt="selected image preview"
+                width={200}
+                height={200}
+              />
+            </div>
           )}
         </div>
         <p className="text-light text-black4 tracking-wide my-10">

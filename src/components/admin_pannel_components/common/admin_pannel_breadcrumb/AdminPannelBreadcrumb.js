@@ -9,7 +9,7 @@ export default function AdminPannelBreadcrumb({ page_name, breadcrumb_name }) {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-5">
+      <div className="flex justify-between items-center mb-10">
         {/* page name */}
         <div id="page_content_title">
           <h1

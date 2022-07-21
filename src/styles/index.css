@@ -583,11 +583,10 @@
   }
 
   .admin_pannel_body_half {
-    @apply lg:!w-10/12 xs:w-full bg-slate-100 border-r-1 border-r-slate-200 h-screen;
+    @apply lg:!w-10/12 xs:w-full bg-slate-100 border-r-1 border-r-slate-200 h-auto;
   }
 
   .admin_pannel_body_full {
-    /* @apply lg:!w-10/12 xs:w-full bg-slate-100 border-r-1 border-r-slate-200 h-screen; */
     @apply w-full bg-slate-100 border-r-1 border-r-slate-200 h-screen;
   }
 
@@ -634,6 +633,39 @@
 
   #account_switch_btn {
     @apply p-1 rounded-md bg-gradient-to-r from-orangee to-orangee_red text-white;
+  }
+
+  /* chart css here  */
+  #chart_layout_wrapper {
+    @apply w-full h-auto;
+  }
+
+  #chart_area_wrapper {
+    @apply p-1;
+  }
+
+  #chart_area {
+    @apply w-full h-96;
+  }
+
+  #chart_title_wrapper {
+    @apply px-1.2 pb-extra_padding4 mb-12 capitalize text-normal tracking-wider text-black2 border-b-1 border-b-slate-200;
+  }
+
+  #chart_title {
+    @apply text-light;
+  }
+
+  #chart_indicators_wrapper {
+    @apply flex items-center justify-center;
+  }
+
+  #chart_indicator_label {
+    @apply capitalize text-slate-500 tracking-wider text-sm;
+  }
+
+  #chart_indicator {
+    @apply flex items-center justify-center mx-2;
   }
 
   /* all btn css here */
