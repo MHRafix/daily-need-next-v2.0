@@ -29,22 +29,22 @@ export default function LineChart({ chart_data }) {
             type="monotone"
             dataKey="od"
             stackId="1"
-            stroke="#8884d8"
-            fill="#8884d8"
+            stroke="#6c5ffc"
+            fill="#6c5ffc"
           />
           <Area
             type="monotone"
             dataKey="oc"
             stackId="1"
-            stroke="#82ca9d"
-            fill="#82ca9d"
+            stroke="#ffc658"
+            fill="#ffc658"
           />
           <Area
             type="monotone"
             dataKey="sp"
             stackId="1"
-            stroke="#ffc658"
-            fill="#ffc658"
+            stroke="#2bd891"
+            fill="#2bd891"
           />
         </AreaChart>
       </ResponsiveContainer>
