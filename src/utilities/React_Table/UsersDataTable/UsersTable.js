@@ -67,13 +67,15 @@ export default function UsersTable({ USER_DATA }) {
                 {row.cells.map((cell) => {
                   if (cell.column.id === "user_pic") {
                     return (
-                      <img
-                        src={cell.value}
-                        alt="img"
-                        width="50"
-                        height="50"
-                        className="rounded-full"
-                      />
+                      <div className="!p-extra_padding4 border-b-1 border-b-slate-300">
+                        <img
+                          src={cell.value}
+                          alt="img"
+                          width="50"
+                          height="50"
+                          className="rounded-full"
+                        />
+                      </div>
                     );
                   } else {
                     return (

@@ -44,9 +44,9 @@ export default function AdminDashboardContent({
 
   // chart configuration here
   const labels_array = [
-    { label: "order done", bg_color: "#6c5ffc" },
-    { label: "order cancel", bg_color: "#2bd891" },
-    { label: "sells profit", bg_color: "#ffc658" },
+    { _id: 1, label: "order done", bg_color: "#6c5ffc" },
+    { _id: 2, label: "order cancel", bg_color: "#2bd891" },
+    { _id: 3, label: "sells profit", bg_color: "#ffc658" },
   ];
 
   const data = [

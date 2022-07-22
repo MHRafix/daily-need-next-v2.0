@@ -9,22 +9,28 @@ export default function ChartLayout({ item_name, labels_array, children }) {
         style={{ margin: "auto", textAlign: "center" }}
       >
         {labels_array.map((chart) => (
-          <span id="chart_indicator">
-            <span
-              style={{
-                width: "15px",
-                height: "15px",
-                display: "block",
-                borderRadius: "100px",
-                background: `${chart.bg_color}`,
-              }}
-            ></span>
-            &nbsp;&nbsp;
-            <span id="chart_indicator_label">{chart.label}</span>
-          </span>
+          <Lebel key={chart._id} chart={chart} />
         ))}
       </div>
       <div id="chart_area">{children}</div>
     </DashboardContentLayout>
   );
 }
+
+const Lebel = ({ chart }) => {
+  return (
+    <span id="chart_indicator">
+      <span
+        style={{
+          width: "15px",
+          height: "15px",
+          display: "block",
+          borderRadius: "100px",
+          background: `${chart.bg_color}`,
+        }}
+      ></span>
+      &nbsp;&nbsp;
+      <span id="chart_indicator_label">{chart.label}</span>
+    </span>
+  );
+};

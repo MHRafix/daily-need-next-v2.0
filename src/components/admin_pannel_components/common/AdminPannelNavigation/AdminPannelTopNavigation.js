@@ -1,11 +1,9 @@
 import Cookie from "js-cookie";
-import Image from "next/image";
 import React, { useState } from "react";
 import { FiMessageSquare, FiSearch } from "react-icons/fi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineDarkMode, MdOutlineLanguage } from "react-icons/md";
 import { RiBarChartHorizontalLine } from "react-icons/ri";
-import UserPic from "../../../../images/logo/12.jpg";
 
 export default function AdminPannelTopNavigation({
   setNavigationOn,
@@ -81,13 +79,15 @@ export default function AdminPannelTopNavigation({
             </span>
           </div>
           <div className="admin_pannel_header_action_icon">
-            <Image
-              className="rounded-full cursor-pointer"
-              src={UserPic}
-              alt="profile pic"
-              width={34}
-              height={34}
-            />
+            {userInfo?.user_pic ? (
+              <img
+                className="rounded-full cursor-pointer"
+                src={userInfo?.user_pic}
+                alt="user profile pic"
+                width={34}
+                height={34}
+              />
+            ) : null}
           </div>
         </div>
       </div>

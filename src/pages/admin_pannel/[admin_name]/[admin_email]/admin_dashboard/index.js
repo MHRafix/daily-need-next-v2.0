@@ -12,7 +12,6 @@ export default function AdminDashboard({
   all_users,
   all_products,
 }) {
-  console.log(all_users);
   // error page
   const userInfo =
     Cookie.get("user_information") &&
