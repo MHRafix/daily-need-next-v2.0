@@ -587,7 +587,7 @@
   }
 
   .admin_pannel_body_full {
-    @apply w-full bg-slate-100 border-r-1 border-r-slate-200 h-screen;
+    @apply w-full bg-slate-100 border-r-1 border-r-slate-200 h-auto;
   }
 
   #admin_pannel_search_input {
@@ -655,7 +655,7 @@
   }
 
   #chart_title_wrapper {
-    @apply px-1.2 pb-extra_padding4 mb-12 capitalize text-normal tracking-wider text-black2 border-b-1 border-b-slate-200;
+    @apply px-1.2 pb-extra_padding4 mb-5 capitalize text-normal tracking-wider text-black2 border-b-1 border-b-slate-200;
   }
 
   #chart_title {

@@ -148,7 +148,10 @@ export default function AdminDashboardContent({
           />
         </div>
         <div className="lg:!w-1/3 xs:w-full">
-          <DashboardUsersMiniTable item_name="users table" />
+          <DashboardUsersMiniTable
+            item_name="users table"
+            users_data={all_users}
+          />
         </div>
       </div>
     </>
