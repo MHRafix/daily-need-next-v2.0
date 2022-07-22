@@ -12,7 +12,7 @@ export default function GridBox({ box_content }) {
             <span id="chart_indicator_label">{box_name}</span>
           </div>
           <div>
-            <VisibilitySensor partialVisibility style={{ bottom: "200px" }}>
+            <VisibilitySensor partialVisibility>
               {({ isVisible }) => (
                 <h1 id="amount_label" style={{ height: "43px" }}>
                   {isVisible ? (
