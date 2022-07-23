@@ -96,35 +96,42 @@ export default function BillingDetails() {
   // form handle function here
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setPaypalModal(false);
-    setProccessing(true);
+    try {
+      setPaypalModal(false);
+      setProccessing(true);
 
-    const { data } = await axios.post(
-      // "http://localhost:3000/api/checkout/place_order",
-      "https://daily-need.vercel.app/api/checkout/place_order",
-      order_data
-    );
+      const { data } = await axios.post(
+        // "http://localhost:3000/api/checkout/place_order",
+        "https://daily-need.vercel.app/api/checkout/place_order",
+        order_data
+      );
 
-    if (data?.success) {
+      if (data?.success) {
+        setToastOn(true);
+        setProccessing(false);
+        setToastText(data.success);
+        setToastType("success_toast");
+        Cookie.remove("cart_product_ids");
+
+        setTimeout(() => {
+          if (payment === "cash-on") {
+            router.push("/shop/grid_shop");
+            dispatch(reduceCookie(empty_data));
+          } else {
+            setOrderid(data?.order_id);
+            setPaypalModal(true);
+          }
+        }, 2000);
+      } else {
+        setToastOn(true);
+        setProccessing(false);
+        setToastText(data.error);
+        setToastType("error_toast");
+      }
+    } catch (error) {
       setToastOn(true);
       setProccessing(false);
-      setToastText(data.success);
-      setToastType("success_toast");
-      Cookie.remove("cart_product_ids");
-
-      setTimeout(() => {
-        if (payment === "cash-on") {
-          router.push("/shop/grid_shop");
-          dispatch(reduceCookie(empty_data));
-        } else {
-          setOrderid(data?.order_id);
-          setPaypalModal(true);
-        }
-      }, 2000);
-    } else {
-      setToastOn(true);
-      setProccessing(false);
-      setToastText(data.error);
+      setToastText(error.message);
       setToastType("error_toast");
     }
   };

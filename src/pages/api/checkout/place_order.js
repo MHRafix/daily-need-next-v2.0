@@ -10,11 +10,13 @@ handler.post(async (req, res) => {
 
   // order save to database using mongoose data model
   const newOrder = new Order(order_data);
-  await newOrder.save();
+  const placed = await newOrder.save();
+
+  await db.disconnect(); // database disconnect here
 
   // conditionaly send data here
-  if (newOrder) {
-    await db.disconnect(); // database disconnect here
+  if (placed) {
+    console.log("newOrder");
     res.send({
       success: "Your order successfully placed!",
       order_id: newOrder._id,

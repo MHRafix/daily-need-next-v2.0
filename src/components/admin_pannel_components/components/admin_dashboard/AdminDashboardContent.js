@@ -17,7 +17,7 @@ export default function AdminDashboardContent({
   }
 
   // summury data state here
-  const [users, setUsers] = useState(all_orders?.length);
+  const [users, setUsers] = useState(all_users?.length);
   const [orders, setOrders] = useState(all_orders?.length);
   const [profit, setProfit] = useState((total_sells / 100) * 25);
 

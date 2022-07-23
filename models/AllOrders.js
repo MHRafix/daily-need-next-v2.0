@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema(
       {
         _id: { type: String },
         title: { type: String, required: true },
-        slug: { type: String, required: true, unique: true },
+        slug: { type: String, required: true },
         category: { type: String, required: true },
         thumbnail: { type: Object, required: true },
         thumbnail_big: { type: Object, required: true },
