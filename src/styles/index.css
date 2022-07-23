@@ -647,7 +647,7 @@
   }
 
   #chart_area_wrapper {
-    @apply p-1;
+    @apply lg:!p-1;
   }
 
   #chart_area {
@@ -667,7 +667,7 @@
   }
 
   #chart_indicator_label {
-    @apply capitalize text-slate-500 tracking-wider text-sm;
+    @apply capitalize text-slate-500 tracking-wider sm:!text-sm xs:text-thin;
   }
 
   #chart_indicator {
@@ -1119,5 +1119,11 @@
 
   #file_field_wrapper input[type="file"] {
     display: none;
+  }
+
+  #user_image {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
   }
 }

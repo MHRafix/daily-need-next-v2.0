@@ -10,15 +10,23 @@ export default function AdminDashboardContent({
   all_users,
   all_products,
 }) {
-  // calculate total sells here
+  // calculate total sells and profit here
   let total_sells = 0;
-  for (const order of all_orders) {
-    total_sells = total_sells + order?.order_overview?.total_amount;
-  }
+
+  all_orders.filter((order) => {
+    if (order.order_overview.order_status !== "canceled") {
+      total_sells = total_sells + order?.order_overview?.total_amount;
+    }
+  });
+
+  // completed orders
+  const completed_orders = all_orders.filter(
+    (order) => order.order_overview.order_status !== "canceled"
+  );
 
   // summury data state here
   const [users, setUsers] = useState(all_users?.length);
-  const [orders, setOrders] = useState(all_orders?.length);
+  const [orders, setOrders] = useState(completed_orders?.length);
   const [profit, setProfit] = useState((total_sells / 100) * 25);
 
   // summury box content
@@ -29,6 +37,7 @@ export default function AdminDashboardContent({
       box_number: users,
       box_icon: <FaUsers />,
       icon_color: "#6c5ffc",
+      note: "Admin, user & vendor",
     },
     {
       _id: 2,
@@ -36,6 +45,7 @@ export default function AdminDashboardContent({
       box_number: orders,
       box_icon: <MdAddShoppingCart />,
       icon_color: "#ff269e",
+      note: "Without canceled",
     },
     {
       _id: 3,
@@ -43,6 +53,7 @@ export default function AdminDashboardContent({
       box_number: total_sells,
       box_icon: <MdShoppingBasket />,
       icon_color: "#ffc658",
+      note: "Without canceled",
     },
     {
       _id: 4,
@@ -50,6 +61,7 @@ export default function AdminDashboardContent({
       box_number: profit,
       box_icon: <FaCoins />,
       icon_color: "#2bd891",
+      note: "25% of sells",
     },
   ];
 
