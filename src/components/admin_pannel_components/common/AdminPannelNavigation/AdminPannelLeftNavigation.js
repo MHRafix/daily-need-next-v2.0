@@ -26,7 +26,7 @@ export default function AdminPannelLeftNavigation({ setNavigationOn }) {
 
         {/* last menu */}
         <NextLink href="/" passHref>
-          <h3 id="admin_pannel_nav_link" className="!text-light">
+          <h3 id="admin_pannel_nav_link" className="!text-normal">
             <span className="text-light_purple !text-normal">
               <AiOutlineUserSwitch />
             </span>

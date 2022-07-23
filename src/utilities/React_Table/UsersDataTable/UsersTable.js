@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import { usePagination, useTable } from "react-table";
+import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
+import { useSortBy, useTable } from "react-table";
 import { COLUMNS } from "../TableColumns";
-// import "./table.css";
 
 export default function UsersTable({ USER_DATA }) {
   const columns = useMemo(() => COLUMNS, []);
@@ -13,31 +13,17 @@ export default function UsersTable({ USER_DATA }) {
       data,
       initialState: { pageIndex: 0 },
     },
-    usePagination
+    useSortBy
   );
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    page,
-    nextPage,
-    previousPage,
-    canNextPage,
-    canPreviousPage,
-    pageOptions,
-    state,
-    gotoPage,
-    pageCount,
-    prepareRow,
-    setPageSize,
-  } = tableInstance;
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    tableInstance;
 
-  const { pageIndex, pageSize } = state;
   return (
     <>
-      <div className="sorter_input">
-        <select
+      <div className="sorter_input_wrapper">
+        {/* <select
+          className="sorting_input"
           value={pageSize}
           onChange={(e) => setPageSize(Number(e.target.value))}
         >
@@ -46,28 +32,47 @@ export default function UsersTable({ USER_DATA }) {
               Show {pageSize}
             </option>
           ))}
-        </select>
+        </select> */}
       </div>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getFooterGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  <span
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      fontSize: "10px",
+                    }}
+                  >
+                    {column.render("Header")}
+                    <span>
+                      <span className="flex items-center">
+                        <BiUpArrowAlt />
+
+                        <BiDownArrowAlt />
+                      </span>
+                    </span>
+                  </span>
+                </th>
               ))}
             </tr>
           ))}
         </thead>
 
         <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
+          {rows.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   if (cell.column.id === "user_pic") {
                     return (
-                      <div className="!p-extra_padding4 border-b-1 border-b-slate-300">
+                      <div className="!p-extra_padding4 border-b-1 border-l-1 border-b-slate-300 border-l-slate-300">
                         <img
                           src={cell.value}
                           alt="img"
@@ -88,8 +93,11 @@ export default function UsersTable({ USER_DATA }) {
           })}
         </tbody>
       </table>
-      <div>
-        {/* first page navigation */}
+    </>
+  );
+}
+{
+  /* <div>
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {"<<"}
         </button>
@@ -105,7 +113,6 @@ export default function UsersTable({ USER_DATA }) {
           </strong>
         </span>
 
-        {/* randomly switch page */}
         <span>
           | Go to page :{" "}
           <input
@@ -125,11 +132,8 @@ export default function UsersTable({ USER_DATA }) {
           Next
         </button>
 
-        {/* last page navigation */}
         <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
           {">>"}
         </button>
-      </div>
-    </>
-  );
+      </div> */
 }

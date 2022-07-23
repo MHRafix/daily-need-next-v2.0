@@ -46,7 +46,6 @@ export default function AdminPannelLeftNav({ nav_data }) {
                 &nbsp;&nbsp;
                 <span className="w-full flex items-center justify-between">
                   {main_nav}
-                  {subNavOn ? <MdKeyboardArrowUp /> : <MdKeyboardArrowRight />}
                 </span>
               </h3>
             </NextLink>

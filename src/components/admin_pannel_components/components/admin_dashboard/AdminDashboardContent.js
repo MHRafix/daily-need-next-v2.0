@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaCoins, FaUsers } from "react-icons/fa";
 import { MdAddShoppingCart, MdShoppingBasket } from "react-icons/md";
 import LineChartFancy from "../../../../utilities/GraphChart/Rechart/LineChart/LineChartFancy";
@@ -10,33 +10,44 @@ export default function AdminDashboardContent({
   all_users,
   all_products,
 }) {
+  // calculate total sells here
+  let total_sells = 0;
+  for (const order of all_orders) {
+    total_sells = total_sells + order?.order_overview?.total_amount;
+  }
+
+  // summury data state here
+  const [users, setUsers] = useState(all_orders?.length);
+  const [orders, setOrders] = useState(all_orders?.length);
+  const [profit, setProfit] = useState((total_sells / 100) * 25);
+
   // summury box content
   const summury_content = [
     {
       _id: 1,
       box_name: "total users",
-      box_number: 45748,
+      box_number: users,
       box_icon: <FaUsers />,
       icon_color: "#6c5ffc",
     },
     {
       _id: 2,
       box_name: "total orders",
-      box_number: 852454,
+      box_number: orders,
       box_icon: <MdAddShoppingCart />,
       icon_color: "#ff269e",
     },
     {
       _id: 3,
       box_name: "total sells",
-      box_number: 13215,
+      box_number: total_sells,
       box_icon: <MdShoppingBasket />,
       icon_color: "#ffc658",
     },
     {
       _id: 4,
       box_name: "total profit",
-      box_number: 24154,
+      box_number: profit,
       box_icon: <FaCoins />,
       icon_color: "#2bd891",
     },
