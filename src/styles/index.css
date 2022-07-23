@@ -635,6 +635,10 @@
     @apply p-1 rounded-md bg-gradient-to-r from-orangee to-orangee_red text-white;
   }
 
+  /* admin dashboard css here  */
+  .dashboard_row_wrapper {
+    @apply my-15;
+  }
   /* sumury box css here  */
 
   #box_wrapper {

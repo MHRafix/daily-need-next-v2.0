@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { FaCoins, FaUsers } from "react-icons/fa";
 import { MdAddShoppingCart, MdShoppingBasket } from "react-icons/md";
 import LineChartFancy from "../../../../utilities/GraphChart/Rechart/LineChart/LineChartFancy";
+import ReactPaginationTable from "../../../../utilities/React_Table/PaginationTable/ReactPaginationTable";
 import DashboardUsersMiniTable from "../../../../utilities/React_Table/UsersDataTable/DashboardUsersMiniTable";
+import DashboardContentLayout from "../../admin_pannel_utilities/DashboardLayout/DashboardContentLayout";
 import GridBox from "../../admin_pannel_utilities/GridBoxes/GridBox";
 
 export default function AdminDashboardContent({
@@ -29,6 +31,7 @@ export default function AdminDashboardContent({
   const [orders, setOrders] = useState(completed_orders?.length);
   const [profit, setProfit] = useState((total_sells / 100) * 25);
 
+  console.log(all_products);
   // summury box content
   const summury_content = [
     {
@@ -156,25 +159,40 @@ export default function AdminDashboardContent({
   return (
     <>
       {/* summury boxes */}
-      <div className="my-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
-        {summury_content.map((box) => (
-          <GridBox key={box._id} box_content={box} />
-        ))}
-      </div>
-      <div className="lg:!flex xs:grid">
-        {/* sells analytics chart */}
-        <div className="lg:!w-2/3 xs:w-full xs:mb-15 lg:!mb-0 mx-auto rounded-md shadow-lg lg:mr-5">
-          <LineChartFancy
-            item_name="sales analytics"
-            labels_array={labels_array}
-            chart_data={data}
-          />
+      <div className="dashboard_row_wrapper">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+          {summury_content.map((box) => (
+            <GridBox key={box._id} box_content={box} />
+          ))}
         </div>
-        <div className="lg:!w-1/3 xs:w-full">
-          <DashboardUsersMiniTable
-            item_name="users table"
-            users_data={all_users}
-          />
+      </div>
+      {/* chart and users table */}
+      <div className="dashboard_row_wrapper">
+        <div className="lg:!flex xs:grid">
+          {/* sells analytics chart */}
+          <div className="lg:!w-2/3 xs:w-full xs:mb-15 lg:!mb-0 mx-auto rounded-md shadow-lg lg:mr-5">
+            <LineChartFancy
+              item_name="sales analytics"
+              labels_array={labels_array}
+              chart_data={data}
+            />
+          </div>
+          {/* users mini table */}
+          <div className="lg:!w-1/3 xs:w-full">
+            <DashboardUsersMiniTable
+              item_name="users table"
+              users_data={all_users}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* products show on table */}
+      <div className="dashboard_row_wrapper">
+        <div className="manage_products_table">
+          <DashboardContentLayout item_name="all products">
+            <ReactPaginationTable PRODUCTS_DATA={all_products} />
+          </DashboardContentLayout>
         </div>
       </div>
     </>

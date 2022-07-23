@@ -1,26 +1,60 @@
 import React, { useMemo } from "react";
 import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
-import { useSortBy, useTable } from "react-table";
+import { usePagination, useSortBy, useTable } from "react-table";
 import ReactTooltip from "react-tooltip";
-import { MINI_USER_TABLE_COLUMNS } from "../TableColumns";
+import { PRODUCTS_TABLE_COLUMNS } from "../TableColumns";
 
-export default function UsersTable({ USER_DATA }) {
-  const columns = useMemo(() => MINI_USER_TABLE_COLUMNS, []);
-  const data = useMemo(() => USER_DATA);
+export default function ReactPaginationTable({ PRODUCTS_DATA }) {
+  const columns = useMemo(() => PRODUCTS_TABLE_COLUMNS, []);
+  const data = useMemo(() => PRODUCTS_DATA);
 
   const tableInstance = useTable(
     {
       columns,
       data,
+      initialState: { pageIndex: 0 },
     },
-    useSortBy
+    useSortBy,
+    usePagination
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    tableInstance;
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    state,
+    gotoPage,
+    pageCount,
+    setPageSize,
+  } = tableInstance;
 
+  const { pageIndex, pageSize } = state;
   return (
     <>
+      {/* data sorter  */}
+      <div className="sorter_input_wrapper">
+        <select
+          className="sorting_input"
+          value={pageSize}
+          onChange={(e) => setPageSize(Number(e.target.value))}
+        >
+          {[1, 2, 3].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* react table here */}
       <ReactTooltip place="left" type="warning" effect="solid" />
       <table {...getTableProps()}>
         <thead>
@@ -58,7 +92,7 @@ export default function UsersTable({ USER_DATA }) {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
-                  if (cell.column.id === "user_pic") {
+                  if (cell.column.id === "thumbnail") {
                     return (
                       <div
                         className="!p-extra_padding4"
@@ -82,6 +116,47 @@ export default function UsersTable({ USER_DATA }) {
           })}
         </tbody>
       </table>
+
+      {/* table data pagination here  */}
+      <div>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {"<<"}
+        </button>
+
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          Previous
+        </button>
+
+        <span>
+          Page{" "}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>
+        </span>
+
+        <span>
+          | Go to page :{" "}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const pageNumber = e.target.value
+                ? Number(e.target.value) - 1
+                : 0;
+              gotoPage(pageNumber);
+            }}
+            style={{ width: "50px" }}
+          />
+        </span>
+
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          Next
+        </button>
+
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {">>"}
+        </button>
+      </div>
     </>
   );
 }
