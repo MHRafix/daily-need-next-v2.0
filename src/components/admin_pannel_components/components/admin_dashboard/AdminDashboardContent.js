@@ -3,7 +3,7 @@ import { FaCoins, FaUsers } from "react-icons/fa";
 import { MdAddShoppingCart, MdShoppingBasket } from "react-icons/md";
 import { chartDataCalculator } from "../../../../utilities/chartDataCalculator";
 import LineChartFancy from "../../../../utilities/GraphChart/Rechart/LineChart/LineChartFancy";
-import ReactPaginationTable from "../../../../utilities/React_Table/PaginationTable/ReactPaginationTable";
+import ReactOrdersTable from "../../../../utilities/React_Table/OrdersTable/ReactOrdersTable";
 import DashboardUsersMiniTable from "../../../../utilities/React_Table/UsersDataTable/DashboardUsersMiniTable";
 import DashboardContentLayout from "../../admin_pannel_utilities/DashboardLayout/DashboardContentLayout";
 import GridBox from "../../admin_pannel_utilities/GridBoxes/GridBox";
@@ -80,21 +80,7 @@ export default function AdminDashboardContent({
     { _id: 3, label: "sells profit", bg_color: "#ffc658" },
   ];
 
-  const data = [
-    // { name: "Jan", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Feb", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Mar", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Apr", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "May", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Jun", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Jul", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Jul", od: 120, sp: 371.5225, oc: 0 },
-    // { name: "Aug", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Sep", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Oct", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Nov", od: 0, sp: 371.5225, oc: 0 },
-    // { name: "Dec", od: 0, sp: 371.5225, oc: 0 },
-  ];
+  const data = [];
 
   const current_year = new Date().getFullYear();
   const month_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -134,6 +120,12 @@ export default function AdminDashboardContent({
     data.push(chart_obj);
   }
 
+  // const order_done = [];
+  // for (const order of completed_orders) {
+  //   const products_data = order.products_data;
+  //   products_data.map((data) => order_done.push(data));
+  // }
+
   return (
     <>
       {/* summury boxes */}
@@ -168,8 +160,8 @@ export default function AdminDashboardContent({
       {/* products show on table */}
       <div className="dashboard_row_wrapper">
         <div className="manage_products_table">
-          <DashboardContentLayout item_name="all products">
-            <ReactPaginationTable PRODUCTS_DATA={all_products} />
+          <DashboardContentLayout item_name="all orders">
+            <ReactOrdersTable ORDERS_DATA={completed_orders} />
           </DashboardContentLayout>
         </div>
       </div>

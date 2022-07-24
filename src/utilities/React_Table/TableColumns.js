@@ -54,3 +54,17 @@ export const PRODUCTS_TABLE_COLUMNS = [
     // accessor: "product_type",
   },
 ];
+
+export const ORDERS_TABLE_COLUMN = [
+  // { Header: "ID", accessor: "_id" },
+  { Header: "CM Name", accessor: "customer_info.customer_name" },
+  { Header: "CM Mobile", accessor: "customer_info.customer_mobile" },
+  {
+    Header: "Order Date",
+    accessor: "createdAt",
+  },
+  { Header: "Total Amount", accessor: "order_overview.total_amount" },
+  { Header: "Payment Mode", accessor: "payment_info.payment_method" },
+  { Header: "Status", accessor: "order_overview.order_status" },
+  { Header: "Action" },
+];

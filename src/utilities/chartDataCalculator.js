@@ -19,8 +19,8 @@ export const chartDataCalculator = (
   monthly_completed_orders.map((order) => {
     monthly_sells = order.order_overview.total_amount + monthly_sells;
 
-    chart_obj.od = monthly_sells;
-    chart_obj.sp = (monthly_sells / 100) * 25;
+    chart_obj.od = monthly_sells.toFixed(2);
+    chart_obj.sp = ((monthly_sells / 100) * 25).toFixed(2);
   });
 
   // calculate canceled order's monthly sells here
@@ -33,8 +33,9 @@ export const chartDataCalculator = (
     monthly_canceled_sells =
       order.order_overview.total_amount + monthly_canceled_sells;
 
-    chart_obj.oc = monthly_canceled_sells;
-    // chart_data.push(chart_obj);
+    chart_obj.oc = monthly_canceled_sells.toFixed(2);
   });
+
+  // return the chart data object
   return chart_obj;
 };
