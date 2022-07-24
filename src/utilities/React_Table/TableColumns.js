@@ -17,36 +17,40 @@ export const MINI_USER_TABLE_COLUMNS = [
 
 export const PRODUCTS_TABLE_COLUMNS = [
   {
-    Header: "ID",
-    accessor: "_id",
-    // Cell: ({value}) => {return format(new Date(value), 'dd/MM/yyy')}
+    Header: "Product",
+    accessor: "title",
   },
   {
     Header: "Image",
     accessor: "thumbnail",
   },
   {
-    Header: "Products",
-    accessor: "title",
+    Header: "Category",
+    accessor: "category",
   },
   {
-    Header: "Price",
+    Header: "Reg Price",
     accessor: "prices.regular_price",
+  },
+  {
+    Header: "Sale Price",
+    accessor: "prices.sale_price",
+  },
+  {
+    Header: "Available",
+    accessor: "stock_available",
   },
   {
     Header: "Status",
     accessor: "product_status",
   },
-  {
-    Header: "Category",
-    accessor: "category",
-  },
+
   {
     Header: "Type",
     accessor: "product_type",
   },
   {
-    Header: "Available",
-    accessor: "stock_available",
+    Header: "Action",
+    // accessor: "product_type",
   },
 ];

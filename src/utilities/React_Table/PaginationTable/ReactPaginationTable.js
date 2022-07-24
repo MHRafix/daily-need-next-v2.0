@@ -1,5 +1,12 @@
+import Image from "next/image";
 import React, { useMemo } from "react";
 import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
+import { FiEdit } from "react-icons/fi";
+import {
+  MdOutlineKeyboardArrowLeft,
+  MdOutlineKeyboardArrowRight,
+} from "react-icons/md";
+import { RiDeleteBinLine } from "react-icons/ri";
 import { usePagination, useSortBy, useTable } from "react-table";
 import ReactTooltip from "react-tooltip";
 import { PRODUCTS_TABLE_COLUMNS } from "../TableColumns";
@@ -22,7 +29,6 @@ export default function ReactPaginationTable({ PRODUCTS_DATA }) {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
     page,
     nextPage,
@@ -40,22 +46,24 @@ export default function ReactPaginationTable({ PRODUCTS_DATA }) {
   return (
     <>
       {/* data sorter  */}
-      <div className="sorter_input_wrapper">
+      <div id="sorter_input_wrapper">
+        Show
         <select
           className="sorting_input"
           value={pageSize}
           onChange={(e) => setPageSize(Number(e.target.value))}
         >
-          {[1, 2, 3].map((pageSize) => (
+          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
-              Show {pageSize}
+              {pageSize}
             </option>
           ))}
         </select>
+        entries
       </div>
 
       {/* react table here */}
-      <ReactTooltip place="left" type="warning" effect="solid" />
+      <ReactTooltip place="left" type="dark" effect="solid" />
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -68,15 +76,25 @@ export default function ReactPaginationTable({ PRODUCTS_DATA }) {
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
-                      fontSize: "10px",
                     }}
                   >
                     {column.render("Header")}
                     <span>
                       <span className="flex items-center">
-                        <BiUpArrowAlt />
-
-                        <BiDownArrowAlt />
+                        <span
+                          className={
+                            column.isSortedDesc ? "text-black" : "text-black4"
+                          }
+                        >
+                          <BiUpArrowAlt />
+                        </span>
+                        <span
+                          className={
+                            !column.isSortedDesc ? "text-black" : "text-black4"
+                          }
+                        >
+                          <BiDownArrowAlt />
+                        </span>
                       </span>
                     </span>
                   </span>
@@ -87,22 +105,84 @@ export default function ReactPaginationTable({ PRODUCTS_DATA }) {
         </thead>
 
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {page.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   if (cell.column.id === "thumbnail") {
+                    console.log(cell);
                     return (
                       <div
                         className="!p-extra_padding4"
                         style={{
                           borderBottom: "1px solid #ddd",
-                          borderLeft: "1px solid #ddd",
+                          textAlign: "center",
                         }}
                       >
-                        <img src={cell.value} alt="img" id="user_image" />
+                        <span
+                          style={{
+                            display: "inline-table",
+                            width: "50px",
+                          }}
+                        >
+                          <Image
+                            src={cell.value}
+                            alt="img"
+                            className="rounded-full"
+                          />
+                        </span>
                       </div>
+                    );
+                  } else if (cell.column.Header === "Reg Price") {
+                    return <td className="font-semibold">৳ {cell.value}</td>;
+                  } else if (cell.column.Header === "Sale Price") {
+                    return <td className="font-semibold">৳ {cell.value}</td>;
+                  } else if (cell.column.Header === "Available") {
+                    return (
+                      <td>
+                        {cell.value === 0 ? (
+                          <span id="red_signal_status">✖</span>
+                        ) : (
+                          <span id="green_signal_status">{cell.value} kg</span>
+                        )}
+                      </td>
+                    );
+                  } else if (cell.column.Header === "Status") {
+                    return (
+                      <td>
+                        {cell.value === "stock-out" ? (
+                          <span id="red_signal_status">{cell.value}</span>
+                        ) : (
+                          <span id="green_signal_status">{cell.value}</span>
+                        )}
+                      </td>
+                    );
+                  } else if (cell.column.Header === "Type") {
+                    return (
+                      <td>
+                        {cell.value === "fixed-sale" ? (
+                          <span id="warning_signal_status">{cell.value}</span>
+                        ) : (
+                          <span id="info_signal_status">{cell.value}</span>
+                        )}
+                      </td>
+                    );
+                  } else if (cell.column.Header === "Action") {
+                    return (
+                      <td>
+                        <span className="flex justify-center items-center">
+                          <FiEdit
+                            data-tip="Edit"
+                            className="text-light_purple cursor-pointer text-normal outline-none"
+                          />
+                          &nbsp;&nbsp;
+                          <RiDeleteBinLine
+                            data-tip="Delete"
+                            className="text-red-500 cursor-pointer text-normal outline-none"
+                          />
+                        </span>
+                      </td>
                     );
                   } else {
                     return (
@@ -110,7 +190,6 @@ export default function ReactPaginationTable({ PRODUCTS_DATA }) {
                     );
                   }
                 })}
-                {/* <td data-tip="Delete">del</td> */}
               </tr>
             );
           })}
@@ -118,23 +197,23 @@ export default function ReactPaginationTable({ PRODUCTS_DATA }) {
       </table>
 
       {/* table data pagination here  */}
-      <div>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>
+      <div className="flex items-center justify-center my-5">
+        {/* <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          
+        </button> */}
 
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          Previous
+          <MdOutlineKeyboardArrowLeft />
         </button>
 
         <span>
-          Page{" "}
+          Page
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>
         </span>
 
-        <span>
+        {/* <span>
           | Go to page :{" "}
           <input
             type="number"
@@ -147,15 +226,15 @@ export default function ReactPaginationTable({ PRODUCTS_DATA }) {
             }}
             style={{ width: "50px" }}
           />
-        </span>
+        </span> */}
 
         <button onClick={() => nextPage()} disabled={!canNextPage}>
-          Next
+          <MdOutlineKeyboardArrowRight />
         </button>
 
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>
+        {/* <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          
+        </button> */}
       </div>
     </>
   );

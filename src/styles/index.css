@@ -639,6 +639,26 @@
   .dashboard_row_wrapper {
     @apply my-15;
   }
+
+  #sorter_input_wrapper {
+    @apply text-light text-black3 tracking-wider mb-5;
+  }
+
+  #red_signal_status {
+    @apply bg-red-100 tracking-wider text-red-500 rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize;
+  }
+
+  #green_signal_status {
+    @apply bg-emerald-100 tracking-wider text-emerald-400 rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize;
+  }
+
+  #warning_signal_status {
+    @apply bg-amber-100 text-amber-400 tracking-wider rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize;
+  }
+
+  #info_signal_status {
+    @apply tracking-wider rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize bg-indigo-100 text-light_purple;
+  }
   /* sumury box css here  */
 
   #box_wrapper {
@@ -651,7 +671,7 @@
   }
 
   #chart_area_wrapper {
-    @apply lg:!p-1;
+    @apply lg:!p-1 xs:p-extra_padding4;
   }
 
   #chart_area {

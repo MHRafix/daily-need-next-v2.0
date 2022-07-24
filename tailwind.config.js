@@ -75,6 +75,7 @@ module.exports = {
         black2: "#333",
         black3: "#666",
         black4: "#888",
+        black5: "#ccc",
         orangee: "#ff934b",
         orangee_red: "#ff5e62",
         info_color: "#0cc5b7",
@@ -158,6 +159,7 @@ module.exports = {
         poppins: ["Poppins", "sans-serif"],
       },
       fontSize: {
+        exthin: "9px",
         thin: "12px",
         light: "15px",
         normal: "17px",
