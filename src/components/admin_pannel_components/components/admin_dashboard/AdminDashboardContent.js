@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaCoins, FaUsers } from "react-icons/fa";
 import { MdAddShoppingCart, MdShoppingBasket } from "react-icons/md";
+import { chartDataCalculator } from "../../../../utilities/chartDataCalculator";
 import LineChartFancy from "../../../../utilities/GraphChart/Rechart/LineChart/LineChartFancy";
 import ReactPaginationTable from "../../../../utilities/React_Table/PaginationTable/ReactPaginationTable";
 import DashboardUsersMiniTable from "../../../../utilities/React_Table/UsersDataTable/DashboardUsersMiniTable";
@@ -26,12 +27,16 @@ export default function AdminDashboardContent({
     (order) => order.order_overview.order_status !== "canceled"
   );
 
+  // calculate canceled orders
+  const canceled_orders = all_orders.filter(
+    (order) => order.order_overview.order_status == "canceled"
+  );
+
   // summury data state here
   const [users, setUsers] = useState(all_users?.length);
   const [orders, setOrders] = useState(completed_orders?.length);
   const [profit, setProfit] = useState((total_sells / 100) * 25);
 
-  console.log(all_products);
   // summury box content
   const summury_content = [
     {
@@ -76,85 +81,58 @@ export default function AdminDashboardContent({
   ];
 
   const data = [
-    {
-      name: "Jan",
-      od: 400,
-      oc: 2400,
-      sp: 2400,
-    },
-    {
-      name: "Jan",
-      od: 4000,
-      oc: 2400,
-      sp: 2400,
-    },
-    {
-      name: "Jan",
-      od: 4000,
-      oc: 2400,
-      sp: 2400,
-    },
-    {
-      name: "Feb",
-      od: 3000,
-      oc: 1398,
-      sp: 2210,
-    },
-    {
-      name: "Mar",
-      od: 2000,
-      oc: 9800,
-      sp: 2290,
-    },
-    {
-      name: "Apr",
-      od: 2780,
-      oc: 3908,
-      sp: 2000,
-    },
-    {
-      name: "May",
-      od: 1890,
-      oc: 4800,
-      sp: 2181,
-    },
-    {
-      name: "Jun",
-      od: 2390,
-      oc: 3800,
-      sp: 2500,
-    },
-    {
-      name: "Jul",
-      od: 3490,
-      oc: 4300,
-      sp: 2100,
-    },
-    {
-      name: "Jul",
-      od: 3490,
-      oc: 4300,
-      sp: 2100,
-    },
-    {
-      name: "Jul",
-      od: 3490,
-      oc: 4300,
-      sp: 2100,
-    },
-    {
-      name: "Jul",
-      od: 3490,
-      oc: 4300,
-      sp: 2100,
-    },
-    {
-      name: "Jul",
-      od: 5490,
-      oc: 5300,
-      sp: 5100,
-    },
+    // { name: "Jan", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Feb", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Mar", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Apr", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "May", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Jun", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Jul", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Jul", od: 120, sp: 371.5225, oc: 0 },
+    // { name: "Aug", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Sep", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Oct", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Nov", od: 0, sp: 371.5225, oc: 0 },
+    // { name: "Dec", od: 0, sp: 371.5225, oc: 0 },
   ];
+
+  const current_year = new Date().getFullYear();
+  const month_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const month_name = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  // filter out current year's canceled orders
+  const current_years_canceled_orders = canceled_orders.filter(
+    (order) => order.order_overview.order_date.year === current_year
+  );
+
+  // current year's completed orders
+  const current_years_completed_orders = completed_orders.filter(
+    (order) => order.order_overview.order_date.year === current_year
+  );
+
+  for (const month of month_num) {
+    const chart_obj = chartDataCalculator(
+      current_years_completed_orders,
+      current_years_canceled_orders,
+      month,
+      month_name
+    );
+
+    data.push(chart_obj);
+  }
 
   return (
     <>

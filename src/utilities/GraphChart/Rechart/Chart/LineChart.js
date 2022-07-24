@@ -9,6 +9,7 @@ import {
 } from "recharts";
 
 export default function LineChart({ chart_data }) {
+  // console.log(chart_data);
   return (
     <>
       <ResponsiveContainer>
@@ -25,27 +26,9 @@ export default function LineChart({ chart_data }) {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="od"
-            stackId="1"
-            stroke="#6c5ffc"
-            fill="#6c5ffc"
-          />
-          <Area
-            type="monotone"
-            dataKey="oc"
-            stackId="1"
-            stroke="#ffc658"
-            fill="#ffc658"
-          />
-          <Area
-            type="monotone"
-            dataKey="sp"
-            stackId="1"
-            stroke="#2bd891"
-            fill="#2bd891"
-          />
+          <Area type="monotone" dataKey="od" stroke="#6c5ffc" fill="#6c5ffc" />
+          <Area type="monotone" dataKey="oc" stroke="#ffc658" fill="#ffc658" />
+          <Area type="monotone" dataKey="sp" stroke="#2bd891" fill="#2bd891" />
         </AreaChart>
       </ResponsiveContainer>
     </>

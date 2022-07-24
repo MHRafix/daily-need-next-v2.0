@@ -111,7 +111,6 @@ export default function ReactPaginationTable({ PRODUCTS_DATA }) {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   if (cell.column.id === "thumbnail") {
-                    console.log(cell);
                     return (
                       <div
                         className="!p-extra_padding4"

@@ -637,7 +637,7 @@
 
   /* admin dashboard css here  */
   .dashboard_row_wrapper {
-    @apply my-15;
+    @apply mt-10 mb-15;
   }
 
   #sorter_input_wrapper {
