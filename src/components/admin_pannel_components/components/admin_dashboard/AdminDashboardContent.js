@@ -5,6 +5,7 @@ import { chartDataCalculator } from "../../../../utilities/chartDataCalculator";
 import LineChartFancy from "../../../../utilities/GraphChart/Rechart/LineChart/LineChartFancy";
 import ReactModal from "../../../../utilities/Modal/ReactModal";
 import ReactOrdersTable from "../../../../utilities/React_Table/OrdersTable/ReactOrdersTable";
+import ReactPaginationTable from "../../../../utilities/React_Table/PaginationTable/ReactPaginationTable";
 import DashboardUsersMiniTable from "../../../../utilities/React_Table/UsersDataTable/DashboardUsersMiniTable";
 import DashboardContentLayout from "../../admin_pannel_utilities/DashboardLayout/DashboardContentLayout";
 import GridBox from "../../admin_pannel_utilities/GridBoxes/GridBox";
@@ -38,6 +39,7 @@ export default function AdminDashboardContent({
   const [orders, setOrders] = useState(completed_orders?.length);
   const [profit, setProfit] = useState((total_sells / 100) * 25);
   const [modal, setModal] = useState(false);
+  const [modalData, setModalData] = useState([]);
 
   // summury box content
   const summury_content = [
@@ -122,11 +124,12 @@ export default function AdminDashboardContent({
     data.push(chart_obj);
   }
 
-  // const order_done = [];
-  // for (const order of completed_orders) {
-  //   const products_data = order.products_data;
-  //   products_data.map((data) => order_done.push(data));
-  // }
+  // handle modal and modal data
+  const handleModal = (dep, id) => {
+    const modal_data = all_orders.find((order) => order._id === id);
+    setModalData(modal_data.products_data);
+    setModal(dep);
+  };
 
   return (
     <>
@@ -163,11 +166,20 @@ export default function AdminDashboardContent({
       <div className="dashboard_row_wrapper">
         <div className="manage_products_table">
           <DashboardContentLayout item_name="all orders">
-            <ReactOrdersTable ORDERS_DATA={all_orders} setModal={setModal} />
+            <ReactOrdersTable
+              ORDERS_DATA={all_orders}
+              handleModal={handleModal}
+            />
           </DashboardContentLayout>
           {modal && (
-            <ReactModal setModal={setModal} modal_title="Order Details">
-              Hello
+            <ReactModal
+              setModal={setModal}
+              modal_data={modalData}
+              modal_title="Order Details"
+            >
+              {/* <DashboardContentLayout item_name="manage all products"> */}
+              <ReactPaginationTable PRODUCTS_DATA={modalData} />
+              {/* </DashboardContentLayout> */}
             </ReactModal>
           )}
         </div>

@@ -13,7 +13,7 @@ import Card from "../../../images/card_images/card.png";
 import CashOn from "../../../images/card_images/cash.png";
 import { ORDERS_TABLE_COLUMN } from "../TableColumns";
 
-export default function ReactOrdersTable({ ORDERS_DATA, setModal }) {
+export default function ReactOrdersTable({ ORDERS_DATA, handleModal }) {
   const columns = useMemo(() => ORDERS_TABLE_COLUMN, []);
   const data = useMemo(() => ORDERS_DATA);
 
@@ -181,7 +181,7 @@ export default function ReactOrdersTable({ ORDERS_DATA, setModal }) {
                           />
                           &nbsp;&nbsp;
                           <FiBookOpen
-                            onClick={() => setModal(true)}
+                            onClick={() => handleModal(true, cell.value)}
                             data-tip="Details"
                             className="text-green cursor-pointer text-normal outline-none"
                           />
