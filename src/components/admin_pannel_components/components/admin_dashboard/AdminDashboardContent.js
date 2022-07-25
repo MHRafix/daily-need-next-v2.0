@@ -3,6 +3,7 @@ import { FaCoins, FaUsers } from "react-icons/fa";
 import { MdAddShoppingCart, MdShoppingBasket } from "react-icons/md";
 import { chartDataCalculator } from "../../../../utilities/chartDataCalculator";
 import LineChartFancy from "../../../../utilities/GraphChart/Rechart/LineChart/LineChartFancy";
+import ReactModal from "../../../../utilities/Modal/ReactModal";
 import ReactOrdersTable from "../../../../utilities/React_Table/OrdersTable/ReactOrdersTable";
 import DashboardUsersMiniTable from "../../../../utilities/React_Table/UsersDataTable/DashboardUsersMiniTable";
 import DashboardContentLayout from "../../admin_pannel_utilities/DashboardLayout/DashboardContentLayout";
@@ -36,6 +37,7 @@ export default function AdminDashboardContent({
   const [users, setUsers] = useState(all_users?.length);
   const [orders, setOrders] = useState(completed_orders?.length);
   const [profit, setProfit] = useState((total_sells / 100) * 25);
+  const [modal, setModal] = useState(false);
 
   // summury box content
   const summury_content = [
@@ -75,9 +77,9 @@ export default function AdminDashboardContent({
 
   // chart configuration here
   const labels_array = [
-    { _id: 1, label: "order done", bg_color: "#6c5ffc" },
-    { _id: 2, label: "order cancel", bg_color: "#2bd891" },
-    { _id: 3, label: "sells profit", bg_color: "#ffc658" },
+    { _id: 1, label: "order done", bg_color: "#2bd891" },
+    { _id: 2, label: "order cancel", bg_color: "red" },
+    { _id: 3, label: "sells profit", bg_color: "#6c5ffc" },
   ];
 
   const data = [];
@@ -161,8 +163,13 @@ export default function AdminDashboardContent({
       <div className="dashboard_row_wrapper">
         <div className="manage_products_table">
           <DashboardContentLayout item_name="all orders">
-            <ReactOrdersTable ORDERS_DATA={completed_orders} />
+            <ReactOrdersTable ORDERS_DATA={all_orders} setModal={setModal} />
           </DashboardContentLayout>
+          {modal && (
+            <ReactModal setModal={setModal} modal_title="Order Details">
+              Hello
+            </ReactModal>
+          )}
         </div>
       </div>
     </>

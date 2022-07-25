@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useMemo } from "react";
 import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
-import { FiEdit } from "react-icons/fi";
+import { FiBookOpen, FiEdit } from "react-icons/fi";
 import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
@@ -13,7 +13,7 @@ import Card from "../../../images/card_images/card.png";
 import CashOn from "../../../images/card_images/cash.png";
 import { ORDERS_TABLE_COLUMN } from "../TableColumns";
 
-export default function ReactOrdersTable({ ORDERS_DATA }) {
+export default function ReactOrdersTable({ ORDERS_DATA, setModal }) {
   const columns = useMemo(() => ORDERS_TABLE_COLUMN, []);
   const data = useMemo(() => ORDERS_DATA);
 
@@ -117,15 +117,33 @@ export default function ReactOrdersTable({ ORDERS_DATA }) {
                   } else if (cell.column.Header === "Order Date") {
                     return <td>{cell.value.slice(0, 10)}</td>;
                   } else if (cell.column.Header === "Status") {
-                    return (
-                      <td>
-                        {cell.value === "done" ? (
+                    if (cell.value === "shipped") {
+                      return (
+                        <td>
                           <span id="green_signal_status">{cell.value}</span>
-                        ) : (
+                        </td>
+                      );
+                    }
+                    if (cell.value === "canceled") {
+                      return (
+                        <td>
+                          <span id="red_signal_status">{cell.value}</span>
+                        </td>
+                      );
+                    }
+                    if (cell.value === "pendding") {
+                      return (
+                        <td>
+                          <span id="warning_signal_status">{cell.value}</span>
+                        </td>
+                      );
+                    } else {
+                      return (
+                        <td>
                           <span id="info_signal_status">{cell.value}</span>
-                        )}
-                      </td>
-                    );
+                        </td>
+                      );
+                    }
                   } else if (cell.column.Header === "Payment Mode") {
                     return (
                       <td className="capitalize flex justify-center items-center py-1">
@@ -160,6 +178,12 @@ export default function ReactOrdersTable({ ORDERS_DATA }) {
                           <RiDeleteBinLine
                             data-tip="Delete"
                             className="text-red-500 cursor-pointer text-normal outline-none"
+                          />
+                          &nbsp;&nbsp;
+                          <FiBookOpen
+                            onClick={() => setModal(true)}
+                            data-tip="Details"
+                            className="text-green cursor-pointer text-normal outline-none"
                           />
                         </span>
                       </td>
