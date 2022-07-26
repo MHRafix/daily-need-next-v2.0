@@ -645,19 +645,19 @@
   }
 
   #red_signal_status {
-    @apply bg-red-100 tracking-wider text-red-500 rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize;
+    @apply bg-red-500 tracking-wider text-white rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize;
   }
 
   #green_signal_status {
-    @apply bg-emerald-100 tracking-wider text-emerald-400 rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize;
+    @apply bg-emerald-400 tracking-wider text-white rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize;
   }
 
   #warning_signal_status {
-    @apply bg-amber-100 text-amber-400 tracking-wider rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize;
+    @apply bg-amber-400 text-white tracking-wider rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize;
   }
 
   #info_signal_status {
-    @apply tracking-wider rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize bg-indigo-100 text-light_purple;
+    @apply tracking-wider rounded-full px-1 py-extra_padding md:!text-exthin xs:text-thin capitalize bg-indigo-400 text-white;
   }
   /* sumury box css here  */
 
