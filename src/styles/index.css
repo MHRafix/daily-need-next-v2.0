@@ -421,9 +421,9 @@
     @apply text-medium_light font-bold text-black tracking-wide capitalize;
   }
 
-  #field_wrapper {
+  /* #field_wrapper {
     @apply my-5;
-  }
+  } */
 
   #input_label {
     @apply text-sm capitalize tracking-wider text-black3;

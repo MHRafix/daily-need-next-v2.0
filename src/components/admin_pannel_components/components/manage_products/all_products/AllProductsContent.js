@@ -6,7 +6,13 @@ import ReactPaginationTable from "../../../../../utilities/React_Table/Paginatio
 import { PRODUCTS_TABLE_COLUMNS } from "../../../../../utilities/React_Table/TableColumns";
 import DashboardContentLayout from "../../../admin_pannel_utilities/DashboardLayout/DashboardContentLayout";
 export default function AllProductsContent({ all_products }) {
-  const { initialValues, validationSchema } = AddProductsFormValidator();
+  const {
+    initialValues,
+    validationSchema,
+    onSubmit,
+    setThumbnail,
+    setBigThumbnail,
+  } = AddProductsFormValidator();
   return (
     <>
       {/* add products form  */}
@@ -16,8 +22,12 @@ export default function AllProductsContent({ all_products }) {
             <FormikFormLayout
               initialValues={initialValues}
               validationSchema={validationSchema}
+              onSubmit={onSubmit}
             >
-              <AddProductsForm />
+              <AddProductsForm
+                setThumbnail={setThumbnail}
+                setBigThumbnail={setBigThumbnail}
+              />
             </FormikFormLayout>
           </DashboardContentLayout>
         </div>

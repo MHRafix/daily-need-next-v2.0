@@ -4,13 +4,9 @@ import React from "react";
 export default function FormikFormLayout({
   initialValues,
   validationSchema,
+  onSubmit,
   children,
 }) {
-  // on submit function here
-  const onSubmit = (values) => {
-    // api will be here
-    console.log(values);
-  };
   return (
     <>
       <Formik
