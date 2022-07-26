@@ -9,9 +9,11 @@ import {
 import { RiDeleteBinLine } from "react-icons/ri";
 import { usePagination, useSortBy, useTable } from "react-table";
 import ReactTooltip from "react-tooltip";
-import { PRODUCTS_TABLE_COLUMNS } from "../TableColumns";
 
-export default function ReactPaginationTable({ PRODUCTS_DATA }) {
+export default function ReactPaginationTable({
+  PRODUCTS_DATA,
+  PRODUCTS_TABLE_COLUMNS,
+}) {
   const columns = useMemo(() => PRODUCTS_TABLE_COLUMNS, []);
   const data = useMemo(() => PRODUCTS_DATA);
 
@@ -64,7 +66,7 @@ export default function ReactPaginationTable({ PRODUCTS_DATA }) {
 
       {/* react table here */}
       <ReactTooltip place="left" type="dark" effect="solid" />
-      <table {...getTableProps()}>
+      <table id="products_table" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getFooterGroupProps()}>

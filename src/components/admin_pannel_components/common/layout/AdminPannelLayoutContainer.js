@@ -39,15 +39,17 @@ export default function AdminPannelLayoutContainer({
               navigationOn ? "admin_pannel_body_full" : "admin_pannel_body_half"
             }
           >
-            <div className="right_content_body">
+            <div className="right_content_body lg:!w-full xs:w-screen">
               <div className="grid">
-                <div className="!p-1.4 bg-white border-b-1 border-b-slate-200">
+                <div className="lg:!p-1.4 xs:p-extra_padding3 bg-white border-b-1 border-b-slate-200 lg:!w-full xs:w-screen">
                   <AdminPannelTopNavigation
                     setNavigationOn={setNavigationOn}
                     navigationOn={navigationOn}
                   />
                 </div>
-                <div className="p-1.4 text-normal">{children}</div>
+                <div className="lg:!p-1.4 xs:p-extra_padding3 text-normal lg:!w-full xs:w-screen">
+                  {children}
+                </div>
                 {/* <div className="p-2">
                 //   admin pannel footer is here
                   <footer className="bg-slate-50 text-center">

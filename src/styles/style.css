@@ -32,6 +32,11 @@ table {
   width: 100%;
 }
 
+/* table#products_table {
+  width: 950px;
+  overflow: scroll;
+} */
+
 table tr {
   height: "50px !important";
 }
@@ -53,13 +58,9 @@ table th {
 }
 
 /* React modal css here */
-.modalBackground1 {
-  position: fixed;
-  top: 10%;
-  left: 6%;
+#modalBackground {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 /* .modalContainer {
@@ -70,14 +71,18 @@ table th {
   flex-direction: column;
 } */
 
-.modalContainer .title {
+#modalContainer {
+  width: 95vw;
+}
+
+#modalContainer .title {
   display: inline-block;
   text-align: center;
   margin-top: 10px;
 }
 
 .titleCloseBtn {
-  padding: 15px 25px;
+  padding: 10px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;

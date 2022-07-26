@@ -665,25 +665,28 @@
     @apply flex justify-around items-center bg-white shadow-lg rounded-md py-3 px-2;
   }
 
+  #modalBackground {
+    @apply fixed top-per_4 lg:!left-per_1 xs:left-per_1;
+  }
+
   #modalContainer {
-    @apply h-96 rounded-lg bg-white shadow-lg lg:!overflow-y-scroll lg:!overflow-x-hidden xs:overflow-scroll
-    
-    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-    /* display: flex; */
-    /* flex-direction: column; */;
+    @apply rounded-lg bg-white shadow-lg;
   }
 
   #modal_body {
-    @apply mt-4;
+    @apply mt-4 h-96 overflow-scroll;
   }
 
+  .right_content_body {
+    /* @apply overflow-hidden; */
+  }
   /* chart css here  */
   #chart_layout_wrapper {
-    @apply w-full h-auto;
+    @apply w-full;
   }
 
   #chart_area_wrapper {
-    @apply lg:!p-1 xs:p-extra_padding4;
+    @apply lg:!p-1 xs:p-extra_padding4 overflow-scroll;
   }
 
   #chart_area {
@@ -703,7 +706,7 @@
   }
 
   #chart_indicator_label {
-    @apply capitalize text-slate-500 tracking-wider sm:!text-sm xs:text-thin;
+    @apply capitalize text-slate-500 tracking-wider sm:!text-sm xs:text-exthin;
   }
 
   #chart_indicator {
@@ -812,21 +815,34 @@
     padding: 25px;
   }
 
-  #modalContainer::-webkit-scrollbar {
+  #modal_body::-webkit-scrollbar {
     width: 0.2rem;
   }
 
-  #modalContainer::-webkit-scrollbar-track {
+  #modal_body::-webkit-scrollbar-track {
     background: transparent;
   }
 
-  #modalContainer::-webkit-scrollbar-thumb {
+  #modal_body::-webkit-scrollbar-thumb {
+    background: rgb(108, 95, 252);
+    border-radius: 5rem;
+  }
+
+  #chart_area_wrapper::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+
+  #chart_area_wrapper::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  #chart_area_wrapper::-webkit-scrollbar-thumb {
     background: rgb(108, 95, 252);
     border-radius: 5rem;
   }
 
   html::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0.2rem;
   }
 
   html::-webkit-scrollbar-track {

@@ -6,10 +6,10 @@ import LineChartFancy from "../../../../utilities/GraphChart/Rechart/LineChart/L
 import ReactModal from "../../../../utilities/Modal/ReactModal";
 import ReactOrdersTable from "../../../../utilities/React_Table/OrdersTable/ReactOrdersTable";
 import ReactPaginationTable from "../../../../utilities/React_Table/PaginationTable/ReactPaginationTable";
+import { ORDERED_PRODUCT_TABLE_COLUMNS } from "../../../../utilities/React_Table/TableColumns";
 import DashboardUsersMiniTable from "../../../../utilities/React_Table/UsersDataTable/DashboardUsersMiniTable";
 import DashboardContentLayout from "../../admin_pannel_utilities/DashboardLayout/DashboardContentLayout";
 import GridBox from "../../admin_pannel_utilities/GridBoxes/GridBox";
-
 export default function AdminDashboardContent({
   all_orders,
   all_users,
@@ -135,7 +135,7 @@ export default function AdminDashboardContent({
     <>
       {/* summury boxes */}
       <div className="dashboard_row_wrapper">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-12">
           {summury_content.map((box) => (
             <GridBox key={box._id} box_content={box} />
           ))}
@@ -143,9 +143,9 @@ export default function AdminDashboardContent({
       </div>
       {/* chart and users table */}
       <div className="dashboard_row_wrapper">
-        <div className="lg:!flex xs:grid">
+        <div className="xl:!flex xs:block">
           {/* sells analytics chart */}
-          <div className="lg:!w-2/3 xs:w-full xs:mb-15 lg:!mb-0 mx-auto rounded-md shadow-lg lg:mr-5">
+          <div className="xl:!w-2/3 xs:w-full xs:mb-15 xl:!mb-0 mx-auto rounded-md shadow-lg xl:mr-5">
             <LineChartFancy
               item_name="sales analytics"
               labels_array={labels_array}
@@ -153,7 +153,7 @@ export default function AdminDashboardContent({
             />
           </div>
           {/* users mini table */}
-          <div className="lg:!w-1/3 xs:w-full">
+          <div className="xl:!w-1/3 xs:w-full">
             <DashboardUsersMiniTable
               item_name="users table"
               users_data={all_users}
@@ -164,26 +164,27 @@ export default function AdminDashboardContent({
 
       {/* products show on table */}
       <div className="dashboard_row_wrapper">
-        <div className="manage_products_table">
-          <DashboardContentLayout item_name="all orders">
-            <ReactOrdersTable
-              ORDERS_DATA={all_orders}
-              handleModal={handleModal}
+        {/* <div className="manage_products_table"> */}
+        <DashboardContentLayout item_name="all orders">
+          <ReactOrdersTable
+            ORDERS_DATA={all_orders}
+            handleModal={handleModal}
+          />
+        </DashboardContentLayout>
+        {modal && (
+          <ReactModal
+            setModal={setModal}
+            modal_data={modalData}
+            modal_title="Order Details"
+          >
+            <ReactPaginationTable
+              PRODUCTS_DATA={modalData}
+              PRODUCTS_TABLE_COLUMNS={ORDERED_PRODUCT_TABLE_COLUMNS}
             />
-          </DashboardContentLayout>
-          {modal && (
-            <ReactModal
-              setModal={setModal}
-              modal_data={modalData}
-              modal_title="Order Details"
-            >
-              {/* <DashboardContentLayout item_name="manage all products"> */}
-              <ReactPaginationTable PRODUCTS_DATA={modalData} />
-              {/* </DashboardContentLayout> */}
-            </ReactModal>
-          )}
-        </div>
+          </ReactModal>
+        )}
       </div>
+      {/* </div> */}
     </>
   );
 }

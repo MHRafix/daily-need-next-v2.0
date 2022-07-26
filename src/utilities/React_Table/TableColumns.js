@@ -55,6 +55,43 @@ export const PRODUCTS_TABLE_COLUMNS = [
   },
 ];
 
+// ordered products table columns
+export const ORDERED_PRODUCT_TABLE_COLUMNS = [
+  {
+    Header: "Product",
+    accessor: "title",
+  },
+  {
+    Header: "Image",
+    accessor: "thumbnail",
+  },
+  {
+    Header: "Category",
+    accessor: "category",
+  },
+  {
+    Header: "Reg Price",
+    accessor: "prices.regular_price",
+  },
+  {
+    Header: "Sale Price",
+    accessor: "prices.sale_price",
+  },
+  {
+    Header: "Available",
+    accessor: "stock_available",
+  },
+  {
+    Header: "Status",
+    accessor: "product_status",
+  },
+
+  {
+    Header: "Type",
+    accessor: "product_type",
+  },
+];
+
 export const ORDERS_TABLE_COLUMN = [
   { Header: "CM Name", accessor: "customer_info.customer_name" },
   { Header: "CM Mobile", accessor: "customer_info.customer_mobile" },

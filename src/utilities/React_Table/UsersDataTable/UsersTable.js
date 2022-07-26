@@ -20,7 +20,7 @@ export default function UsersTable({ USER_DATA }) {
     tableInstance;
 
   return (
-    <>
+    <div className="lg:!w-full xs:w-full">
       <ReactTooltip place="left" type="warning" effect="solid" />
       <table {...getTableProps()}>
         <thead>
@@ -82,6 +82,6 @@ export default function UsersTable({ USER_DATA }) {
           })}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }

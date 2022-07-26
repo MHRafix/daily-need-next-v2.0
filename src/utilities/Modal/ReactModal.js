@@ -3,10 +3,12 @@ import React from "react";
 export default function ReactModal({ setModal, modal_title, children }) {
   return (
     <>
-      <div className="modalBackground1">
+      <div id="modalBackground">
         <div id="modalContainer">
           <div className="titleCloseBtn">
-            <div>{modal_title}</div>
+            <div className="text-normal tracking-wider text-black4">
+              {modal_title}
+            </div>
 
             <button
               onClick={() => setModal(false)}
