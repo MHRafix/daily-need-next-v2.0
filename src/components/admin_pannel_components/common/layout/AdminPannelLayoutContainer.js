@@ -41,13 +41,13 @@ export default function AdminPannelLayoutContainer({
           >
             <div className="right_content_body lg:!w-full xs:w-screen">
               <div className="grid">
-                <div className="lg:!p-1.4 xs:p-extra_padding3 bg-white border-b-1 border-b-slate-200 lg:!w-full xs:w-screen">
+                <div className="lg:!p-1.4 xs:p-1 bg-white border-b-1 border-b-slate-200 lg:!w-full xs:w-screen overflow-hidden">
                   <AdminPannelTopNavigation
                     setNavigationOn={setNavigationOn}
                     navigationOn={navigationOn}
                   />
                 </div>
-                <div className="lg:!p-1.4 xs:p-extra_padding3 text-normal lg:!w-full xs:w-screen">
+                <div className="lg:!p-1.4 xs:p-1 xs:pr-1.5 text-normal lg:!w-full xs:w-screen overflow-hidden">
                   {children}
                 </div>
                 {/* <div className="p-2">

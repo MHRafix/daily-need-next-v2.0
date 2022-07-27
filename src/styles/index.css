@@ -795,6 +795,11 @@
     width: 0.2rem;
   }
 
+  #card_data_table::-webkit-scrollbar:horizontal {
+    width: 0.2rem;
+    height: 0.2rem;
+  }
+
   #card_data_table::-webkit-scrollbar-track {
     background: transparent;
   }
@@ -806,6 +811,11 @@
 
   .sidebar_area::-webkit-scrollbar {
     width: 0.2rem;
+  }
+
+  .sidebar_area::-webkit-scrollbar:horizontal {
+    width: 0.2rem;
+    height: 0.2rem;
   }
 
   .sidebar_area::-webkit-scrollbar-track {
@@ -825,6 +835,11 @@
     width: 0.2rem;
   }
 
+  #modal_body::-webkit-scrollbar:horizontal {
+    width: 0.2rem;
+    height: 0.2rem;
+  }
+
   #modal_body::-webkit-scrollbar-track {
     background: transparent;
   }
@@ -838,6 +853,11 @@
     width: 0.2rem;
   }
 
+  #chart_area_wrapper::-webkit-scrollbar:horizontal {
+    width: 0.2rem;
+    height: 0.2rem;
+  }
+
   #chart_area_wrapper::-webkit-scrollbar-track {
     background: transparent;
   }
@@ -848,7 +868,7 @@
   }
 
   html::-webkit-scrollbar {
-    width: 0.2rem;
+    width: 0.5rem;
   }
 
   html::-webkit-scrollbar-track {

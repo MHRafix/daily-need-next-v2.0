@@ -67,22 +67,28 @@ export default function BrandArea({ setNavbarToggle, navbarToggle }) {
             </div>
             {/* &nbsp;&nbsp;&nbsp; */}
 
-            <NextLink
-              href={
-                user_loggedin
-                  ? "/my_account/my_profile/dashboard"
-                  : "/my_account/my_acc"
-              }
-              passHref
-            >
-              <div className="header_action_icon">
-                <span className="cart_badge !mr-0">
-                  <FaUserCircle />
-                </span>
-                &nbsp; <span className="xs:hidden lg:!block">My Account</span>
-              </div>
-            </NextLink>
-
+            {user_loggedin ? (
+              <NextLink href="/my_account/my_profile/dashboard" passHref>
+                <div className="header_action_icon ml-2">
+                  <Image
+                    src={user_loggedin?.user_pic}
+                    width={40}
+                    height={40}
+                    alt="user_pic"
+                    className="rounded-full"
+                  />
+                </div>
+              </NextLink>
+            ) : (
+              <NextLink href="/my_account/my_acc" passHref>
+                <div className="header_action_icon">
+                  <span className="cart_badge !mr-0">
+                    <FaUserCircle />
+                  </span>
+                  &nbsp; <span className="xs:hidden lg:!block">My Account</span>
+                </div>
+              </NextLink>
+            )}
             <div className="header_action_icon2">
               {navbarToggle ? (
                 <button
