@@ -720,15 +720,15 @@
   }
 
   #table_sorter_wrapper {
-    @apply lg:flex justify-between items-center mb-5;
+    @apply md:flex justify-between items-center mb-5;
   }
 
   #table_data_filter_wrapper {
-    @apply flex items-center;
+    @apply flex items-center lg:!mt-0 xs:mt-5;
   }
 
   #filter_btn {
-    @apply text-black3 tracking-wider text-light cursor-pointer mx-2 hover:text-green;
+    @apply text-black3 tracking-wider lg:!text-light xs:text-thin cursor-pointer mx-2 hover:text-green;
   }
 
   #pagination_content {

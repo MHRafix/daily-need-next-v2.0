@@ -4,7 +4,7 @@ import AdminPannelLayoutContainer from "../../../../../../components/admin_panne
 import ManageStockProductsMain from "../../../../../../components/admin_pannel_components/components/manage_products/manage_stock_products/ManageStockProductsMain";
 import ErrorPage from "../../../../../404";
 
-export default function ManageStockProducts() {
+export default function InventoryManagement() {
   // render error page
   const userInfo =
     Cookie.get("user_information") &&
@@ -16,7 +16,7 @@ export default function ManageStockProducts() {
   return (
     <>
       <AdminPannelLayoutContainer
-        title="Manage Products"
+        title="Manage Inventory"
         description="This is manage products of 'Daily Needs Grocery' web application admin pannel."
       >
         <ManageStockProductsMain />

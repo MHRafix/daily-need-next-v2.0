@@ -25,23 +25,13 @@ export const admin_pannel_navigation = [
       },
       {
         _id: 2,
-        sub_nav_name: "sale products",
-        sub_nav_link: "/manage_products/sale_products",
-      },
-      {
-        _id: 3,
-        sub_nav_name: "fixed products",
-        sub_nav_link: "/manage_products/fixed_products",
-      },
-      {
-        _id: 4,
         sub_nav_name: "limited products",
         sub_nav_link: "/manage_products/limited_offers_products",
       },
       {
-        _id: 5,
+        _id: 3,
         sub_nav_name: "manage stock",
-        sub_nav_link: "/manage_products/manage_stock_products",
+        sub_nav_link: "/manage_products/inventory_management",
       },
     ],
   },

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useState } from "react";
 import AdminPannelLeftNavigation from "../AdminPannelNavigation/AdminPannelLeftNavigation";
 import AdminPannelTopNavigation from "../AdminPannelNavigation/AdminPannelTopNavigation";
@@ -50,12 +51,20 @@ export default function AdminPannelLayoutContainer({
                 <div className="lg:!p-1.4 xs:p-1 xs:pr-1.5 text-normal lg:!w-full xs:w-screen overflow-hidden">
                   {children}
                 </div>
-                {/* <div className="p-2">
-                //   admin pannel footer is here
-                  <footer className="bg-slate-50 text-center">
-                    Footer here
+                <div className="p-1.5 border-t-1 border-t-slate-300">
+                  {/* admin pannel footer is here */}
+                  <footer className="text-center">
+                    <div className="text-sm tracking-wider mb-10 md:mb-0">
+                      Copyright © 2022. &nbsp;
+                      <Link href="https://rafix.netlify.app/" passHref>
+                        <a target="_blank" className="text-green font-semibold">
+                          Mehedi Hasan Rafiz
+                        </a>
+                      </Link>
+                      &nbsp; All rights reserved
+                    </div>
                   </footer>
-                </div> */}
+                </div>
               </div>
             </div>
           </main>

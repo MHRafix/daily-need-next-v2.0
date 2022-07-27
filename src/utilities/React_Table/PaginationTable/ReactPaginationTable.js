@@ -44,11 +44,24 @@ export default function ReactPaginationTable({
 
   const { pageIndex, pageSize } = state;
 
-  const handleFilter = (filter_name) => {
+  // filter functions here
+  const handleTypeFilter = (filter_name) => {
     const filtered_data = PRODUCTS_DATA.filter(
       (data) => data.product_type === filter_name
     );
     setData(filtered_data);
+  };
+
+  const handleStatusFilter = (filter_name) => {
+    const filtered_data = PRODUCTS_DATA.filter(
+      (data) => data.product_status === filter_name
+    );
+    setData(filtered_data);
+  };
+
+  // reset filter
+  const handleResetFilter = () => {
+    setData(PRODUCTS_DATA);
   };
 
   // pagination dependency
@@ -61,8 +74,16 @@ export default function ReactPaginationTable({
     pageIndex,
   };
 
-  // srting dependency
-  const sorting_dependency = { setPageSize, pageSize, handleFilter };
+  // sorting dependency
+  const sorting_dependency = {
+    setPageSize,
+    pageSize,
+    handleTypeFilter,
+    handleStatusFilter,
+    handleResetFilter,
+    show: true,
+  };
+
   return (
     <>
       {/* data sorter  */}

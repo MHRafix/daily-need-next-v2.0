@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
 import { FiBookOpen, FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -12,7 +12,7 @@ import { TableDataSorter, TablePagination } from "../TableParts";
 
 export default function ReactOrdersTable({ ORDERS_DATA, handleModal }) {
   const columns = useMemo(() => ORDERS_TABLE_COLUMN, []);
-  const data = useMemo(() => ORDERS_DATA);
+  const [data, setData] = useState(ORDERS_DATA);
 
   const tableInstance = useTable(
     {
@@ -43,6 +43,19 @@ export default function ReactOrdersTable({ ORDERS_DATA, handleModal }) {
 
   const { pageIndex, pageSize } = state;
 
+  // filter function here
+  const handleStatusFilter = (filter_name) => {
+    const filtered_data = ORDERS_DATA.filter(
+      (data) => data.order_overview.order_status === filter_name
+    );
+    setData(filtered_data);
+  };
+
+  // reset filter
+  const handleResetFilter = () => {
+    setData(ORDERS_DATA);
+  };
+
   // pagination dependency
   const pagination_dependency = {
     nextPage,
@@ -53,8 +66,14 @@ export default function ReactOrdersTable({ ORDERS_DATA, handleModal }) {
     pageIndex,
   };
 
-  // srting dependency
-  const sorting_dependency = { setPageSize, pageSize };
+  // sorting dependency
+  const sorting_dependency = {
+    setPageSize,
+    pageSize,
+    handleStatusFilter,
+    handleResetFilter,
+    show: false,
+  };
 
   return (
     <>

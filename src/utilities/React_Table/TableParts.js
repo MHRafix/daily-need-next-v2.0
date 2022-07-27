@@ -21,8 +21,8 @@ export const TablePagination = ({ dependency }) => {
         disabled={!canPreviousPage}
         id={!canPreviousPage ? "form_btn_disabled" : "form_btn"}
         style={{
-          borderRadius: "none",
-          height: "46px",
+          borderRadius: "0px",
+          height: "45px",
           padding: "10px",
           fontSize: "18px",
         }}
@@ -40,10 +40,10 @@ export const TablePagination = ({ dependency }) => {
       <button
         onClick={() => nextPage()}
         disabled={!canNextPage}
-        id={!canPreviousPage ? "form_btn_disabled" : "form_btn"}
+        id={!canNextPage ? "form_btn_disabled" : "form_btn"}
         style={{
-          borderRadius: "none",
-          height: "46px",
+          borderRadius: "0px",
+          height: "45px",
           padding: "10px",
           fontSize: "18px",
         }}
@@ -56,7 +56,14 @@ export const TablePagination = ({ dependency }) => {
 
 // table data Sorter
 export const TableDataSorter = ({ dependency }) => {
-  const { setPageSize, pageSize, handleFilter } = dependency;
+  const {
+    setPageSize,
+    pageSize,
+    handleTypeFilter,
+    handleStatusFilter,
+    handleResetFilter,
+    show,
+  } = dependency;
 
   return (
     <div id="table_sorter_wrapper">
@@ -76,20 +83,43 @@ export const TableDataSorter = ({ dependency }) => {
         entries
       </div>
 
-      <div id="table_data_filter_wrapper">
-        <div id="filter_btn" onClick={() => handleFilter("fixed-sale")}>
-          <button>Fixed Sale</button>
+      {show ? (
+        <div id="table_data_filter_wrapper">
+          <div id="filter_btn" onClick={() => handleResetFilter()}>
+            <button>All Products</button>
+          </div>
+          <div id="filter_btn" onClick={() => handleTypeFilter("fixed-sale")}>
+            <button>Fixed Sale</button>
+          </div>
+          <div id="filter_btn" onClick={() => handleTypeFilter("on-sale")}>
+            <button>On Sale</button>
+          </div>
+          <div id="filter_btn" onClick={() => handleStatusFilter("in-stock")}>
+            <button>In-Stock</button>
+          </div>
+          <div id="filter_btn" onClick={() => handleStatusFilter("stock-out")}>
+            <button>Stock-Out</button>
+          </div>
         </div>
-        <div id="filter_btn" onClick={() => handleFilter("on-sale")}>
-          <button>On Sale</button>
+      ) : (
+        <div id="table_data_filter_wrapper">
+          <div id="filter_btn" onClick={() => handleResetFilter()}>
+            <button>All Orders</button>
+          </div>
+          <div id="filter_btn" onClick={() => handleStatusFilter("shipped")}>
+            <button>Shipped Orders</button>
+          </div>
+          <div id="filter_btn" onClick={() => handleStatusFilter("canceled")}>
+            <button>Canceled Orders</button>
+          </div>
+          <div id="filter_btn" onClick={() => handleStatusFilter("pendding")}>
+            <button>Pendding Orders</button>
+          </div>
+          <div id="filter_btn" onClick={() => handleStatusFilter("inprogress")}>
+            <button>Inprogress Orders</button>
+          </div>
         </div>
-        <div id="filter_btn" onClick={() => handleFilter("in-stock")}>
-          <button>In-Stock</button>
-        </div>
-        <div id="filter_btn" onClick={() => handleFilter("stock-out")}>
-          <button>Stock-Out</button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
