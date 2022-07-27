@@ -47,7 +47,12 @@ export default function ProductView({ product }) {
 
       <div className="single_product_view">
         <div className="image_wrapper">
-          <Image src={product?.thumbnail_big} alt="single_product_image" />
+          <Image
+            src={product?.thumbnail_big}
+            alt="single_product_image"
+            width={100}
+            height={100}
+          />
         </div>
         <div className="product_details_wrapper">
           {product?.prices?.sale_price !== 0 && (
