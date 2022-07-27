@@ -1,4 +1,4 @@
-import Product from "../../../../models/Products";
+import AddProduct from "../../../../models/PostProducts";
 import LayoutContainer from "../../../components/commons/layout/LayoutContainer";
 import SignleProductMain from "../../../components/single_product/SignleProductMain";
 import db from "../../../utilities/database";
@@ -47,7 +47,7 @@ export async function getServerSideProps(context) {
   const { slug } = params;
 
   await db.connect();
-  const product = await Product.findOne({ slug }).lean();
+  const product = await AddProduct.findOne({ slug }).lean();
   await db.disconnect();
   return {
     props: {
