@@ -647,7 +647,7 @@
   }
 
   #sorter_input_wrapper {
-    @apply text-light text-black3 tracking-wider mb-5;
+    @apply text-light text-black3 tracking-wider;
   }
 
   #red_signal_status {
@@ -717,6 +717,18 @@
 
   #chart_indicator {
     @apply flex items-center justify-center mx-2;
+  }
+
+  #table_sorter_wrapper {
+    @apply lg:flex justify-between items-center mb-5;
+  }
+
+  #table_data_filter_wrapper {
+    @apply flex items-center;
+  }
+
+  #filter_btn {
+    @apply text-black3 tracking-wider text-light cursor-pointer mx-2 hover:text-green;
   }
 
   #pagination_content {

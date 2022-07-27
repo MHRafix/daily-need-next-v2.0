@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -12,7 +12,8 @@ export default function ReactPaginationTable({
   PRODUCTS_TABLE_COLUMNS,
 }) {
   const columns = useMemo(() => PRODUCTS_TABLE_COLUMNS, []);
-  const data = useMemo(() => PRODUCTS_DATA);
+  // const data = useMemo(() => PRODUCTS_DATA);
+  const [data, setData] = useState(PRODUCTS_DATA);
 
   const tableInstance = useTable(
     {
@@ -43,6 +44,13 @@ export default function ReactPaginationTable({
 
   const { pageIndex, pageSize } = state;
 
+  const handleFilter = (filter_name) => {
+    const filtered_data = PRODUCTS_DATA.filter(
+      (data) => data.product_type === filter_name
+    );
+    setData(filtered_data);
+  };
+
   // pagination dependency
   const pagination_dependency = {
     nextPage,
@@ -54,7 +62,7 @@ export default function ReactPaginationTable({
   };
 
   // srting dependency
-  const sorting_dependency = { setPageSize, pageSize };
+  const sorting_dependency = { setPageSize, pageSize, handleFilter };
   return (
     <>
       {/* data sorter  */}

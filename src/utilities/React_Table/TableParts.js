@@ -56,7 +56,7 @@ export const TablePagination = ({ dependency }) => {
 
 // table data Sorter
 export const TableDataSorter = ({ dependency }) => {
-  const { setPageSize, pageSize } = dependency;
+  const { setPageSize, pageSize, handleFilter } = dependency;
 
   return (
     <div id="table_sorter_wrapper">
@@ -77,8 +77,17 @@ export const TableDataSorter = ({ dependency }) => {
       </div>
 
       <div id="table_data_filter_wrapper">
-        <div id="filter_btn">
+        <div id="filter_btn" onClick={() => handleFilter("fixed-sale")}>
           <button>Fixed Sale</button>
+        </div>
+        <div id="filter_btn" onClick={() => handleFilter("on-sale")}>
+          <button>On Sale</button>
+        </div>
+        <div id="filter_btn" onClick={() => handleFilter("in-stock")}>
+          <button>In-Stock</button>
+        </div>
+        <div id="filter_btn" onClick={() => handleFilter("stock-out")}>
+          <button>Stock-Out</button>
         </div>
       </div>
     </div>
