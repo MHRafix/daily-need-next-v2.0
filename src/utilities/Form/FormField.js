@@ -98,7 +98,7 @@ export const FormButton = ({ type, btn_name, processing, disable }) => {
   );
 };
 
-export const FormikField = ({ form_label, type, name }) => {
+export const FormikTextField = ({ form_label, type, name, as }) => {
   const style = {
     padding: "8px",
     border: "1px solid #564d4d24",
@@ -118,7 +118,42 @@ export const FormikField = ({ form_label, type, name }) => {
         <span id="required_sign">*</span>
       </label>
       <br />
-      <Field type={type} name={name} id={name} style={style} />
+      <Field as={as} type={type} name={name} id={name} style={style} />
+      &nbsp;
+      <span className="text-red-500 text-light">
+        <ErrorMessage name={name} />
+      </span>
+    </div>
+  );
+};
+
+export const FormikSelectField = ({ form_label, type, name }) => {
+  const style = {
+    padding: "8px",
+    border: "1px solid #564d4d24",
+    borderRadius: "2px",
+    outline: "none",
+    width: "100%",
+    margin: "4px 0px",
+    fontSize: "15px",
+    color: "#333",
+  };
+
+  return (
+    <div id="field_wrapper">
+      <label id="input_label" htmlFor="label">
+        {form_label}
+        {/* {required && <span id="required_sign">*</span>} */}
+        <span id="required_sign">*</span>
+      </label>
+      <br />
+      <Field as="select" type={type} name={name} id={name} style={style}>
+        <option value="fruits">Fruits</option>
+        <option value="vegetable" selected>
+          Vegetable
+        </option>
+        <option value="groci">Groci</option>
+      </Field>
       &nbsp;
       <span className="text-red-500 text-light">
         <ErrorMessage name={name} />

@@ -1,16 +1,21 @@
 import nc from "next-connect";
-import Product from "../../../../models/Products";
-import { products_data2 } from "../../../fake_data/all_fakedata";
+import AddProduct from "../../../../models/PostProducts";
 import db from "../../../utilities/database";
-
 const handler = nc();
 
-handler.get(async (req, res) => {
+handler.post(async (req, res) => {
   await db.connect();
-  await Product.deleteMany();
-  await Product.insertMany(products_data2);
-  await db.disconnect();
-  res.send({ message: "seeded successfully" });
+  if (req.body) {
+    // create user
+    const newProduct = new AddProduct(req.body);
+    const added = await newProduct.save();
+    await db.disconnect();
+    if (added) {
+      res.send({ success: "Product added successfully!" });
+    } else {
+      res.send({ error: "Opps, something wrong!" });
+    }
+  }
 });
 
 export default handler;

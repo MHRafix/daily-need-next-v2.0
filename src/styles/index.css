@@ -414,16 +414,22 @@
   #form_layout_wrapper {
     @apply shadow-lg rounded-lg md:px-3 xs:px-1.5 py-1.5;
   }
+
   #form_name {
     @apply my-5;
   }
+
   #form_name_title {
     @apply text-medium_light font-bold text-black tracking-wide capitalize;
   }
 
   /* #field_wrapper {
-    @apply my-5;
+    @apply lg:!w-per_48;
   } */
+
+  #field_flex_layout {
+    @apply md:grid grid-cols-2 gap-x-10;
+  }
 
   #input_label {
     @apply text-sm capitalize tracking-wider text-black3;

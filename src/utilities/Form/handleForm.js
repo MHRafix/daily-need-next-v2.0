@@ -117,6 +117,5 @@ const sendReq = async (reqDep) => {
     setToastType("error_toast");
     setToastOn(true);
     setToastText(err.message);
-    console.log(err);
   }
 };
