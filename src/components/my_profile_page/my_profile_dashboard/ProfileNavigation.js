@@ -1,4 +1,5 @@
 import Cookie from "js-cookie";
+import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { MdLogout } from "react-icons/md";
@@ -24,10 +25,11 @@ export default function ProfileNavigation() {
   return (
     <div className="profile_details_wrapper">
       <div className="profile_details">
-        <img
-          style={{ width: "90px", height: "90px" }}
+        <Image
           className="rounded-full my-5 mx-auto"
           src={userInfo?.user_pic}
+          width={90}
+          height={90}
           alt="Profile Picture"
         />
         <h3 className="text-deep_cyan font-semibold tracking-wide text-normal capitalize">

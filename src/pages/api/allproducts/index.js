@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import Product from "../../../../models/Products";
+import AddProduct from "../../../../models/PostProducts";
 import db from "../../../utilities/database";
 
 // products getting function here
@@ -7,7 +7,7 @@ const handler = nc();
 
 handler.get(async (req, res) => {
   await db.connect();
-  const products = await Product.find({});
+  const products = await AddProduct.find({});
   await db.disconnect();
   res.send(products);
 });

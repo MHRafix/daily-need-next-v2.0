@@ -4,9 +4,19 @@ import AllProductsMain from "../../../../../../components/admin_pannel_component
 // import Order from "../../../../../../models/AllOrders";
 import AddProduct from "../../../../../../../models/PostProducts";
 // import User from "../../../../../../models/Users";
+import Cookie from "js-cookie";
 import db from "../../../../../../utilities/database";
+import ErrorPage from "../../../../../404";
 
 export default function AllProducts({ all_products }) {
+  // render error page
+  const userInfo =
+    Cookie.get("user_information") &&
+    JSON.parse(Cookie.get("user_information"));
+
+  if (!userInfo?.user_admin) {
+    return <ErrorPage />;
+  }
   return (
     <>
       <AdminPannelLayoutContainer

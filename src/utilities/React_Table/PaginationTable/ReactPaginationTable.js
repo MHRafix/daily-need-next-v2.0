@@ -130,6 +130,9 @@ export default function ReactPaginationTable({
                           <Image
                             src={cell.value}
                             alt="img"
+                            // layout="fill"
+                            width={100}
+                            height={100}
                             className="rounded-full"
                           />
                         </span>
