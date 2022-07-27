@@ -76,8 +76,8 @@ export const AddProductsFormValidator = () => {
     if (products_data) {
       try {
         const { data } = await axios.post(
-          // `http://localhost:3000/api/products`,
-          `https://daily-need.vercel.app/api/products`,
+          `http://localhost:3000/api/products`,
+          // `https://daily-need.vercel.app/api/products`,
           products_data
         );
 
