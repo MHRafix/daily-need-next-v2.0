@@ -2,13 +2,10 @@ import Image from "next/image";
 import React, { useMemo } from "react";
 import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
 import { FiEdit } from "react-icons/fi";
-import {
-  MdOutlineKeyboardArrowLeft,
-  MdOutlineKeyboardArrowRight,
-} from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { usePagination, useSortBy, useTable } from "react-table";
 import ReactTooltip from "react-tooltip";
+import { TableDataSorter, TablePagination } from "../TableParts";
 
 export default function ReactPaginationTable({
   PRODUCTS_DATA,
@@ -45,25 +42,23 @@ export default function ReactPaginationTable({
   } = tableInstance;
 
   const { pageIndex, pageSize } = state;
+
+  // pagination dependency
+  const pagination_dependency = {
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    pageIndex,
+  };
+
+  // srting dependency
+  const sorting_dependency = { setPageSize, pageSize };
   return (
     <>
       {/* data sorter  */}
-      <div id="sorter_input_wrapper">
-        Show
-        <select
-          className="sorting_input"
-          value={pageSize}
-          onChange={(e) => setPageSize(Number(e.target.value))}
-        >
-          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              {pageSize}
-            </option>
-          ))}
-        </select>
-        entries
-      </div>
-
+      <TableDataSorter dependency={sorting_dependency} />
       {/* react table here */}
       <ReactTooltip place="left" type="dark" effect="solid" />
       <table id="products_table" {...getTableProps()}>
@@ -201,45 +196,7 @@ export default function ReactPaginationTable({
       </table>
 
       {/* table data pagination here  */}
-      <div className="flex items-center justify-center my-5">
-        {/* <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          
-        </button> */}
-
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          <MdOutlineKeyboardArrowLeft />
-        </button>
-
-        <span>
-          Page
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>
-        </span>
-
-        {/* <span>
-          | Go to page :{" "}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={(e) => {
-              const pageNumber = e.target.value
-                ? Number(e.target.value) - 1
-                : 0;
-              gotoPage(pageNumber);
-            }}
-            style={{ width: "50px" }}
-          />
-        </span> */}
-
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          <MdOutlineKeyboardArrowRight />
-        </button>
-
-        {/* <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          
-        </button> */}
-      </div>
+      <TablePagination dependency={pagination_dependency} />
     </>
   );
 }

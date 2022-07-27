@@ -81,7 +81,7 @@ export const FormButton = ({ type, btn_name, processing, disable }) => {
           className="lg:!w-full !w-full"
           disabled={disable}
         >
-          Loading...{" "}
+          Loading...
           <Image src={Loader} alt="loader gif" width={100} height={90} />
         </button>
       ) : (

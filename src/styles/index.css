@@ -719,6 +719,10 @@
     @apply flex items-center justify-center mx-2;
   }
 
+  #pagination_content {
+    @apply bg-red-100 py-1 px-1 font-light;
+  }
+
   /* all btn css here */
   .btn {
     @apply bg-gradient-to-r from-orangee to-orangee_red;

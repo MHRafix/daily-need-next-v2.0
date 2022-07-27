@@ -42,6 +42,7 @@ table tr {
 }
 
 table td {
+  text-transform: capitalize;
   font-size: 14px;
   border: 1px solid #ddd;
   padding: 0px 6px;
