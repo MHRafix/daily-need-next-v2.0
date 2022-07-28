@@ -75,8 +75,8 @@ export default function GridProductCard({ product_data }) {
               <Image
                 id="product_thumbnail"
                 src={thumbnail}
-                width={100}
-                height={100}
+                width="130"
+                height="130"
                 alt="product_thumbnail"
               />
             </div>

@@ -15,7 +15,7 @@ export const AddProductsFormValidator = () => {
   const initialValues = {
     title: "",
     slug: "",
-    category: "",
+    category: "fruits",
     regular_price: 10,
     sale_price: 0,
     stock_available: 5,
@@ -77,7 +77,7 @@ export const AddProductsFormValidator = () => {
       try {
         const { data } = await axios.post(
           // `http://localhost:3000/api/products`,
-          `https://daily-need.vercel.app/api/products`,
+          "https://daily-need.vercel.app/api/products",
           products_data
         );
 

@@ -76,6 +76,8 @@ export default function ListProductCard({ product_data }) {
                 id="product_thumbnail"
                 src={thumbnail}
                 alt="product_thumbnail"
+                width="200"
+                height="200"
               />
             </div>
           </NextLink>

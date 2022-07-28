@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    slug: { type: String, required: true, unique: true },
+    slug: { type: String, required: true },
     thumbnail: { type: String, required: true },
     thumbnail_big: { type: String, required: true },
     prices: {
@@ -25,6 +25,6 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const AddProduct =
+const AllProducts =
   mongoose.models.AllProduct || mongoose.model("AllProduct", productSchema);
-export default AddProduct;
+export default AllProducts;

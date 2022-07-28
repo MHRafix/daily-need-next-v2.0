@@ -1,4 +1,4 @@
-import Product from "../../../models/Products";
+import AllProducts from "../../../models/AllProducts";
 import LayoutContainer from "../../components/commons/layout/LayoutContainer";
 import ShopPageMain from "../../components/shop_page/ShopPageMain";
 import db from "../../utilities/database";
@@ -27,7 +27,7 @@ export default function GridShopPage({ products }) {
 
 export async function getServerSideProps() {
   await db.connect();
-  const products = await Product.find({});
+  const products = await AllProducts.find({});
   await db.disconnect();
   return {
     props: {

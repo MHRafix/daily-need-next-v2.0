@@ -1,4 +1,4 @@
-import AddProduct from "../../models/PostProducts";
+import AllProducts from "../../models/AllProducts";
 import LayoutContainer from "../components/commons/layout/LayoutContainer";
 import HomeMain from "../components/home_page/HomeMain";
 import db from "../utilities/database";
@@ -24,7 +24,7 @@ export default function Home({ products }) {
 
 export async function getServerSideProps() {
   await db.connect();
-  const products = await AddProduct.find({}).limit(8);
+  const products = await AllProducts.find({}).limit(8);
   await db.disconnect();
   return {
     props: {

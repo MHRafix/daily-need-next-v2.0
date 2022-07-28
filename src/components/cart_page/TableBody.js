@@ -55,12 +55,17 @@ export default function TableBody({ carted_products }) {
         </div>
         <div className="table_body_item">
           <NextLink href={`/shop/singleProducts/${slug}`} passHref>
-            <h3 className="text-light text-black3 cursor-pointer hover:text-info_color hover:duration-300">
+            <h3 className="capitalize text-light text-black3 cursor-pointer hover:text-info_color hover:duration-300">
               {title}
             </h3>
           </NextLink>
         </div>
-        <div className="table_body_item">৳ {prices?.sale_price}</div>
+        <div className="table_body_item">
+          ৳{" "}
+          {prices?.sale_price === 0
+            ? prices?.regular_price
+            : prices?.sale_price}
+        </div>
         <div className="table_body_item">
           <div id="add_to_cart_area">
             <button
@@ -99,7 +104,11 @@ export default function TableBody({ carted_products }) {
           </div>
         </div>
         <div className="table_body_item">
-          ৳ {(prices?.sale_price * quantity).toFixed(2)}
+          ৳{" "}
+          {(prices?.sale_price === 0
+            ? prices?.regular_price * quantity
+            : prices?.sale_price * quantity
+          ).toFixed(2)}
         </div>
         <div className="table_body_item">
           <span

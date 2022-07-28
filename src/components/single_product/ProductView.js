@@ -50,8 +50,8 @@ export default function ProductView({ product }) {
           <Image
             src={product?.thumbnail_big}
             alt="single_product_image"
-            width={100}
-            height={100}
+            width="580"
+            height="496"
           />
         </div>
         <div className="product_details_wrapper">

@@ -187,7 +187,7 @@
   }
 
   #product_title_list {
-    @apply text-normal font-semibold mb-1 cursor-pointer text-info_color tracking-wide;
+    @apply text-normal font-semibold mb-1 cursor-pointer text-info_color tracking-wide capitalize;
   }
 
   #stock_slae_badge {
@@ -203,7 +203,7 @@
   }
 
   #product_title {
-    @apply text-sm my-1 cursor-pointer font-bold text-info_color tracking-wide;
+    @apply text-sm my-1 cursor-pointer font-bold text-info_color tracking-wide capitalize;
   }
 
   #stock_status {

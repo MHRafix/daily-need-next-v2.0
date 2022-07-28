@@ -39,7 +39,7 @@ export default function CartItemCard({ product }) {
             </h3>
           </NextLink>
           <span className="text-thin font-light tracking-wider">
-            -{product?.additional_info?.weight}
+            - {product?.additional_info?.weight} kg
           </span>
           <br />
           <span className="font-semibold text-black my-2 tracking-wider text-sm">

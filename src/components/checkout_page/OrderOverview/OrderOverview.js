@@ -20,8 +20,8 @@ export default function OrderOverview({ carted_products, net_total }) {
               ))}
             </div>
             <div className="flex items-center justify-between px-2 text-black2 tracking-wider font-semibold mt-5">
-              <div className="text-left">Payable Amount:</div>
-              <div className="pr-2">৳ {net_total}</div>
+              <div className="text-left">Payable Amount (+shipping):</div>
+              <div className="pr-2">৳ {net_total} </div>
             </div>
           </>
         ) : (

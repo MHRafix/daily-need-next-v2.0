@@ -71,6 +71,7 @@ export const FormTextArea = ({ form_label, cols, rows, required }) => {
   );
 };
 
+// form button
 export const FormButton = ({ type, btn_name, processing, disable }) => {
   return (
     <div id="field_wrapper" className="!w-full">
@@ -98,6 +99,7 @@ export const FormButton = ({ type, btn_name, processing, disable }) => {
   );
 };
 
+// formik form text field
 export const FormikTextField = ({ form_label, type, name, as }) => {
   const style = {
     padding: "8px",
@@ -127,6 +129,7 @@ export const FormikTextField = ({ form_label, type, name, as }) => {
   );
 };
 
+// formik form select input
 export const FormikSelectField = ({ form_label, type, name }) => {
   const style = {
     padding: "8px",
@@ -148,7 +151,9 @@ export const FormikSelectField = ({ form_label, type, name }) => {
       </label>
       <br />
       <Field as="select" type={type} name={name} id={name} style={style}>
-        <option value="fruits">Fruits</option>
+        <option value="fruits" selected={true}>
+          Fruits
+        </option>
         <option value="vegetable" selected>
           Vegetable
         </option>
@@ -162,6 +167,7 @@ export const FormikSelectField = ({ form_label, type, name }) => {
   );
 };
 
+// formik file field
 export const FormikFileField = ({ form_label, setState, type, name }) => {
   const style = {
     padding: "8px",

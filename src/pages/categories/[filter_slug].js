@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import Product from "../../../models/Products";
+import AllProducts from "../../../models/AllProducts";
 import LayoutContainer from "../../components/commons/layout/LayoutContainer";
 import FilteredShopMain from "../../components/filter_shop/FilteredShopMain";
 import db from "../../utilities/database";
@@ -47,7 +47,9 @@ export async function getServerSideProps(context) {
   const { filter_slug } = params;
 
   await db.connect();
-  const matched_products = await Product.find({ category: filter_slug }).lean();
+  const matched_products = await AllProducts.find({
+    category: filter_slug,
+  }).lean();
   await db.disconnect();
   return {
     props: {

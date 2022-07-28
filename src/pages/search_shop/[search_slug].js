@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import Product from "../../../models/Products";
+import AllProducts from "../../../models/AllProducts";
 import LayoutContainer from "../../components/commons/layout/LayoutContainer";
 import SearchShopMain from "../../components/search_shop/SearchShopMain";
 import db from "../../utilities/database";
@@ -48,7 +48,7 @@ export async function getServerSideProps(context) {
   const { search_slug } = params;
 
   await db.connect();
-  const products = await Product.find({}).lean();
+  const products = await AllProducts.find({}).lean();
   const matched_products = products.filter((product) =>
     product.title.toLowerCase().includes(search_slug.toLowerCase())
   );

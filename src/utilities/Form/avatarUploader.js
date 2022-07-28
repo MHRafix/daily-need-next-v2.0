@@ -4,7 +4,7 @@ export default function avatarUploader(userpic) {
     if (userpic) {
       const data = new FormData();
       data.append("file", userpic);
-      data.append("upload_preset", "mystore");
+      data.append("upload_preset", "userimages");
       data.append("cloud_name", "CoderXone");
       const upload_req = await fetch(
         "https://api.cloudinary.com/v1_1/CoderXone/image/upload",

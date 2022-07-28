@@ -1,5 +1,5 @@
 import React from "react";
-import Product from "../../../models/Products";
+import AllProducts from "../../../models/AllProducts";
 import LayoutContainer from "../../components/commons/layout/LayoutContainer";
 import SaleProductsShopMain from "../../components/sale_shop_page/SaleProductsShopMain";
 import db from "../../utilities/database";
@@ -30,7 +30,7 @@ export default function SaleProductsShop({ sale_products }) {
 
 export async function getServerSideProps() {
   await db.connect();
-  const products = await Product.find({}).lean();
+  const products = await AllProducts.find({}).lean();
   const sale_products = products.filter(
     (product) => product.prices.sale_price !== 0
   );

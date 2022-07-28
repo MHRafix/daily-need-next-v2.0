@@ -5,7 +5,7 @@ export default function imageUploader(image1, image2) {
       // small thumbnail uploda here
       const data1 = new FormData();
       data1.append("file", image1);
-      data1.append("upload_preset", "mystore");
+      data1.append("upload_preset", "gridproducts");
       data1.append("cloud_name", "CoderXone");
       const upload_req1 = await fetch(
         "https://api.cloudinary.com/v1_1/CoderXone/image/upload",
@@ -19,7 +19,7 @@ export default function imageUploader(image1, image2) {
       // big thumbnail upload here
       const data2 = new FormData();
       data2.append("file", image2);
-      data2.append("upload_preset", "mystore");
+      data2.append("upload_preset", "singleproducts");
       data2.append("cloud_name", "CoderXone");
       const upload_req2 = await fetch(
         "https://api.cloudinary.com/v1_1/CoderXone/image/upload",
