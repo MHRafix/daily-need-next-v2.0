@@ -76,8 +76,8 @@ export const AddProductsFormValidator = () => {
     if (products_data) {
       try {
         const { data } = await axios.post(
-          `http://localhost:3000/api/products`,
-          // `https://daily-need.vercel.app/api/products`,
+          // `http://localhost:3000/api/products`,
+          `https://daily-need.vercel.app/api/products`,
           products_data
         );
 
@@ -114,25 +114,3 @@ export const AddProductsFormValidator = () => {
     setToastOn,
   };
 };
-
-// {
-//   title: { type: String, required: true },
-//   slug: { type: String, required: true, unique: true },
-//   thumbnail: { type: Object, required: true },
-//   thumbnail_big: { type: Object, required: true },
-//   prices: {
-//     regular_price: { type: Number, required: true },
-//     sale_price: { type: Number, required: true },
-//   },
-//   category: { type: String, required: true },
-//   reviews_ratings: [{ rating: Number, review: String }],
-//   stock_available: { type: Number, required: true },
-//   sold_quantity: { type: Number, required: true },
-//   additional_info: {
-//     description: { type: String, required: true },
-//     weight: { type: String, required: true },
-//     tags: [String],
-//   },
-//   product_status: { type: String, required: true },
-//   product_type: { type: String, default: "fixed-sale" },
-// },

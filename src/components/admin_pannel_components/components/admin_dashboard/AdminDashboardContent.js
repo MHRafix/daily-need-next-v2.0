@@ -162,9 +162,8 @@ export default function AdminDashboardContent({
         </div>
       </div>
 
-      {/* products show on table */}
+      {/* orders show on table */}
       <div className="dashboard_row_wrapper">
-        {/* <div className="manage_products_table"> */}
         <DashboardContentLayout item_name="all orders">
           <ReactOrdersTable
             ORDERS_DATA={all_orders}
@@ -184,7 +183,6 @@ export default function AdminDashboardContent({
           </ReactModal>
         )}
       </div>
-      {/* </div> */}
     </>
   );
 }

@@ -42,33 +42,8 @@ export const admin_pannel_navigation = [
     sub_navs: [
       {
         _id: 1,
-        sub_nav_name: "place custom order",
-        sub_nav_link: "/manage_orders/place_custom_order",
-      },
-      {
-        _id: 2,
         sub_nav_name: "all orders",
         sub_nav_link: "/manage_orders/all_orders",
-      },
-      {
-        _id: 3,
-        sub_nav_name: "pendding orders",
-        sub_nav_link: "/manage_orders/pendding_orders",
-      },
-      {
-        _id: 4,
-        sub_nav_name: "inprogress orders",
-        sub_nav_link: "/manage_orders/inprogress_orders",
-      },
-      {
-        _id: 5,
-        sub_nav_name: "completed orders",
-        sub_nav_link: "/manage_orders/completed_orders",
-      },
-      {
-        _id: 6,
-        sub_nav_name: "canceled orders",
-        sub_nav_link: "/manage_orders/canceled_orders",
       },
     ],
   },
