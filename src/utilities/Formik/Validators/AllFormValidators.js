@@ -37,7 +37,7 @@ export const AddProductsFormValidator = () => {
   });
 
   // on submit function here
-  const onSubmit = async (values) => {
+  const onSubmit = async (values, { resetForm }) => {
     setProcessing(true);
 
     // destreucture values here
@@ -76,8 +76,8 @@ export const AddProductsFormValidator = () => {
     if (products_data) {
       try {
         const { data } = await axios.post(
-          // `http://localhost:3000/api/products`,
-          "https://daily-need.vercel.app/api/products",
+          // `http://localhost:3000/api/add_products`,
+          "https://daily-need.vercel.app/api/add_products",
           products_data
         );
 
@@ -86,6 +86,7 @@ export const AddProductsFormValidator = () => {
           setToastType("success_toast");
           setToastOn(true);
           setToastText(data?.success);
+          resetForm({ values: "" });
         } else {
           setProcessing(false);
           setToastType("error_toast");

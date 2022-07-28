@@ -1,6 +1,6 @@
 import Cookie from "js-cookie";
 import Order from "../../../../../../models/AllOrders";
-import Product from "../../../../../../models/Products";
+import AllProducts from "../../../../../../models/AllProducts";
 import User from "../../../../../../models/Users";
 import AdminPannelLayoutContainer from "../../../../../components/admin_pannel_components/common/layout/AdminPannelLayoutContainer";
 import AdminDashboardMain from "../../../../../components/admin_pannel_components/components/admin_dashboard/AdminDashboardMain";
@@ -41,7 +41,7 @@ export async function getServerSideProps() {
   await db.connect();
   const all_orders = await Order.find({});
   const all_users = await User.find({});
-  const all_products = await Product.find({});
+  const all_products = await AllProducts.find({});
   await db.disconnect();
 
   return {
