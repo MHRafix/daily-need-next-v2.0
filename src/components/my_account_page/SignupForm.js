@@ -1,53 +1,27 @@
-import Image from "next/image";
-import { useState } from "react";
+import { Form } from "formik";
 import { BiErrorCircle } from "react-icons/bi";
 import { MdCloudDone } from "react-icons/md";
 import AlertToast from "../../utilities/alertToast/AlertToast";
-import avatarUploader from "../../utilities/Form/avatarUploader";
 import {
   FormButton,
-  FormFileField,
-  FormTextField,
+  FormikFileField,
+  FormikTextField,
 } from "../../utilities/Form/FormField";
-import handleForm from "../../utilities/Form/handleForm";
+import FormikFormLayout from "../../utilities/Formik/FormikLayout/FormikFormLayout";
+import { RegistrationFormValidator } from "../../utilities/Formik/Validators/AllFormValidators";
 
 export default function SignupForm() {
-  // take some state for storing data
-  const [username, setUsername] = useState("");
-  const [useremail, setUseremail] = useState("");
-  const [password, setPassword] = useState("");
-  const [cnfPassword, setCnfPassword] = useState("");
-  const [userpic, setUserpic] = useState("");
-
-  // avatar uploader hook import here
-  const { avatar_upload_cloudinary } = avatarUploader(userpic);
-
-  // make a data object
-  const user_info = {
-    user_name: username,
-    user_email: useremail,
-    user_password: password,
-    userpic: userpic,
-    user_admin: false,
-  };
-
-  // make request dependency obj
-  const request_dependency = {
-    user_info,
-    cnfPassword,
-    api_url: "my_account/signup_api",
-    avatar_upload_cloudinary,
-  };
-
-  // handle form submit import here
   const {
+    initialValues,
+    validationSchema,
+    onSubmit,
+    setUserpic,
+    processing,
+    toastText,
+    toastType,
     toastOn,
     setToastOn,
-    toastType,
-    toastText,
-    processing,
-    handleFormSubmit,
-  } = handleForm(request_dependency);
+  } = RegistrationFormValidator();
 
   // handle close toast here
   const handleRemoveToast = () => {
@@ -77,82 +51,56 @@ export default function SignupForm() {
       {toastOn && <AlertToast toast_config={toast_config} />}
 
       {/* signup form here */}
-      <form onSubmit={handleFormSubmit}>
-        <FormTextField
-          form_label="user name"
-          type="text"
-          required={true}
-          setState={setUsername}
-        />
-
-        <FormTextField
-          form_label="your email"
-          type="email"
-          required={true}
-          setState={setUseremail}
-        />
-
-        <FormTextField
-          form_label="your password"
-          type="password"
-          required={true}
-          setState={setPassword}
-        />
-
-        <FormTextField
-          form_label="re-type password"
-          type="password"
-          required={true}
-          setState={setCnfPassword}
-        />
-
-        <label
-          id="input_label"
-          htmlFor="file_label"
-          style={{ marginBottom: "10px", display: "block" }}
-        >
-          select profile pic
-          <span id="required_sign">*</span>
-        </label>
-        <div className="sm:!flex xs:grid items-center">
-          <FormFileField
-            form_label="select profile pic"
-            required={true}
-            setState={setUserpic}
+      <FormikFormLayout
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        <Form>
+          <FormikTextField
+            form_label="user name"
+            type="text"
+            name="user_name"
           />
-          &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-          {/* preview */}
-          {userpic && (
-            <div
-              style={{
-                width: "200px",
-                height: "200px",
-                margin: "auto",
-              }}
-            >
-              <Image
-                className="rounded-xl"
-                src={userpic ? URL.createObjectURL(userpic) : ""}
-                alt="selected image preview"
-                width={200}
-                height={200}
-              />
-            </div>
-          )}
-        </div>
-        <p className="text-light text-black4 tracking-wide my-10">
-          Your personal data will be used to support your experience throughout
-          this website, to manage access to your account, and for other purposes
-          described in our privacy policy.
-        </p>
 
-        <FormButton
-          type="submit"
-          processing={processing}
-          btn_name="Signup Now"
-          disable={processing}
-        />
-      </form>
+          <FormikTextField
+            form_label="user email"
+            type="email"
+            name="user_email"
+          />
+
+          <FormikTextField
+            form_label="user password"
+            type="password"
+            name="user_password"
+          />
+
+          <FormikTextField
+            form_label="retype password"
+            type="password"
+            name="cnf_password"
+          />
+
+          <FormikFileField
+            form_label="profile pic"
+            setState={setUserpic}
+            type="file"
+            name="user_pic"
+          />
+
+          <p className="text-light text-black4 tracking-wide my-10">
+            Your personal data will be used to support your experience
+            throughout this website, to manage access to your account, and for
+            other purposes described in our privacy policy.
+          </p>
+
+          <FormButton
+            type="submit"
+            btn_name="Signin Now"
+            processing={processing}
+          />
+        </Form>
+      </FormikFormLayout>
     </>
   );
 }

@@ -1,38 +1,22 @@
-import { useState } from "react";
+import { Form } from "formik";
 import { BiErrorCircle } from "react-icons/bi";
 import { MdCloudDone } from "react-icons/md";
 import AlertToast from "../../utilities/alertToast/AlertToast";
-import { FormButton, FormTextField } from "../../utilities/Form/FormField";
-import handleForm from "../../utilities/Form/handleForm";
+import { FormButton, FormikTextField } from "../../utilities/Form/FormField";
+import FormikFormLayout from "../../utilities/Formik/FormikLayout/FormikFormLayout";
+import { LoginFormValidator } from "../../utilities/Formik/Validators/AllFormValidators";
 
 export default function LoginForm() {
-  // take some state for storing data
-  const [useremail, setUseremail] = useState("");
-  const [password, setPassword] = useState("");
-
-  // let's making the login data of the user
-  const user_info = {
-    user_email: useremail,
-    user_password: password,
-  };
-
-  // let's make the api end point
-  const api_url = "my_account/signin_api";
-
-  const request_dependency = {
-    user_info,
-    cnfPassword: password,
-    api_url,
-  };
-  // handle form submit import here
   const {
+    initialValues,
+    validationSchema,
+    onSubmit,
+    processing,
+    toastText,
+    toastType,
     toastOn,
     setToastOn,
-    toastType,
-    toastText,
-    processing,
-    handleFormSubmit,
-  } = handleForm(request_dependency);
+  } = LoginFormValidator();
 
   // handle close toast here
   const handleRemoveToast = () => {
@@ -61,32 +45,31 @@ export default function LoginForm() {
       {/* message toast alert */}
       {toastOn && <AlertToast toast_config={toast_config} />}
 
-      {/* login form here */}
-      <form onSubmit={handleFormSubmit}>
-        <FormTextField
-          form_label="your email"
-          type="email"
-          setState={setUseremail}
-          required={true}
-        />
+      <FormikFormLayout
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        <Form>
+          <FormikTextField
+            form_label="your email"
+            type="email"
+            name="user_email"
+          />
 
-        <FormTextField
-          form_label="your password"
-          type="password"
-          setState={setPassword}
-          required={true}
-        />
+          <FormikTextField
+            form_label="your password"
+            type="password"
+            name="user_password"
+          />
 
-        <FormButton
-          type="submit"
-          processing={processing}
-          btn_name="Signin Now"
-          disable={processing}
-        />
-        <p className="text-light text-black4 tracking-wide cursor-pointer mt-10 hover:text-red-400 hover:duration-300">
-          Lost your password?
-        </p>
-      </form>
+          <FormButton
+            type="submit"
+            btn_name="Signin Now"
+            processing={processing}
+          />
+        </Form>
+      </FormikFormLayout>
     </>
   );
 }

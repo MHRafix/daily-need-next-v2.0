@@ -1,8 +1,10 @@
-import axios from "axios";
 import { useState } from "react";
 import * as Yup from "yup";
+import avatarUploader from "../../Form/avatarUploader";
 import imageUploader from "../imageUploader";
+import { reqSender } from "./reqSender";
 
+// add products form validator
 export const AddProductsFormValidator = () => {
   const [thumbnail, setThumbnail] = useState("");
   const [bigThumbnail, setBigThumbnail] = useState("");
@@ -11,7 +13,7 @@ export const AddProductsFormValidator = () => {
   const [toastType, setToastType] = useState("");
   const [toastOn, setToastOn] = useState(false);
 
-  // initia. vlaue of form
+  // initial vlaue of form
   const initialValues = {
     title: "",
     slug: "",
@@ -74,31 +76,15 @@ export const AddProductsFormValidator = () => {
     };
 
     if (products_data) {
-      try {
-        const { data } = await axios.post(
-          // `http://localhost:3000/api/add_products`,
-          "https://daily-need.vercel.app/api/add_products",
-          products_data
-        );
-
-        if (data?.success) {
-          setProcessing(false);
-          setToastType("success_toast");
-          setToastOn(true);
-          setToastText(data?.success);
-          resetForm({ values: "" });
-        } else {
-          setProcessing(false);
-          setToastType("error_toast");
-          setToastOn(true);
-          setToastText(data?.error);
-        }
-      } catch (err) {
-        setProcessing(false);
-        setToastType("error_toast");
-        setToastOn(true);
-        setToastText(err.message);
-      }
+      reqSender(
+        products_data,
+        resetForm,
+        setProcessing,
+        setToastText,
+        setToastType,
+        setToastOn,
+        "add_products"
+      );
     }
   };
 
@@ -108,6 +94,130 @@ export const AddProductsFormValidator = () => {
     onSubmit,
     setThumbnail,
     setBigThumbnail,
+    processing,
+    toastText,
+    toastType,
+    toastOn,
+    setToastOn,
+  };
+};
+
+// login form validator
+export const LoginFormValidator = () => {
+  const [processing, setProcessing] = useState(false);
+  const [toastText, setToastText] = useState("false");
+  const [toastType, setToastType] = useState("");
+  const [toastOn, setToastOn] = useState(false);
+
+  // initial vlaue of form
+  const initialValues = {
+    user_email: "",
+    user_password: "",
+  };
+
+  // validation schema using formik yup
+  const validationSchema = Yup.object({
+    user_email: Yup.string()
+      .email("Invalid email format!")
+      .required("Required!"),
+    user_password: Yup.string().required("Required!"),
+  });
+
+  // on submit function here
+  const onSubmit = async (values, { resetForm }) => {
+    setProcessing(true);
+
+    if (values) {
+      reqSender(
+        values,
+        resetForm,
+        setProcessing,
+        setToastText,
+        setToastType,
+        setToastOn,
+        "my_account/signin_api"
+      );
+    }
+  };
+
+  return {
+    initialValues,
+    validationSchema,
+    onSubmit,
+    processing,
+    toastText,
+    toastType,
+    toastOn,
+    setToastOn,
+  };
+};
+
+// registration form validator
+export const RegistrationFormValidator = () => {
+  const [userpic, setUserpic] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [toastText, setToastText] = useState("false");
+  const [toastType, setToastType] = useState("");
+  const [toastOn, setToastOn] = useState(false);
+
+  // initial vlaue of form
+  const initialValues = {
+    user_name: "",
+    user_email: "",
+    user_password: "",
+    cnf_password: "",
+    user_admin: false,
+  };
+
+  // validation schema using formik yup
+  const validationSchema = Yup.object({
+    user_name: Yup.string().required("Required!"),
+    user_email: Yup.string()
+      .email("Invalid email format!")
+      .required("Required!"),
+    user_password: Yup.string().required("Required"),
+    cnf_password: Yup.string()
+      .oneOf([Yup.ref("user_password"), ""], "Passwords didn't matched!")
+      .required("Required"),
+  });
+
+  // on submit function here
+  const onSubmit = async (values, { resetForm }) => {
+    setProcessing(true);
+
+    const { user_name, user_email, user_password, user_admin } = values;
+
+    // upload user avatarto cloudinary
+    const { avatar_upload_cloudinary } = avatarUploader(userpic);
+    const user_avatar = await avatar_upload_cloudinary();
+
+    // make user data obj
+    const user_data = {
+      user_name,
+      user_email,
+      user_password,
+      user_admin,
+      user_pic: user_avatar,
+    };
+
+    if (user_data) {
+      reqSender(
+        user_data,
+        resetForm,
+        setProcessing,
+        setToastText,
+        setToastType,
+        setToastOn,
+        "my_account/signup_api"
+      );
+    }
+  };
+
+  return {
+    initialValues,
+    validationSchema,
+    onSubmit,
+    setUserpic,
     processing,
     toastText,
     toastType,

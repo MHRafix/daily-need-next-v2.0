@@ -13,7 +13,6 @@ handler.post(async (req, res) => {
     (user) => user.user_email === req.body.user_email
   );
 
-  console.log(req.body);
   if (exist) {
     res.send({ error: "User email is already in use!" });
   } else {
