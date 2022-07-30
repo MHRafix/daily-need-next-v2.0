@@ -10,7 +10,7 @@ export default function MyProfileMain({ my_orders }) {
     Cookie.get("user_information") &&
     JSON.parse(Cookie.get("user_information"));
 
-  if (userInfo?.user_name) {
+  if (userInfo?.user_email) {
     var bread_string = `My Profile/${userInfo?.user_name}/Dashboard`;
   } else {
     // prevent fake user

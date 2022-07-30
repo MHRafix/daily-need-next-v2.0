@@ -39,3 +39,26 @@ export const chartDataCalculator = (
   // return the chart data object
   return chart_obj;
 };
+
+export const userPurchasedChartCalculator = (my_orders, month, month_name) => {
+  // make chart data object here
+  const chart_obj = { name: "Jan", od: 0, oc: 0, sp: 0 };
+
+  // push month name
+  chart_obj.name = month_name[month - 1];
+
+  // monthly purchased here
+  const monthly_purchased_products = my_orders.filter(
+    (order) => order.order_overview.order_date.month === month
+  );
+
+  // calculate my purchased monthly
+  let monthly_purchased = 0;
+  monthly_purchased_products.map((order) => {
+    monthly_purchased = order.order_overview.total_amount + monthly_purchased;
+
+    chart_obj.purchased = monthly_purchased.toFixed(2);
+  });
+
+  return chart_obj;
+};

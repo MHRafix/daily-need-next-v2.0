@@ -25,13 +25,15 @@ export default function ProfileNavigation() {
   return (
     <div className="profile_details_wrapper">
       <div className="profile_details">
-        <Image
-          className="rounded-full my-5 mx-auto"
-          src={userInfo?.user_pic}
-          width={90}
-          height={90}
-          alt="Profile Picture"
-        />
+        {userInfo?.user_pic && (
+          <Image
+            className="rounded-full my-5 mx-auto"
+            src={userInfo.user_pic}
+            width={90}
+            height={90}
+            alt="Profile Picture"
+          />
+        )}
         <h3 className="text-deep_cyan font-semibold tracking-wide text-normal capitalize">
           {userInfo?.user_name}
         </h3>
