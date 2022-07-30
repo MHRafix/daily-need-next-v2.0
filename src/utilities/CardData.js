@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Amex from "../images/card_images/amex.png";
+import Cash from "../images/card_images/cash.png";
 import Discover from "../images/card_images/discover.png";
 import Master from "../images/card_images/maestro.png";
 import Stirpe from "../images/card_images/stripe.png";
@@ -20,6 +21,8 @@ export default function CardData({ card_data }) {
       return <Image src={Stirpe} alt="card image" width={50} height={50} />;
     } else if (card_name === "amex") {
       return <Image src={Amex} alt="card image" width={50} height={50} />;
+    } else if (card_name === "cash-on") {
+      return <Image src={Cash} alt="card image" width={50} height={50} />;
     }
   };
 
