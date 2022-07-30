@@ -11,8 +11,6 @@ export default function MyAllOrdersMain({ my_orders }) {
     Cookie.get("user_information") &&
     JSON.parse(Cookie.get("user_information"));
 
-  const history = useRouter();
-
   if (userInfo?.user_name) {
     var bread_string = `My Profile/${userInfo?.user_name}/manage all orders`;
   } else {

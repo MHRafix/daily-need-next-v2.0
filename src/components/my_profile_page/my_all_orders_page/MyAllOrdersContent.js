@@ -12,7 +12,7 @@ export default function MyAllOrdersContent({ my_orders }) {
 
   // handle modal and modal data
   const handleModal = (dep, id) => {
-    const modal_data = all_orders.find((order) => order._id === id);
+    const modal_data = my_orders.find((order) => order._id === id);
     setModalData(modal_data.products_data);
     setModal(dep);
   };
@@ -21,7 +21,7 @@ export default function MyAllOrdersContent({ my_orders }) {
       <ProfileContentLayout content_title="manage all orders">
         {/* orders show on table */}
         <div className="dashboard_row_wrapper">
-          <DashboardContentLayout item_name="all orders">
+          <DashboardContentLayout item_name="my all orders">
             <ReactOrdersTable
               ORDERS_DATA={my_orders}
               handleModal={handleModal}
