@@ -34,6 +34,13 @@ export default function LineChart({ chart_data }) {
             stroke="#6c5ffc"
             fill="#6c5ffc"
           />
+          <Area
+            type="monotone"
+            dataKey="purchased"
+            stackId="1"
+            stroke="#6c5ffc"
+            fill="#6c5ffc"
+          />
 
           <Area
             type="monotone"
