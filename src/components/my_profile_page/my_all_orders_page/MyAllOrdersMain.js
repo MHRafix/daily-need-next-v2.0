@@ -5,7 +5,7 @@ import Breadcrumb from "../../commons/Breadcrumb/Breadcrumb";
 import ProfileContentContainer from "../my_profile_dashboard/ProfileContentContainer";
 import MyAllOrdersContent from "./MyAllOrdersContent";
 
-export default function MyAllOrdersMain() {
+export default function MyAllOrdersMain({ my_orders }) {
   // breadcrunb navigation
   const userInfo =
     Cookie.get("user_information") &&
@@ -31,7 +31,7 @@ export default function MyAllOrdersMain() {
     <>
       <Breadcrumb bread_nav={bread_string} />
       <ProfileContentContainer>
-        <MyAllOrdersContent />
+        <MyAllOrdersContent my_orders={my_orders} />
       </ProfileContentContainer>
     </>
   );

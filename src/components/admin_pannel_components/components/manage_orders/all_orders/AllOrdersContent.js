@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { BiErrorCircle } from "react-icons/bi";
 import { MdCloudDone } from "react-icons/md";
 import AlertToast from "../../../../../utilities/alertToast/AlertToast";
-import FormikFormLayout from "../../../../../utilities/Formik/FormikLayout/FormikFormLayout";
-import AddProductsForm from "../../../../../utilities/Formik/Forms/AddProductsForm";
 import { AddProductsFormValidator } from "../../../../../utilities/Formik/Validators/AllFormValidators";
 import ReactModal from "../../../../../utilities/Modal/ReactModal";
 import ReactOrdersTable from "../../../../../utilities/React_Table/OrdersTable/ReactOrdersTable";
@@ -82,25 +80,6 @@ export default function AllOrdersContent({ all_orders }) {
             />
           </ReactModal>
         )}
-      </div>
-
-      {/* add products form  */}
-      <div className="dashboard_row_wrapper">
-        <div className="add_products_form">
-          <DashboardContentLayout item_name="place custom order">
-            <FormikFormLayout
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={onSubmit}
-            >
-              <AddProductsForm
-                setThumbnail={setThumbnail}
-                setBigThumbnail={setBigThumbnail}
-                processing={processing}
-              />
-            </FormikFormLayout>
-          </DashboardContentLayout>
-        </div>
       </div>
     </>
   );

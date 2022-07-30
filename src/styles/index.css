@@ -445,7 +445,7 @@
 
   /* my profile page css here */
   .my_profile_navigation {
-    @apply md:w-1/5 py-3 px-1.5 md:border md:border-white md:border-r-slate-300;
+    @apply md:w-1/5 py-3 md:border md:border-white md:border-r-slate-300;
   }
 
   .my_profile_content_body {
