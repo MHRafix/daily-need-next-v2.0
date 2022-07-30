@@ -152,7 +152,7 @@ export default function AdminDashboardContent({
               item_name="sales analytics"
               labels_array={labels_array}
             >
-              <LineChart chart_data={chart_data} />
+              <LineChart chart_data={data} />
             </LineChartFancy>
           </div>
           {/* users mini table */}

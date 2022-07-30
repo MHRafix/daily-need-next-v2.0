@@ -40,7 +40,7 @@ export default function AdminDashboard({
 export async function getServerSideProps() {
   await db.connect();
   const all_orders = await Order.find({});
-  const all_users = await User.find({});
+  const all_users = await User.find({}).limit(6);
   const all_products = await AllProducts.find({});
   await db.disconnect();
 
