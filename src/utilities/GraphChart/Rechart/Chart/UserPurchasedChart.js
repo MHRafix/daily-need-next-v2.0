@@ -30,8 +30,8 @@ export default function UserPurchasedChart({ chart_data }) {
             type="monotone"
             dataKey="purchased"
             stackId="1"
-            stroke="#6c5ffc"
-            fill="#6c5ffc"
+            stroke="#28a745"
+            fill="#28a745"
           />
         </AreaChart>
       </ResponsiveContainer>
