@@ -445,11 +445,11 @@
 
   /* my profile page css here */
   .my_profile_navigation {
-    @apply md:w-1/5 py-2 md:border  md:border-white md:border-r-slate-300;
+    @apply md:w-1/5 py-3 px-1.5 md:border md:border-white md:border-r-slate-300;
   }
 
   .my_profile_content_body {
-    @apply md:w-4/5;
+    @apply md:w-4/5 px-1.5 py-2;
   }
 
   .profile_details {
@@ -466,10 +466,6 @@
 
   #profile_nav_active {
     @apply flex items-center border border-slate-200 rounded-sm py-extra_padding4 px-1 capitalize tracking-wide lg:text-light my-1 cursor-pointer bg-gradient-to-r from-orangee to-orangee_red text-white;
-  }
-
-  #content_body_wrapper {
-    @apply p-1;
   }
 
   #content_title {

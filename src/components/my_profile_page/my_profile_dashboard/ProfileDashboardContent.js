@@ -1,6 +1,5 @@
 import CardData from "../../../utilities/CardData";
-import { userPurchasedChartCalculator } from "../../../utilities/chartDataCalculator";
-import UserPurchasedChart from "../../../utilities/GraphChart/Rechart/Chart/UserPurchasedChart";
+import DataChart from "../../../utilities/GraphChart/DataChart";
 import ProfileContentLayout from "../../../utilities/ProfileContentLayout";
 
 export default function ProfileDashboardContent({ my_orders }) {
@@ -100,25 +99,23 @@ export default function ProfileDashboardContent({ my_orders }) {
     });
   });
 
-  // chart data here
-  const current_year = new Date().getFullYear();
-  const month_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const data = [];
-
   //data for bar chart
-  for (const month of month_num) {
-    const chart_obj = userPurchasedChartCalculator(
-      my_orders,
-      month,
-      month_name
-    );
-
-    data.push(chart_obj);
-  }
-
-  // chart configuration here
-  const labels_array = [{ _id: 1, label: "my orders", bg_color: "#2bd891" }];
-
+  const data = {
+    labels: purchased_date,
+    label: "Purchased Chart",
+    datasets: [
+      {
+        label: "# My First Dataset",
+        data: purchased_bdt,
+        fill: true,
+        backroundColor: "red!",
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+        pointBorderColor: "green",
+        pointBackgroundColor: "green",
+      },
+    ],
+  };
   return (
     <>
       <ProfileContentLayout content_title="profile dashboard">
@@ -148,8 +145,9 @@ export default function ProfileDashboardContent({ my_orders }) {
           {/* topbar purchase summary end here */}
           <div className="purchased_chart_and_payment_table_wrapper">
             <div className="purchased_chart_wrapper">
-              <h1 className="dashboard_content_title">purchased chart</h1>
-              <UserPurchasedChart chart_data={data} />
+              <h1 className="dashboard_content_title">{data.label}</h1>
+
+              <DataChart type="line" data={data} />
             </div>
             <div className="purchased_data_table_wrapper">
               <h1 className="dashboard_content_title">Payment Card</h1>

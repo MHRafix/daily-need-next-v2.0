@@ -7,7 +7,7 @@ export default function ProfileContentContainer({ children }) {
     JSON.parse(Cookie.get("user_information"));
 
   return (
-    <div className="md:flex shadow-lg border border-slate-300 md:h-screen">
+    <div className="md:flex shadow-lg border border-slate-300 md:h-auto">
       <div className="my_profile_navigation">
         <ProfileNavigation />
       </div>
