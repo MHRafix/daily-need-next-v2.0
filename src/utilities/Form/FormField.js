@@ -130,7 +130,7 @@ export const FormikTextField = ({ form_label, type, name, as }) => {
 };
 
 // formik form select input
-export const FormikSelectField = ({ form_label, type, name }) => {
+export const FormikSelectField = ({ form_label, options, name }) => {
   const style = {
     padding: "8px",
     border: "1px solid #564d4d24",
@@ -150,14 +150,10 @@ export const FormikSelectField = ({ form_label, type, name }) => {
         <span id="required_sign">*</span>
       </label>
       <br />
-      <Field as="select" type={type} name={name} id={name} style={style}>
-        <option value="fruits" selected={true}>
-          Fruits
-        </option>
-        <option value="vegetable" selected>
-          Vegetable
-        </option>
-        <option value="groci">Groci</option>
+      <Field as="select" name={name} id={name} style={style}>
+        {options.map((option) => (
+          <option value={option.name}>{option.name}</option>
+        ))}
       </Field>
       &nbsp;
       <span className="text-red-500 text-light">

@@ -97,7 +97,7 @@ export default function ProductView({ product }) {
                   className="!shadow-md !bg-indigo-50"
                   onClick={() => {
                     if (qty > 1) {
-                      setQty(qty - 1);
+                      setQty((prevQty) => prevQty - 1);
                     } else {
                       // show toast
                       setToastOn(true);
@@ -114,7 +114,7 @@ export default function ProductView({ product }) {
                   className="!shadow-md !bg-indigo-50"
                   onClick={() => {
                     if (qty < 10) {
-                      setQty(qty + 1);
+                      setQty((prevQty) => prevQty + 1);
                     } else {
                       // show toast
                       setToastOn(true);

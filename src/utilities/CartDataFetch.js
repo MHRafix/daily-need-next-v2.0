@@ -10,8 +10,8 @@ export default function CartDataFetch() {
     JSON.parse(Cookie.get("cart_product_ids"));
 
   useEffect(() => {
-    // fetch(`http://localhost:3000/api/allproducts`)
-    fetch(`https://daily-need.vercel.app/api/allproducts`)
+    fetch(`http://localhost:3000/api/allproducts`)
+      // fetch(`https://daily-need.vercel.app/api/allproducts`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [cart_cookie_products?.length]);

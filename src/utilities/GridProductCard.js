@@ -117,7 +117,7 @@ export default function GridProductCard({ product_data }) {
               id="qty_controller"
               onClick={() => {
                 if (qty > 1) {
-                  setQty(qty - 1);
+                  setQty((prevQty) => prevQty - 1);
                 } else {
                   // show toast
                   setToastOn(true);
@@ -133,7 +133,7 @@ export default function GridProductCard({ product_data }) {
               id="qty_controller"
               onClick={() => {
                 if (qty < 10) {
-                  setQty(qty + 1);
+                  setQty((prevQty) => prevQty + 1);
                 } else {
                   // show toast
                   setToastOn(true);

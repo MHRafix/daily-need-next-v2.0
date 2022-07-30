@@ -37,7 +37,11 @@ export default function AddProductsForm({
       <FormFieldFlexLayout>
         <FormikSelectField
           form_label="product category"
-          type="text"
+          options={[
+            { id: 1, name: "fruits" },
+            { id: 2, name: "vegetable" },
+            { id: 3, name: "groci" },
+          ]}
           name="category"
         />
         <FormikTextField

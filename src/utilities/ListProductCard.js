@@ -106,7 +106,7 @@ export default function ListProductCard({ product_data }) {
               id="qty_controller"
               onClick={() => {
                 if (qty > 1) {
-                  setQty(qty - 1);
+                  setQty((prevQty) => prevQty - 1);
                 } else {
                   setToastOn(true);
                   setToastType("warning_toast");
@@ -121,7 +121,7 @@ export default function ListProductCard({ product_data }) {
               id="qty_controller"
               onClick={() => {
                 if (qty < 10) {
-                  setQty(qty + 1);
+                  setQty((prevQty) => prevQty + 1);
                 } else {
                   setToastOn(true);
                   setToastType("warning_toast");

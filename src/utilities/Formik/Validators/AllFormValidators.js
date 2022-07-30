@@ -1,5 +1,10 @@
+import axios from "axios";
+import Cookie from "js-cookie";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { reduceCookie } from "../../../redux/cart_products/action";
 import avatarUploader from "../../Form/avatarUploader";
 import imageUploader from "../imageUploader";
 import { reqSender } from "./reqSender";
@@ -223,5 +228,155 @@ export const RegistrationFormValidator = () => {
     toastType,
     toastOn,
     setToastOn,
+  };
+};
+
+// checkout form validator
+export const CheckoutFormValidator = (products_data, net_total) => {
+  const [paypalModal, setPaypalModal] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [toastText, setToastText] = useState("");
+  const [toastType, setToastType] = useState("");
+  const [toastOn, setToastOn] = useState(false);
+  const [orderid, setOrderid] = useState("");
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const empty_data = [];
+
+  // loggedin user info and form data state
+  const userInfo =
+    Cookie.get("user_information") &&
+    JSON.parse(Cookie.get("user_information"));
+
+  // initial vlaue of form
+  const initialValues = {
+    customer_name: userInfo?.user_name,
+    customer_email: userInfo?.user_email,
+    customer_mobile: "",
+    customer_country: "",
+    customer_district: "",
+    customer_street: "",
+    payment_method: "cash-on",
+  };
+
+  // validation schema using formik yup
+  const validationSchema = Yup.object({
+    customer_name: Yup.string().required("Required!"),
+    customer_email: Yup.string()
+      .email("Invalid email format!")
+      .required("Required!"),
+    customer_mobile: Yup.string().required("Required!"),
+    customer_country: Yup.string().required("Required!"),
+    customer_district: Yup.string().required("Required!"),
+    customer_street: Yup.string().required("Required!"),
+    payment_method: Yup.string().required("Required!"),
+  });
+
+  // on submit function here
+  const onSubmit = async (values, { resetForm }) => {
+    setProcessing(true);
+
+    // destreucture the form values
+    const {
+      customer_name,
+      customer_email,
+      customer_mobile,
+      customer_country,
+      customer_district,
+      customer_street,
+      payment_method,
+    } = values;
+
+    // make a user data object for ordering the products
+    const order_data = {
+      products_data,
+      user_email: userInfo?.user_email,
+      customer_info: {
+        customer_name,
+        customer_email,
+        customer_mobile,
+        customer_country,
+        customer_district,
+        customer_street,
+      },
+
+      order_overview: {
+        order_status: "pendding",
+        total_amount: net_total,
+        total_qty: products_data?.length,
+        order_date: {
+          date: new Date().getDate(),
+          month: new Date().getMonth() + 1,
+          year: new Date().getFullYear(),
+        },
+      },
+
+      payment_info: {
+        payment_method,
+        payment_status: "due",
+        customer_name,
+        customer_email,
+        customer_mobile,
+        payment_amount: net_total,
+        card_name: payment_method,
+        created: "null",
+        last4: "null",
+        transaction: "null",
+        order_id: "null",
+      },
+    };
+
+    if (order_data) {
+      try {
+        setPaypalModal(false);
+
+        const { data } = await axios.post(
+          // "http://localhost:3000/api/checkout/place_order",
+          "https://daily-need.vercel.app/api/checkout/place_order",
+          order_data
+        );
+
+        if (data?.success) {
+          setToastOn(true);
+          setProcessing(false);
+          setToastText(data.success);
+          setToastType("success_toast");
+          Cookie.remove("cart_product_ids");
+
+          setTimeout(() => {
+            if (payment === "cash-on") {
+              router.push("/shop/grid_shop");
+              dispatch(reduceCookie(empty_data));
+            } else {
+              setOrderid(data?.order_id);
+              setPaypalModal(true);
+            }
+          }, 2000);
+        } else {
+          setToastOn(true);
+          setProcessing(false);
+          setToastText(data.error);
+          setToastType("error_toast");
+        }
+      } catch (error) {
+        setToastOn(true);
+        setProcessing(false);
+        setToastText(error.message);
+        setToastType("error_toast");
+      }
+    }
+  };
+
+  return {
+    initialValues,
+    validationSchema,
+    onSubmit,
+    processing,
+    toastText,
+    toastType,
+    toastOn,
+    setToastOn,
+    paypalModal,
+    orderid,
   };
 };

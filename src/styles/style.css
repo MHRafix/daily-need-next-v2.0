@@ -62,6 +62,7 @@ table th {
 #modalBackground {
   display: flex;
   align-items: center;
+  z-index: 10000;
 }
 
 /* .modalContainer {
