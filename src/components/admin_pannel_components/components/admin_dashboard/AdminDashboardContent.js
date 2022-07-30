@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaCoins, FaUsers } from "react-icons/fa";
 import { MdAddShoppingCart, MdShoppingBasket } from "react-icons/md";
 import { chartDataCalculator } from "../../../../utilities/chartDataCalculator";
+import LineChart from "../../../../utilities/GraphChart/Rechart/Chart/LineChart";
 import LineChartFancy from "../../../../utilities/GraphChart/Rechart/LineChart/LineChartFancy";
 import ReactModal from "../../../../utilities/Modal/ReactModal";
 import ReactOrdersTable from "../../../../utilities/React_Table/OrdersTable/ReactOrdersTable";
@@ -10,6 +11,7 @@ import { ORDERED_PRODUCT_TABLE_COLUMNS } from "../../../../utilities/React_Table
 import DashboardUsersMiniTable from "../../../../utilities/React_Table/UsersDataTable/DashboardUsersMiniTable";
 import DashboardContentLayout from "../../admin_pannel_utilities/DashboardLayout/DashboardContentLayout";
 import GridBox from "../../admin_pannel_utilities/GridBoxes/GridBox";
+
 export default function AdminDashboardContent({
   all_orders,
   all_users,
@@ -149,8 +151,9 @@ export default function AdminDashboardContent({
             <LineChartFancy
               item_name="sales analytics"
               labels_array={labels_array}
-              chart_data={data}
-            />
+            >
+              <LineChart chart_data={chart_data} />
+            </LineChartFancy>
           </div>
           {/* users mini table */}
           <div className="xl:!w-1/3 xs:w-full">

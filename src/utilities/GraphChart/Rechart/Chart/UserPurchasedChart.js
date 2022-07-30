@@ -1,4 +1,4 @@
-import React from "react";
+import { default as React, default as React } from "react";
 import {
   Area,
   AreaChart,
@@ -8,7 +8,7 @@ import {
   YAxis,
 } from "recharts";
 
-export default function LineChart({ chart_data }) {
+export default function UserPurchasedChart({ chart_data }) {
   return (
     <>
       <ResponsiveContainer>
@@ -28,26 +28,10 @@ export default function LineChart({ chart_data }) {
 
           <Area
             type="monotone"
-            dataKey="sp"
+            dataKey="purchased"
             stackId="1"
             stroke="#6c5ffc"
             fill="#6c5ffc"
-          />
-
-          <Area
-            type="monotone"
-            dataKey="oc"
-            stackId="1"
-            stroke="red"
-            fill="red"
-          />
-
-          <Area
-            type="monotone"
-            dataKey="od"
-            stackId="1"
-            stroke="#2bd891"
-            fill="#2bd891"
           />
         </AreaChart>
       </ResponsiveContainer>

@@ -1,5 +1,6 @@
 import CardData from "../../../utilities/CardData";
 import { userPurchasedChartCalculator } from "../../../utilities/chartDataCalculator";
+import UserPurchasedChart from "../../../utilities/GraphChart/Rechart/Chart/UserPurchasedChart";
 import LineChartFancy from "../../../utilities/GraphChart/Rechart/LineChart/LineChartFancy";
 import ProfileContentLayout from "../../../utilities/ProfileContentLayout";
 
@@ -151,10 +152,11 @@ export default function ProfileDashboardContent({ my_orders }) {
               <h1 className="dashboard_content_title">{data.label}</h1>
 
               <LineChartFancy
-                item_name="purchased chart"
+                item_name="sales analytics"
                 labels_array={labels_array}
-                chart_data={data}
-              />
+              >
+                <UserPurchasedChart chart_data={data} />
+              </LineChartFancy>
             </div>
             <div className="purchased_data_table_wrapper">
               <h1 className="dashboard_content_title">Payment Card</h1>
